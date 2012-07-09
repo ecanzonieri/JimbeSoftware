@@ -4,4 +4,8 @@
 
 #pragma once
 
+#include <windows.h>
+#include <wlanapi.h>
+#include <objbase.h>
 
+#pragma comment(lib, "wlanapi.lib")

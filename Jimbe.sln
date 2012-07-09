@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeService", "JimbeServic
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JimbeWiFi", "JimbeWiFi\JimbeWiFi.vcxproj", "{5D4A229B-51B2-489C-8C26-5983B04C2C0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WiFiApiTest", "WiFiApiTest\WiFiApiTest.csproj", "{4A56926B-8668-4DF8-A136-B526A69F685D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -47,6 +49,16 @@ Global
 		{5D4A229B-51B2-489C-8C26-5983B04C2C0E}.Release|Win32.ActiveCfg = Release|Win32
 		{5D4A229B-51B2-489C-8C26-5983B04C2C0E}.Release|Win32.Build.0 = Release|Win32
 		{5D4A229B-51B2-489C-8C26-5983B04C2C0E}.Release|x86.ActiveCfg = Release|Win32
+		{4A56926B-8668-4DF8-A136-B526A69F685D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{4A56926B-8668-4DF8-A136-B526A69F685D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{4A56926B-8668-4DF8-A136-B526A69F685D}.Debug|Win32.ActiveCfg = Debug|x86
+		{4A56926B-8668-4DF8-A136-B526A69F685D}.Debug|x86.ActiveCfg = Debug|x86
+		{4A56926B-8668-4DF8-A136-B526A69F685D}.Debug|x86.Build.0 = Debug|x86
+		{4A56926B-8668-4DF8-A136-B526A69F685D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{4A56926B-8668-4DF8-A136-B526A69F685D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{4A56926B-8668-4DF8-A136-B526A69F685D}.Release|Win32.ActiveCfg = Release|x86
+		{4A56926B-8668-4DF8-A136-B526A69F685D}.Release|x86.ActiveCfg = Release|x86
+		{4A56926B-8668-4DF8-A136-B526A69F685D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

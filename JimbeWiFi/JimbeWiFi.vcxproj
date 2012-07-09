@@ -76,9 +76,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IWifiApi.h" />
     <ClInclude Include="JimbeWiFi.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="WifiException.h" />
+    <ClInclude Include="WifiInterface.h" />
+    <ClInclude Include="WifiNetwork.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -87,6 +91,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="WifiException.cpp" />
+    <ClCompile Include="WifiInterface.cpp" />
+    <ClCompile Include="WifiNetwork.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />
