@@ -14,5 +14,16 @@ namespace Jimbe {
 		protected:
 			WifiException(SerializationInfo^ info, StreamingContext context) : Exception(info,context){}
 		};
+		[Serializable]
+		public ref class WifiToManyHandleException : public WifiException
+		{
+		public:
+			WifiToManyHandleException(void): WifiException(){}			
+			WifiToManyHandleException(String^ msg) : WifiException(msg){}
+			WifiToManyHandleException(String^ msg, WifiException^ inner) : WifiException(msg,inner){}
+		protected:
+			WifiToManyHandleException(SerializationInfo^ info, StreamingContext context) : WifiException(info,context){}
+
+		};
 	}
 }

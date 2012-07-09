@@ -30,7 +30,10 @@ namespace Jimbe {
 
 			static Guid JimbeWiFi::FromGUID( _GUID& guid );
 			static _GUID JimbeWiFi::ToGUID( Guid& guid );
-
+		
+		protected:
+			!JimbeWiFi();
+		
 		private:
 			HANDLE hClientHandle;
 			DWORD  dwNegotiatedVersion;

@@ -28,10 +28,22 @@ namespace Jimbe {
 			pin_ptr<HANDLE> phClientHandle=&hClientHandle;
 			dwResult = WlanOpenHandle((DWORD)version, NULL, pdwNegotiatedVersion, phClientHandle);
 			if (dwResult!=ERROR_SUCCESS)
-				throw gcnew WifiException("Error on open Wlan Api");
+				if (dwResult==ERROR_REMOTE_SESSION_LIMIT_EXCEEDED)
+				throw gcnew WifiToManyHandleException("Too many handles have been issued by the server. Please call GC to release the resources");
+				else throw gcnew WifiException("Error on open Wlan Api");
 		}
 
 		JimbeWiFi::~JimbeWiFi(void)
+		{
+			DWORD dwResult=0;
+			if (hClientHandle==INVALID_HANDLE_VALUE) 
+				return;
+			dwResult=WlanCloseHandle(hClientHandle,NULL);
+			if (dwResult!=ERROR_SUCCESS)
+				throw gcnew WifiException("Error on close Wlan Api");
+		}
+
+		JimbeWiFi::!JimbeWiFi()
 		{
 			DWORD dwResult=0;
 			if (hClientHandle==INVALID_HANDLE_VALUE) 
@@ -46,6 +58,7 @@ namespace Jimbe {
 		{
 			LinkedList<WifiInterface ^>^ interfacelist=nullptr;
 			DWORD dwResult=0;
+			//Variable used for WlanEnumInterfaces
 			PWLAN_INTERFACE_INFO_LIST pIfList = NULL;
 			PWLAN_INTERFACE_INFO pIfInfo = NULL;
 			int i;
@@ -69,18 +82,18 @@ namespace Jimbe {
 
 		IEnumerable<WifiNetwork ^>^ JimbeWiFi::WiFiGetAvailableNetworkList(WifiInterface ^ wInterface)
 		{			
-			
+			//Variable used for WlanGetAvailableNetworkList
 			PWLAN_AVAILABLE_NETWORK_LIST pBssList = NULL;
 		    PWLAN_AVAILABLE_NETWORK pBssEntry = NULL;
+			//Variable used for WlanGetNetworkBssList
 			PWLAN_BSS_LIST pWlanBssList=NULL;
 			PWLAN_BSS_ENTRY pWlanBssEntry=NULL;
 			
-			UCHAR ssid[DOT11_SSID_MAX_LENGTH+1];
 			DWORD dwResult=0;		
 			
-			int i, k,j;
+			int i, j;
 			
-			LinkedList<WifiNetwork^>^ networklist=nullptr;
+			LinkedList<WifiNetwork^>^ networks=nullptr;
 			LinkedList<PhysicalAddress ^>^ maclist=nullptr;
 			
 			GUID interfaceGUID=ToGUID(wInterface->InterfaceGuid);
@@ -93,21 +106,22 @@ namespace Jimbe {
 			if (dwResult!=ERROR_SUCCESS)
 				throw gcnew WifiException("Error on get available networks");
 			
-			networklist= gcnew LinkedList<WifiNetwork^>();
-			
+			networks= gcnew LinkedList<WifiNetwork^>();
+			bool duplicate;
 			for (i=0; i<(int) pBssList->dwNumberOfItems; i++) {
 				pBssEntry = (WLAN_AVAILABLE_NETWORK *) & pBssList->Network[i];
 				
-				if (pBssEntry->dot11Ssid.uSSIDLength==0) ssid[0]='\0';
-				else for (k=0; k<(int)(pBssEntry->dot11Ssid.uSSIDLength);k++) ssid[k]=pBssEntry->dot11Ssid.ucSSID[k];
-				ssid[k]='\0';
+				String ^ssid=Marshal::PtrToStringAnsi(static_cast<IntPtr>(pBssEntry->dot11Ssid.ucSSID), static_cast<Int32>(pBssEntry->dot11Ssid.uSSIDLength));
 				
 				String ^profile= Marshal::PtrToStringAuto(static_cast<IntPtr>(pBssEntry->strProfileName));
 				WifiNetwork::BSSType type=(WifiNetwork::BSSType) pBssEntry->dot11BssType;
 				ULONG sigPower= pBssEntry->wlanSignalQuality;
 				
+				duplicate=false;
+				for each (WifiNetwork^ net in networks) if (net->Ssid->Equals(ssid)) duplicate=true;  
+				if (duplicate) continue;
+
 				if (dwNegotiatedVersion==(int)NativeApiVersion::windowsVista) {
-					PhysicalAddress ^addr;
 					maclist = gcnew LinkedList<PhysicalAddress^>();
 					array<Byte> ^byteArray;
 
@@ -121,7 +135,7 @@ namespace Jimbe {
 					if (dwResult!=ERROR_SUCCESS)
 						throw gcnew WifiException("Error on get network bssid");
 					
-					for (j=0; j<pWlanBssList->dwNumberOfItems; j++) {
+					for (j=0; j<(int)pWlanBssList->dwNumberOfItems; j++) {
 						pWlanBssEntry=pWlanBssList->wlanBssEntries+j;
 						byteArray  = gcnew array<Byte>(6);
 						Marshal::Copy((IntPtr)pWlanBssEntry->dot11Bssid, byteArray, 0, 6 );
@@ -129,23 +143,59 @@ namespace Jimbe {
 					}
 					WlanFreeMemory(pWlanBssList);
 				} else maclist=nullptr;
-
-				networklist->AddLast(
+				networks->AddLast(
 					gcnew WifiNetwork(
-					Marshal::PtrToStringAnsi(static_cast<IntPtr>(ssid)),
+					ssid,
 					profile,
 					maclist,
 					type,
-					sigPower
-					));
-
+					sigPower));
 			}
 			WlanFreeMemory(pBssList);
-			return networklist;
+			return networks;
 		}
 
 		WifiNetwork^ JimbeWiFi::WiFiGetCurrentConnection(WifiInterface ^wInterface){
-			return nullptr;
+			DWORD dwResult = 0;
+
+			// variables used for WlanQueryInterfaces for opcode = wlan_intf_opcode_current_connection
+			PWLAN_CONNECTION_ATTRIBUTES pConnectInfo = NULL;
+			DWORD connectInfoSize = sizeof(WLAN_CONNECTION_ATTRIBUTES);
+			WLAN_OPCODE_VALUE_TYPE opCode = wlan_opcode_value_type_invalid;
+	
+			GUID interfaceGUID=ToGUID(wInterface->InterfaceGuid);
+			
+			if (wInterface->IsState != WifiInterface::WlanInterfaceState::connected) 
+				throw gcnew WifiException("Interface is not currently connected to a network");
+			else {
+                dwResult = WlanQueryInterface(hClientHandle,
+												&interfaceGUID,
+												wlan_intf_opcode_current_connection,
+												NULL,
+												&connectInfoSize,
+												(PVOID *) &pConnectInfo,
+												&opCode);
+				if (dwResult!=ERROR_SUCCESS)
+					switch (dwResult) {
+					case ERROR_ACCESS_DENIED:	throw gcnew WifiException("Not have sufficient permissions");
+					case ERROR_INVALID_STATE:	throw gcnew WifiException("Interface is not currently connected to a network");
+					default:					throw gcnew WifiException("Error in WlanQueryInterface");				
+				}
+
+				String ^profile=Marshal::PtrToStringAuto(static_cast<IntPtr>(pConnectInfo->strProfileName));
+				String ^ssid=Marshal::PtrToStringAnsi(static_cast<IntPtr>(pConnectInfo->wlanAssociationAttributes.dot11Ssid.ucSSID), static_cast<Int32>(pConnectInfo->wlanAssociationAttributes.dot11Ssid.uSSIDLength));
+				
+				int sigPower=pConnectInfo->wlanAssociationAttributes.wlanSignalQuality;
+				WifiNetwork::BSSType type=(WifiNetwork::BSSType)pConnectInfo->wlanAssociationAttributes.dot11BssType;
+				
+				array<byte> ^ byteArray  = gcnew array<Byte>(6);
+				Marshal::Copy((IntPtr)pConnectInfo->wlanAssociationAttributes.dot11Bssid, byteArray, 0, 6 );
+				LinkedList<PhysicalAddress^>^ maclist=gcnew LinkedList<PhysicalAddress^>();
+				maclist->AddLast(gcnew PhysicalAddress(byteArray));
+				
+				return gcnew WifiNetwork(ssid,profile,maclist,type,sigPower);
+
+			} 
 		}
 
 		 Guid JimbeWiFi::FromGUID( _GUID& guid ) {
