@@ -22,7 +22,7 @@ namespace Jimbe {
 			
 			JimbeWiFi(void);
 			JimbeWiFi(JimbeWiFi::NativeApiVersion version);
-			~JimbeWiFi(void);
+
 
 			virtual	IEnumerable<WifiInterface ^> ^WiFiEnumInterfaces(void);
 			virtual IEnumerable<WifiNetwork ^> ^WiFiGetAvailableNetworkList(WifiInterface ^ wInterface);
@@ -33,6 +33,7 @@ namespace Jimbe {
 		
 		protected:
 			!JimbeWiFi();
+			~JimbeWiFi(void);
 		
 		private:
 			HANDLE hClientHandle;

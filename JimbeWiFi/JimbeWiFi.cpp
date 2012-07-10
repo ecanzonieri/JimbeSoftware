@@ -29,18 +29,13 @@ namespace Jimbe {
 			dwResult = WlanOpenHandle((DWORD)version, NULL, pdwNegotiatedVersion, phClientHandle);
 			if (dwResult!=ERROR_SUCCESS)
 				if (dwResult==ERROR_REMOTE_SESSION_LIMIT_EXCEEDED)
-				throw gcnew WifiToManyHandleException("Too many handles have been issued by the server. Please call GC to release the resources");
+					throw gcnew WifiToManyHandleException("Too many handles have been issued by the server. Please call GC to release the resources");
 				else throw gcnew WifiException("Error on open Wlan Api");
 		}
 
 		JimbeWiFi::~JimbeWiFi(void)
 		{
-			DWORD dwResult=0;
-			if (hClientHandle==INVALID_HANDLE_VALUE) 
-				return;
-			dwResult=WlanCloseHandle(hClientHandle,NULL);
-			if (dwResult!=ERROR_SUCCESS)
-				throw gcnew WifiException("Error on close Wlan Api");
+			this->!JimbeWiFi();
 		}
 
 		JimbeWiFi::!JimbeWiFi()
