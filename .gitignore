@@ -1,10 +1,10 @@
-Jimbe.sdf
 Thumbs.db
 *.obj
 *.exe
 *.pdb
 *.user
 *.aps
+*.opensdf
 *.sdf
 *.pch
 *.vspscc
@@ -28,3 +28,9 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+
+#NuGet
+packages/
+
+# visual studio database projects
+*.dbmdl
