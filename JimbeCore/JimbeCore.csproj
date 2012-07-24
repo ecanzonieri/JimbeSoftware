@@ -45,12 +45,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\Contest.cs" />
+    <Compile Include="Class\Context.cs" />
     <Compile Include="Class\Location.cs" />
+    <Compile Include="Class\LocationManager.cs" />
     <Compile Include="Class\StartProcess.cs" />
     <Compile Include="Class\WiFiConnectedSensor.cs" />
-    <Compile Include="Interface\IContest.cs" />
+    <Compile Include="Interface\IContext.cs" />
     <Compile Include="Interface\ILocation.cs" />
+    <Compile Include="Interface\ILocationManager.cs" />
     <Compile Include="Interface\ISensor.cs" />
     <Compile Include="Interface\ISensorData.cs" />
     <Compile Include="Interface\ITask.cs" />

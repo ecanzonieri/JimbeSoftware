@@ -37,7 +37,7 @@ namespace Jimbe
             {
                 try
                 {
-                    process.Start();
+                    return process.Start();
                 }
                 catch (Exception ioe)
                 {
