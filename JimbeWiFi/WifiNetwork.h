@@ -25,7 +25,6 @@ namespace Jimbe {
 			
 			property IEnumerable<PhysicalAddress ^> ^ Bssids{IEnumerable<PhysicalAddress ^> ^ get();}; 
 		
-		internal: 
 			WifiNetwork(String^ ssid, String^ profile, IEnumerable<PhysicalAddress ^> ^bssids, WifiNetwork::BSSType type, int signalQuality);
 		
 		private:

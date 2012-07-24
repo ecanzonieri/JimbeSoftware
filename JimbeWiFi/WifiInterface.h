@@ -28,7 +28,6 @@ namespace Jimbe {
 			
 			property WifiInterface::WlanInterfaceState IsState {WifiInterface::WlanInterfaceState get();};
 		
-		internal:
 			WifiInterface(String ^description, Guid interfaceGuid, WifiInterface::WlanInterfaceState state);
 		
 		private:

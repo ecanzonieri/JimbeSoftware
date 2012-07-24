@@ -49,7 +49,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMeasureData.cs" />
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
     </Compile>
