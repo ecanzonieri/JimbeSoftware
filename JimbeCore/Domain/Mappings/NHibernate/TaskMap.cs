@@ -13,7 +13,6 @@ namespace JimbeCore.Domain.Mappings.NHibernate
         {
             Id(x => x.Id);
             References<Location>(x => x.Location).ForeignKey();
-            HasMany<TaskStatistic>(x => x.Statistics).Cascade.All();
         }
     }
 }

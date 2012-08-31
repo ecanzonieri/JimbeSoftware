@@ -18,10 +18,5 @@ namespace JimbeCore.Domain.Interfaces
         /// Each task belongs to Location
         /// </summary>
         ILocation Location { get; set; }
-
-        /// <summary>
-        /// Statistics record the start and stop time of the task
-        /// </summary>
-        IList<IStatistic> Statistics { get; set; }
     }
 }

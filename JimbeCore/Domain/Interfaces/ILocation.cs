@@ -10,7 +10,7 @@ namespace JimbeCore.Domain.Interfaces
     {
         IEnumerable<ISensor> Sensors { get; }
 
-        IList<IStatistic> Statistics { get; set; }
+        IEnumerable<IStatistic> Statistics { get; }
 
         IEnumerable<ITask> Tasks { get; } 
 

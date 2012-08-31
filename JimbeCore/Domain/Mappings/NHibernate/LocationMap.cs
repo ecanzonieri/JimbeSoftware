@@ -16,7 +16,7 @@ namespace JimbeCore.Domain.Mappings.NHibernate
             Map(x => x.Description);
             HasMany<Sensor>(x => x.SensorsList).Cascade.All();
             HasMany<Task>(x => x.TasksList).Cascade.All();
-            HasMany<LocationStatistic>(x => x.Statistics).Cascade.All();
+            HasMany<LocationStatistic>(x => x.StatisticsList).Cascade.All();
         }
     }
 }

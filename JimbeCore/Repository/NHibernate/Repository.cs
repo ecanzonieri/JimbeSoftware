@@ -9,7 +9,7 @@ using NHibernate.Linq;
 
 namespace JimbeCore.Repository.NHibernate
 {
-    public class Repository<TKey, T> : IPersistRepository<T>, IReadOnlyRepository<TKey, T> where T : class
+    public class Repository<TKey, T> : IRepository<TKey,T> where T : class
     {
         private readonly ISession _session;
 

@@ -117,16 +117,16 @@ namespace JimbeTest.NHibernate
 
                 new PersistenceSpecification<Location>(session)
                     .CheckProperty(c => c.Name, "location1")
-                    .CheckList(c => c.Statistics, GetStatisticsList())
+                    .CheckList(c => c.StatisticsList, GetStatisticsList())
                     .CheckList(c => c.SensorsList, GetSensorsList())
                     .CheckList(c => c.TasksList, GetTasksList())
                     .VerifyTheMappings();
             }
         }
 
-        private static IList<IStatistic> GetStatisticsList()
+        private static IList<Statistic> GetStatisticsList()
         {
-            var list = new List<IStatistic>();
+            var list = new List<Statistic>();
             list.Add(new LocationStatistic()
                          {
                              End=new DateTime(2001,1,1),
@@ -140,9 +140,9 @@ namespace JimbeTest.NHibernate
             return list;
         }
         
-        private static IList<ISensor> GetSensorsList()
+        private static IList<Sensor> GetSensorsList()
         {
-            var list = new List<ISensor>();
+            var list = new List<Sensor>();
             list.Add(new WiFiSensor(networks,2,null));
             list.Add(new WiFiConnectedSensor(connlist, 10, null));
             return list;
@@ -151,23 +151,11 @@ namespace JimbeTest.NHibernate
         private static IList<Task> GetTasksList()
         {
             var list = new List<Task>();
-            list.Add(new StartProcess("pippo")
-                         {
-                             Statistics = GetTasksStatisticList()
-                         });
+            list.Add(new StartProcess("pippo"));
             return list;
         }
 
-        private static IList<IStatistic> GetTasksStatisticList()
-        {
-            var list = new List<IStatistic>();
-            list.Add(new TaskStatistic
-            {
-                End = new DateTime(2001, 1, 1),
-                Start = new DateTime(2002, 2, 2)
-            });
-            return list;
-        } 
+
         private static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()

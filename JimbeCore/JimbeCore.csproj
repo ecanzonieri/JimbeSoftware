@@ -61,14 +61,12 @@
     <Compile Include="Domain\Business\LocationManager.cs" />
     <Compile Include="Domain\Entities\LocationStatistic.cs" />
     <Compile Include="Domain\Entities\Statistic.cs" />
-    <Compile Include="Domain\Entities\TaskStatistic.cs" />
     <Compile Include="Domain\Mappings\NHibernate\LocationMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\LocationStatisticSubMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\SensorMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\StartProcessSubClasMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\StatisticMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\TaskMap.cs" />
-    <Compile Include="Domain\Mappings\NHibernate\TaskStatisticSubMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\WiFiConnectedSensorSubMap.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,6 +90,7 @@
     <Compile Include="Domain\Entities\WiFiSensor.cs" />
     <Compile Include="Repository\Interfaces\IReadOnlyRepository.cs" />
     <Compile Include="Repository\Interfaces\IPersistRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRepository.cs" />
     <Compile Include="Repository\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Repository\NHibernate\Repository.cs" />
     <Compile Include="Repository\NHibernate\UnitOfWork.cs" />

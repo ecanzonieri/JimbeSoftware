@@ -12,7 +12,7 @@ namespace JimbeCore.Domain.Entities
 
         private static Logger logger = Logger.GetLogger("Location");
 
-        public Location(string name, string description, IList<ISensor> sensors, IList<ITask> tasks)
+        public Location(string name, string description, IList<Sensor> sensors, IList<Task> tasks)
         {
             SensorsList = sensors;
             TasksList = tasks;
@@ -20,7 +20,7 @@ namespace JimbeCore.Domain.Entities
             Name = name;
         }
 
-        public Location(string name, IList<ISensor> sensors, IList<ITask> tasks )
+        public Location(string name, IList<Sensor> sensors, IList<Task> tasks )
         {
             SensorsList = sensors;
             TasksList = tasks;
@@ -35,15 +35,15 @@ namespace JimbeCore.Domain.Entities
 
         public Location()
         {
-            SensorsList = new List<ISensor>();
-            TasksList = new List<ITask>();
+            SensorsList = new List<Sensor>();
+            TasksList = new List<Task>();
         }
 
         #region ILocation members
 
-        public virtual IList<ISensor> SensorsList { get; set; }
+        public virtual IList<Sensor> SensorsList { get; set; }
 
-        public virtual IList<ITask> TasksList { get; set; }
+        public virtual IList<Task> TasksList { get; set; }
 
         public virtual IEnumerable<ISensor> Sensors
         {
@@ -60,15 +60,20 @@ namespace JimbeCore.Domain.Entities
 
         public virtual string Description { get; set; }
 
-        public virtual IList<IStatistic> Statistics { get; set; }
+        public virtual IList<Statistic> StatisticsList { get; set; }
 
-        public virtual void AddSensors(ISensor sensor)
+        public virtual IEnumerable<IStatistic> Statistics { 
+            get { return StatisticsList; }
+            set { }
+        } 
+
+        public virtual void AddSensors(Sensor sensor)
         {
             SensorsList.Add(sensor);
             sensor.Location = this;
         }
 
-        public virtual void AddTask (ITask task)
+        public virtual void AddTask (Task task)
         {
             task.Location = this;
             TasksList.Add(task);
