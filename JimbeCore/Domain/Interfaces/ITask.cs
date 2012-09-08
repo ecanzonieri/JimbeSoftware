@@ -12,7 +12,7 @@ namespace JimbeCore.Domain.Interfaces
         /// Start some task.
         /// </summary>
         /// <returns> True if task has been started successfully </returns>
-        bool execute();
+        void execute(object obj);
 
         /// <summary>
         /// Each task belongs to Location

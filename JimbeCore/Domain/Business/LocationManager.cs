@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JimbeCore.Domain.Entities;
 using JimbeCore.Domain.Interfaces;
 using TracerX;
 
-namespace JimbeCore.Domain.Entities
+namespace JimbeCore.Domain.Business
 {
-    public class LocationManager : ILocationManager
+    public class LocationManager 
     {
-        private ILocation _current;
-        private LinkedList<ILocation> _locations;
+        private Location _current;
 
         private static Logger logger = Logger.GetLogger("LocationManager");
 
@@ -17,13 +17,7 @@ namespace JimbeCore.Domain.Entities
 
         private double _currentAffinity;
 
-        public LocationManager(LinkedList<ILocation> locations)
-        {
-            _locations = locations;
-            Logger.DefaultBinaryFile.Open();
-        }
-
-        public ILocation Current
+        public Location Current
         {
             get { return _current; }
         }
@@ -33,17 +27,12 @@ namespace JimbeCore.Domain.Entities
             get { return _currentAffinity; }
         }
 
-        public IEnumerable<ILocation> Locations
-        {
-            get { return _locations; }
-        }
-
         #region ILocationManager Members
 
-        public ILocation RecognizeLocation(ILocation location)
+        public Location RecognizeLocation(Location location, IEnumerable<Location> locations )
         {
             double affinity = 0.0;
-            ILocation winner = null;
+            Location winner = null;
 
             if (location == null)
             {
@@ -51,13 +40,13 @@ namespace JimbeCore.Domain.Entities
                 throw new ArgumentNullException();
             }
 
-            if (!Locations.Any())
+            if (!locations.Any())
             {
                 logger.Info("I haven't saved location");
                 return null;
             }
 
-            foreach (var location1 in Locations)
+            foreach (var location1 in locations)
             {
                 double affinityTmp;
                 if ((affinityTmp = location1.GetLocationAffinity(location)) > affinity)
@@ -84,16 +73,6 @@ namespace JimbeCore.Domain.Entities
             _current = winner;
             _currentAffinity = affinity;
             return winner;
-        }
-
-        public void AddLocation(ILocation location)
-        {
-            _locations.AddFirst(location);
-        }
-
-        public bool DeleteLocation(ILocation location)
-        {
-            return _locations.Remove(location);
         }
 
         #endregion

@@ -18,11 +18,22 @@ namespace JimbeCore.Domain.Entities
             Location = location;
         }
 
+        public enum TaskType
+        {
+            Spot,
+            Periodic,
+            Delayed
+        }
+
         #region Implementation of ITask
 
-        public abstract bool execute();
+        public abstract void execute(object obj);
 
         public virtual ILocation Location { get; set; }
+
+        public virtual TimeSpan Delay { get; set; }
+
+        public virtual TaskType Type { get; set; }
 
         #endregion
     }

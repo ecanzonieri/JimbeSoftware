@@ -28,9 +28,9 @@ namespace JimbeCore.Domain.Entities
             Description = "No description available for this location";
         }
 
-        public Location (string name)
+        public Location (IList<Sensor> sensors )
         {
-            Name = name;
+            SensorsList = sensors;
         }
 
         public Location()
@@ -41,9 +41,9 @@ namespace JimbeCore.Domain.Entities
 
         #region ILocation members
 
-        public virtual IList<Sensor> SensorsList { get; set; }
+        protected virtual IList<Sensor> SensorsList { get; set; }
 
-        public virtual IList<Task> TasksList { get; set; }
+        protected virtual IList<Task> TasksList { get; set; }
 
         public virtual IEnumerable<ISensor> Sensors
         {
@@ -60,7 +60,7 @@ namespace JimbeCore.Domain.Entities
 
         public virtual string Description { get; set; }
 
-        public virtual IList<Statistic> StatisticsList { get; set; }
+        protected virtual IList<Statistic> StatisticsList { get; set; }
 
         public virtual IEnumerable<IStatistic> Statistics { 
             get { return StatisticsList; }
@@ -141,7 +141,7 @@ namespace JimbeCore.Domain.Entities
             var other = comparable as Location;
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Name.Equals(other.Name);
+            return (Name.Equals(other.Name) && Description.Equals(other.Description));
         }
 
         #endregion

@@ -12,6 +12,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using Ninject;
+using Ninject.Extensions.Factory;
 using Ninject.Modules;
 
 namespace JimbeService.IoC
@@ -29,6 +30,7 @@ namespace JimbeService.IoC
             Bind<ISession>().ToMethod(x => x.Kernel.Get<ISessionFactory>().OpenSession());
             Bind<IRepository<Guid, Location>>().To<Repository<Guid, Location>>();
             Bind<IRepository<int, Statistic>>().To<Repository<int, Statistic>>();
+            Bind<IRepositoryFactory<Guid, Location>>().ToFactory();
         }
 
         #endregion
