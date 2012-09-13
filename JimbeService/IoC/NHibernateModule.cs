@@ -30,7 +30,7 @@ namespace JimbeService.IoC
             Bind<ISession>().ToMethod(x => x.Kernel.Get<ISessionFactory>().OpenSession());
             Bind<IRepository<Guid, Location>>().To<Repository<Guid, Location>>();
             Bind<IRepository<int, Statistic>>().To<Repository<int, Statistic>>();
-            Bind<IRepositoryFactory<Guid, Location>>().ToFactory();
+            Bind<IRepositoryFactory>().ToFactory();
         }
 
         #endregion

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Jimbe.JimbeWiFi;
 using JimbeCore.Domain.Entities;
 using TracerX;
 
-namespace JimbeCore.Domain.Business
+namespace JimbeService.Business
 {
     public class WiFiManager
     {

@@ -75,10 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\ILocationTest.cs" />
-    <Compile Include="Entities\JimbeCoreExceptionTest.cs" />
+    <Compile Include="Entities\WiFiConnectedSensorTest.cs" />
     <Compile Include="NHibernate\NHibernateTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\SensorDifferentExceptionTest.cs" />
     <Compile Include="Entities\StartProcessTest.cs" />
     <Compile Include="Entities\WiFiSensorTest.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

@@ -58,11 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Business\StatisticManager.cs" />
-    <Compile Include="Domain\Business\TaskManager.cs" />
-    <Compile Include="Domain\Business\WiFiManager.cs" />
     <Compile Include="Domain\Entities\Location.cs" />
-    <Compile Include="Domain\Business\LocationManager.cs" />
     <Compile Include="Domain\Entities\LocationStatistic.cs" />
     <Compile Include="Domain\Entities\MessageInfo.cs" />
     <Compile Include="Domain\Entities\Statistic.cs" />

@@ -41,9 +41,9 @@ namespace JimbeCore.Domain.Entities
 
         #region ILocation members
 
-        protected virtual IList<Sensor> SensorsList { get; set; }
+        public virtual IList<Sensor> SensorsList { get; set; }
 
-        protected virtual IList<Task> TasksList { get; set; }
+        public virtual IList<Task> TasksList { get; set; }
 
         public virtual IEnumerable<ISensor> Sensors
         {
@@ -60,7 +60,7 @@ namespace JimbeCore.Domain.Entities
 
         public virtual string Description { get; set; }
 
-        protected virtual IList<Statistic> StatisticsList { get; set; }
+        public virtual IList<Statistic> StatisticsList { get; set; }
 
         public virtual IEnumerable<IStatistic> Statistics { 
             get { return StatisticsList; }

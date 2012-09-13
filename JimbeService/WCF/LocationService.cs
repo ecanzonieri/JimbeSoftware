@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using AutoMapper;
-using JimbeCore.Domain.Business;
+using JimbeService.Business;
 using JimbeService.IoC;
-using Ninject;
 using CoreEntity = JimbeCore.Domain.Entities;
 using DTO = JimbeWFC.DataContracts;
-using JimbeCore.Repository.Interfaces;
 using JimbeWFC.ServiceContract;
-using NHibernate;
 using Location = JimbeWFC.DataContracts.Location;
 
 namespace JimbeService.WCF
@@ -19,11 +14,11 @@ namespace JimbeService.WCF
     {
         private ServiceManager _serviceManager;
 
-        private IRepositoryFactory<Guid, CoreEntity.Location> _repositoryFactory;
+        private IRepositoryFactory _repositoryFactory;
 
         private IMappingEngine _engine;
 
-        public LocationService(IRepositoryFactory<Guid, CoreEntity.Location> repositoryFactory, ServiceManager serviceManager, IMappingEngine engine)
+        public LocationService(IRepositoryFactory repositoryFactory, ServiceManager serviceManager, IMappingEngine engine)
         {
             _repositoryFactory = repositoryFactory;
             _serviceManager = serviceManager;
@@ -34,14 +29,15 @@ namespace JimbeService.WCF
 
         public void InsertLocation(DTO.Location location)
         {
-            var repository=_repositoryFactory.CreateRepository();
+            var repository=_repositoryFactory.CreateRepository<Guid,CoreEntity.Location>();
             CoreEntity.Location corelocation = _engine.Map<DTO.Location, CoreEntity.Location>(location);
+            corelocation = _serviceManager.PrepareLocation(corelocation);
             repository.Add(corelocation);
         }
 
         public void DeleteLocation(DTO.Location location)
         {
-            var repository = _repositoryFactory.CreateRepository();
+            var repository = _repositoryFactory.CreateRepository<Guid, CoreEntity.Location>();
             CoreEntity.Location corelocation = _engine.Map<DTO.Location, CoreEntity.Location>(location);
             var todelete = repository.FindBy(x => x.Name.Equals(corelocation.Name));
             if (ReferenceEquals(todelete,null)) return;
@@ -50,7 +46,7 @@ namespace JimbeService.WCF
 
         public IEnumerable<DTO.Location> GetLocations()
         {
-            var repository = _repositoryFactory.CreateRepository();
+            var repository = _repositoryFactory.CreateRepository<Guid, CoreEntity.Location>();
             var locationlist = repository.All();
             var dotLocationList = _engine.Map<IEnumerable<CoreEntity.Location>, IEnumerable<DTO.Location>>(locationlist);
             return dotLocationList;
@@ -58,7 +54,7 @@ namespace JimbeService.WCF
 
         public Location GetCurrentLocation()
         {
-            lock (_serviceManager.Current)
+            lock (_serviceManager)
             {
                 return _engine.Map<CoreEntity.Location, DTO.Location>(_serviceManager.Current);    
             }

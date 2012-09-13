@@ -60,7 +60,7 @@ namespace JimbeTest.NHibernate
                 new PersistenceSpecification<WiFiConnectedSensor>(session)
                     .CheckProperty(c => c.Weigth, 10.0)
                     .CheckList(c => c.Connected, connlist)
-                    .CheckReference(c => c.Location, new Location("casa3"))
+                    .CheckReference(c => c.Location, new Location("casa3",null,null))
                     .VerifyTheMappings();
             }
         }
@@ -74,7 +74,7 @@ namespace JimbeTest.NHibernate
                 new PersistenceSpecification<WiFiSensor>(session)
                     .CheckProperty(c => c.Weigth, 10.0)
                     .CheckList(c => c.Networks, networks)
-                    .CheckReference(c => c.Location, new Location("casa"))
+                    .CheckReference(c => c.Location, new Location("casa",null,null))
                     .VerifyTheMappings();
             }
         }

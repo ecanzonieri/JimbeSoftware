@@ -8,9 +8,9 @@ using Ninject.Syntax;
 
 namespace JimbeService.IoC
 {
-    public class RepositoryFactory<TKey, T> : IRepositoryFactory<TKey,T> where T :class 
+    public class RepositoryFactory : IRepositoryFactory
     {
-        #region Implementation of IRepositoryFactory<in TKey,T>
+        #region Implementation of IRepositoryFactory
 
 
         private IResolutionRoot resolutionRoot;
@@ -20,7 +20,7 @@ namespace JimbeService.IoC
             this.resolutionRoot = resolutionRoot;
         }
 
-        public IRepository<TKey, T> CreateRepository()
+        public IRepository<TKey, T> CreateRepository<TKey,T>() where T:class 
         {
            return resolutionRoot.Get<IRepository<TKey,T>>();
         }

@@ -68,10 +68,10 @@ namespace Jimbe
             [TestMethod()]
             public void StartProcessConstructorTest()
             {
-                string filename = string.Empty; // TODO: Initialize to an appropriate value
+                string filename = "http://www.google.it"; // TODO: Initialize to an appropriate value
                 string arguments = string.Empty; // TODO: Initialize to an appropriate value
                 StartProcess target = new StartProcess(filename, arguments);
-                Assert.Inconclusive("TODO: Implement code to verify target");
+                Assert.IsNotNull(target);
             }
 
             /// <summary>
@@ -81,12 +81,8 @@ namespace Jimbe
             public void executeTest()
             {
                 StartProcess target = new StartProcess("http:\\\\www.google.it", string.Empty);
-                    
-                 
-                bool expected = true;
-                bool actual;
-                actual = target.execute();
-                Assert.AreEqual(expected, actual);
+                target.execute(null);
+                Assert.IsTrue(target.Success);
             }
         }
     }

@@ -9,8 +9,8 @@ namespace JimbeService.IoC
     /// <summary>
     ///     Factory that creates NHibernate repository, this is injected inside the classes that have to create a Repository
     /// </summary>
-    public interface IRepositoryFactory<in TKey, T> where T : class 
+    public interface IRepositoryFactory
     {
-        IRepository<TKey, T> CreateRepository();
+        IRepository<TKey, T> CreateRepository<TKey, T>() where T : class;
     }
 }

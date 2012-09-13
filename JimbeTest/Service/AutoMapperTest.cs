@@ -51,6 +51,7 @@ namespace JimbeTest.Service
             Mapper.CreateMap<DTO.Task, CoreEntity.Task>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Location, opt => opt.Ignore())
+                .ForMember(dest => dest.Success, opt=> opt.Ignore())
                 .Include<DTO.StartProcess, CoreEntity.StartProcess>();
             Mapper.CreateMap<DTO.WiFiNetwork, CoreEntity.WiFiNetwork>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())

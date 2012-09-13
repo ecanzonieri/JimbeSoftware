@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JimbeCore.Domain.Business;
+﻿using JimbeService.Business;
 using Ninject.Modules;
 
 namespace JimbeService.IoC
@@ -11,7 +7,7 @@ namespace JimbeService.IoC
     {
         public override void Load()
         {
-            Bind<LocationManager>().ToSelf().InSingletonScope();
+            Bind<ServiceManager>().ToSelf().InSingletonScope();
         }
     }
 }

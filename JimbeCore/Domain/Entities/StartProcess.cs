@@ -33,7 +33,7 @@ namespace JimbeCore.Domain.Entities
         }
 
 
-        public override bool execute()
+        public override void execute(object obj)
         {
             _processStartInfo = new ProcessStartInfo(ProcessName, Arguments);
             try
@@ -43,10 +43,13 @@ namespace JimbeCore.Domain.Entities
                                   StartInfo = _processStartInfo
                               };
 
-                return _process.Start();
+                _process.Start();
+                Success = true;
+
             }
             catch (System.Exception ioe)
             {
+                Success = false;
                 logger.Error(ioe.Message);
                 throw;
             }

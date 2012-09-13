@@ -1,4 +1,5 @@
-﻿using JimbeCore.Domain.Interfaces;
+﻿using JimbeCore.Domain.Entities;
+using JimbeCore.Domain.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -67,8 +68,7 @@ namespace JimbeTest
 
         internal virtual ILocation CreateILocation()
         {
-            // TODO: Instantiate an appropriate concrete class.
-            ILocation target = null;
+            ILocation target = new Location();
             return target;
         }
 
@@ -76,11 +76,10 @@ namespace JimbeTest
         ///A test for Description
         ///</summary>
         [TestMethod()]
-        [Ignore]
         public void DescriptionTest()
         {
             ILocation target = CreateILocation(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string expected = "pippo"; // TODO: Initialize to an appropriate value
             string actual;
             target.Description = expected;
             actual = target.Description;
@@ -92,11 +91,10 @@ namespace JimbeTest
         ///A test for Name
         ///</summary>
         [TestMethod()]
-        [Ignore]
         public void NameTest()
         {
             ILocation target = CreateILocation(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string expected = "Pippo"; // TODO: Initialize to an appropriate value
             string actual;
             target.Name = expected;
             actual = target.Name;
@@ -105,15 +103,15 @@ namespace JimbeTest
         }
 
         /// <summary>
-        ///A test for Sensors
-        ///</summary>
+        /// A test for GetLocationAffinity
+        /// </summary>
         [TestMethod()]
-        [Ignore]
-        public void SensorsTest()
+        public void GetLocationAffinityTest()
         {
-            ILocation target = CreateILocation(); // TODO: Initialize to an appropriate value
-            IList<ISensor> expected = null; // TODO: Initialize to an appropriate value
-            IList<ISensor> actual;
+            ILocation target = CreateILocation();
+            double expected = 1.0;
+            var actual = target.GetLocationAffinity(target);
+            Assert.AreEqual(expected,actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

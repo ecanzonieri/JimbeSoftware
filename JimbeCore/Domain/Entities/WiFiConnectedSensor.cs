@@ -52,7 +52,7 @@ namespace JimbeCore.Domain.Entities
 
             if (ReferenceEquals(net2, null)) return 0.0; 
 
-            return Math.Abs(net1.SignalQuality - net2.SignalQuality)/100.0;
+            return (1.0-Math.Abs(net1.SignalQuality - net2.SignalQuality)/100.0);
         }
 
         #endregion

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using JimbeCore.Domain.Entities;
-using JimbeCore.Domain.Interfaces;
 using TracerX;
 
-namespace JimbeCore.Domain.Business
+namespace JimbeService.Business
 {
     public class LocationManager 
     {

@@ -35,6 +35,8 @@ namespace JimbeCore.Domain.Entities
 
         public virtual TaskType Type { get; set; }
 
+        public virtual bool Success { get; protected set; }
+
         #endregion
     }
 }

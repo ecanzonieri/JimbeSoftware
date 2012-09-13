@@ -1,4 +1,5 @@
-﻿using JimbeCore.Domain.Entities;
+﻿using System.Collections.Generic;
+using JimbeCore.Domain.Entities;
 using JimbeCore.Domain.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -65,15 +66,21 @@ namespace JimbeTest
         #endregion
 
 
+
+        private IList<WiFiNetwork> GetConnectedList()
+        {
+            IList<WiFiNetwork> list = new List<WiFiNetwork>();
+            list.Add(new WiFiNetwork("Connected",50));
+            return list;
+        }
         /// <summary>
         ///A test for WiFiConnectedSensor Constructor
         ///</summary>
         [TestMethod()]
         public void WiFiConnectedSensorConstructorTest()
         {
-            WiFiNetwork connected = new WiFiNetwork("Connected", 50);
             double weigth = 5F; // TODO: Initialize to an appropriate value
-            WiFiConnectedSensor target = new WiFiConnectedSensor(connected, weigth,null);
+            WiFiConnectedSensor target = new WiFiConnectedSensor(GetConnectedList(), weigth, null);
             Assert.IsNotNull(target);
         }
 
@@ -83,62 +90,32 @@ namespace JimbeTest
         [TestMethod()]
         public void GetDistanceTest()
         {
-            WiFiNetwork connected = new WiFiNetwork("connected", 100); 
-            double weigth = 5F; 
-            WiFiNetwork connected2= new WiFiNetwork("connected", 50);
-            WiFiConnectedSensor target = new WiFiConnectedSensor(connected, weigth,null);
+            double weigth = 5.0;
+            IList<WiFiNetwork> connected2 = GetConnectedList();
+            WiFiConnectedSensor target = new WiFiConnectedSensor(GetConnectedList(), weigth,null);
+            foreach (var wiFiNetwork in connected2)
+            {
+                wiFiNetwork.SignalQuality= wiFiNetwork.SignalQuality/2;
+            }
             ISensor sensor = new WiFiConnectedSensor(connected2,weigth,null);
-            double expected = 0.5F; 
+            double expected = 0.75F; 
             double actual;
             actual = target.GetDistance(sensor);
             Assert.AreEqual(expected, actual);
-        }
+        }     
 
-        /// <summary>
-        /// A test for different connected networks
-        /// </summary>
         [TestMethod()]
-        public void GetDistanceTest1()
+        public void GetDistanceDifferentSensorDataTest()
         {
-            WiFiNetwork connected = new WiFiNetwork("connected", 100);
-            double weigth = 5F;
-            WiFiNetwork connected2 = new WiFiNetwork("connected2", 50);
+            double weigth = 5.0;
+            IList<WiFiNetwork> connected = GetConnectedList();
+            IList<WiFiNetwork> connected2 = new List<WiFiNetwork>();
+            connected2.Add(new WiFiNetwork("b", 30));
             WiFiConnectedSensor target = new WiFiConnectedSensor(connected, weigth,null);
-            ISensor sensor = new WiFiConnectedSensor(connected2, weigth, null);
-            double expected = 0F;
-            double actual;
-            actual = target.GetDistance(sensor);
-            Assert.AreEqual(expected, actual);
-        }
-
-        
-
-        /// <summary>
-        ///A test for Connected
-        ///</summary>
-        [TestMethod()]
-        public void ConnectedTest()
-        {
-            WiFiNetwork connected = new WiFiNetwork("connected", 100); 
-            double weigth = 5F; 
-            WiFiConnectedSensor target = new WiFiConnectedSensor(connected, weigth, null); 
-            WiFiNetwork actual;
-            actual = target.Connected;
-            Assert.AreSame(connected,actual);
-        }
-
-        /// <summary>
-        ///A test for Weigth
-        ///</summary>
-        [TestMethod()]
-        public void WeigthTest()
-        {
-            WiFiNetwork connected = null; 
-            double weigth = 3F; 
-            WiFiConnectedSensor target = new WiFiConnectedSensor(connected, weigth, null); 
-            double actual;
-            actual = target.Weigth;
-            Assert.AreEqual(weigth,actual);
+            WiFiConnectedSensor sensor = new WiFiConnectedSensor(connected2,weigth,null);
+            double expected = 0.0;
+            var actual = target.GetDistance(sensor);
+            Assert.AreEqual(expected,actual);
         }
     }
 }

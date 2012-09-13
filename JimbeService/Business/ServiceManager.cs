@@ -8,7 +8,7 @@ using JimbeCore.Repository.Interfaces;
 using JimbeService.IoC;
 using TracerX;
 
-namespace JimbeCore.Domain.Business
+namespace JimbeService.Business
 {
     public class ServiceManager
     {
@@ -17,15 +17,13 @@ namespace JimbeCore.Domain.Business
 
         private static Logger logger = Logger.GetLogger("ServiceManager");
 
-        private IRepositoryFactory<Guid, Location> _repositoryFactory;
+        private IRepositoryFactory _repositoryFactory;
 
         private WiFiManager _wifiManager;
 
         private LocationManager _locationManager;
 
         private StatisticManager _statisticManager;
-
-        private Thread _taskThread;
 
         private volatile bool _shouldstop;
 
@@ -41,7 +39,7 @@ namespace JimbeCore.Domain.Business
             get { return _locationManager; }
         }
 
-        public ServiceManager(IRepositoryFactory<Guid,Location> repositoryFactory )
+        public ServiceManager(IRepositoryFactory repositoryFactory )
         {
             _repositoryFactory = repositoryFactory;
             _shouldstop = false;
@@ -49,7 +47,7 @@ namespace JimbeCore.Domain.Business
             _locationManager = new LocationManager();
         }
 
-        public ServiceManager(WiFiManager wiFiManager, IRepositoryFactory<Guid, Location> repositoryFactory)
+        public ServiceManager(WiFiManager wiFiManager, IRepositoryFactory repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
             _wifiManager = wiFiManager;
@@ -60,55 +58,58 @@ namespace JimbeCore.Domain.Business
         {
             while (!_shouldstop)
             {
-                lock (Current)
+                lock (this)
                 {
+                    if (_statisticManager != null) _statisticManager.UpdateStatistic();
                     if (RecognizeLocation())
                     {
                         if (_taskManager != null)
-                        {
-                            // chiudere lo statisticManager
                             _taskManager.RequestStop();
-                            _taskThread.Join();
-                        }
-                        if (!ReferenceEquals(_current, null))
-                            _taskManager = new TaskManager(_current.Tasks);
-                        _taskThread = new Thread(_taskManager.StartTasksExecution);
+                        _statisticManager = new StatisticManager(_repositoryFactory, _current);
+                        _statisticManager.UpdateStatistic();
+                        _taskManager = new TaskManager(_current.Tasks);
+                        _taskManager.StartTasksExecution();
                     }
-
-                    //Aggiornamento periodico StatisticManager
-                    ///////////////////////
                 }
                 Thread.Sleep(10000);
             }
-            if (_taskManager!=null)
+            
+            if (_taskManager!=null && _statisticManager!=null)
             {
-                // Chiudere lo statisticManager
-                _taskManager.RequestStop();
-                _taskThread.Join();
+                lock (this)
+                {
+                    _statisticManager.UpdateStatistic();
+                    _taskManager.RequestStop();
+                }
             }
         }
 
         private bool RecognizeLocation()
         {
-            IRepository<Guid, Location> repository = _repositoryFactory.CreateRepository();
+            IRepository<Guid, Location> repository = _repositoryFactory.CreateRepository<Guid,Location>();
 
-            Location unknown = new Location(getSensorsInfo());
+            var unknown = new Location();
+            unknown.SensorsList = getSensorsInfo(unknown);
 
             IList<Location> locations = repository.All().ToList();
 
             var result=_locationManager.RecognizeLocation(unknown, locations);
 
-            if (result==null)
+            if (ReferenceEquals(result,null))
             {
-                //Check affinity
+                   _statisticManager = null;
+                   _current = null;
+
+                //Debug Information check affinity
                 if (_locationManager.CurrentAffinity > 0.0)
                     logger.Info("Affinity too low: ", _locationManager.CurrentAffinity, " Current possible location ",
                                 _locationManager.Current.Name);
-                _current = null;
-                return true;
+                return false;
             }
             if (!result.EqualsBusiness(_current))
             {
+                logger.Info(" Location Name: ",
+                                _locationManager.Current.Name, "Location Affinity : ", _locationManager.CurrentAffinity);
                 _current = result;
                 return true;
             }
@@ -116,20 +117,30 @@ namespace JimbeCore.Domain.Business
 
         }
 
-        private IList<Sensor> getSensorsInfo()
+        private IList<Sensor> getSensorsInfo(Location location)
         {
             IList<Sensor> sensors = new List<Sensor>();
             foreach (Sensor sensor in _wifiManager.GetAllWiFiSensorData())
+            {
+                sensor.Location = location;
                 sensors.Add(sensor);
+            }
             foreach (Sensor sensor in _wifiManager.GetAllWiFiConnectedSensorData())
-                sensors.Add(sensor);
+            {
+                sensor.Location = location;
+                sensors.Add(sensor);   
+            }
             return sensors;
         }
 
-
-        private void UpdateStatistic()
+        public Location PrepareLocation(Location location)
         {
-            
+            location.SensorsList = getSensorsInfo(location);
+            foreach (var task in location.TasksList)
+            {
+                task.Location = location;
+            }
+            return location; 
         }
 
         public void RequestStop()

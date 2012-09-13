@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using JimbeCore.Domain.Entities;
 using JimbeCore.Domain.Interfaces;
 using TracerX;
 
-namespace JimbeCore.Domain.Business
+namespace JimbeService.Business
 {
     public class TaskManager 
     {
@@ -20,12 +18,9 @@ namespace JimbeCore.Domain.Business
 
         private IList<Timer> _deleyed;
 
-        private volatile bool _shouldstop;
-
         public TaskManager(IEnumerable<ITask> tasks)
         {
             _tasks=tasks;
-            _shouldstop = false;
             _periodic=new List<Timer>();
             _deleyed=new List<Timer>();
         }
@@ -50,10 +45,10 @@ namespace JimbeCore.Domain.Business
                     _deleyed.Add(timer);
                 }
             }
-            while (!_shouldstop)
-            {
-                Thread.Sleep(1000);
-            }
+        }
+
+        public void RequestStop()
+        {
             foreach (Timer timer in _periodic)
             {
                 timer.Dispose();
@@ -62,11 +57,6 @@ namespace JimbeCore.Domain.Business
             {
                 timer.Dispose();
             }
-        }
-
-        public void RequestStop()
-        {
-            _shouldstop = true;
         }
 
 
