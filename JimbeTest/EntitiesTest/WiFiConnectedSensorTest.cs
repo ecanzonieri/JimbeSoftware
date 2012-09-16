@@ -2,9 +2,8 @@
 using JimbeCore.Domain.Entities;
 using JimbeCore.Domain.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace JimbeTest
+namespace JimbeTest.EntitiesTest
 {
     
     

@@ -8,14 +8,14 @@ namespace JimbeService.Business
 {
     public class WiFiManager
     {
-        
-        public static readonly double ConnectedWeigth = 10.0;
 
-        public static readonly double NotConnectedWeigth = 1.0;
+        public static readonly double ConnectedWeigth = 2.0;
+
+        public static readonly double NotConnectedWeigth = 1.4;
 
         private JimbeWiFi.NativeApiVersion _version;
 
-        private static Logger logger = Logger.GetLogger("LocationManager");
+        private static Logger logger = Logger.GetLogger("WiFiManager");
 
         public WiFiManager() : this(JimbeWiFi.NativeApiVersion.windowsXp)
         {
@@ -29,30 +29,36 @@ namespace JimbeService.Business
 
         public IList<WiFiSensor> GetAllWiFiSensorData()
         {
-            IList<WiFiSensor> sensors=new List<WiFiSensor>();
+            IList<WiFiSensor> sensors = new List<WiFiSensor>();
             try
             {
                 using (var wifiApi = new JimbeWiFi(_version))
                 {
+                    logger.Debug("Getting wlan interfaces list");
                     var interfaceslist = wifiApi.WiFiEnumInterfaces();
                     foreach (WifiInterface wifiInterface in interfaceslist)
                     {
-                        var networkslist = wifiApi.WiFiGetAvailableNetworkList(wifiInterface);
+                        logger.Debug("Getting wlan networks list from interface ", wifiInterface.InterfaceGuid, " ", wifiInterface.Description);
+                        try
+                        {
+                            var networkslist = wifiApi.WiFiGetAvailableNetworkList(wifiInterface);
 
-                        IList<WiFiNetwork> networks =
-                            (from net in networkslist select new WiFiNetwork(net.Ssid, net.SignalQuality)).ToList();
+                            IList<WiFiNetwork> networks =
+                                (from net in networkslist select new WiFiNetwork(net.Ssid, net.SignalQuality)).ToList();
 
-                        sensors.Add(new WiFiSensor(networks));
+                            sensors.Add(new WiFiSensor(networks, NotConnectedWeigth, null));
+                        } catch (WifiException we)
+                        {
+                            logger.Error("Error in getting networks from wlan Interface: ", wifiInterface.InterfaceGuid," ", wifiInterface.Description," ", we.Message);
+                        }
                     }
                 }
             }catch( WifiToManyHandleException we)
             {
                 logger.Error(we.Message);
-                return null;
-            } catch( WifiException we)
+            } catch(WifiException we)
             {
                 logger.Error(we.Message);
-                return null;
             }
             return sensors;
         } 
@@ -64,28 +70,34 @@ namespace JimbeService.Business
             {
                 using (var wifiApi = new JimbeWiFi(_version))
                 {
+                    logger.Debug("Getting wlan interfaces list");
                     var interfaceslist = wifiApi.WiFiEnumInterfaces();
                     foreach (WifiInterface wifiInterface in interfaceslist.Where(x => x.IsState==WifiInterface.WlanInterfaceState.connected))
                     {
-                        var network = wifiApi.WiFiGetCurrentConnection(wifiInterface);
+                        logger.Debug("Getting current connected network ", wifiInterface.InterfaceGuid, " ", wifiInterface.Description);
+                        try
+                        {
+                            var network = wifiApi.WiFiGetCurrentConnection(wifiInterface);
 
-                        IList<WiFiNetwork> networks= new List<WiFiNetwork>();
+                            IList<WiFiNetwork> networks = new List<WiFiNetwork>();
 
-                        networks.Add(new WiFiNetwork(network.Ssid, network.SignalQuality));
+                            networks.Add(new WiFiNetwork(network.Ssid, network.SignalQuality));
 
-                        sensors.Add(new WiFiConnectedSensor(networks,WiFiManager.ConnectedWeigth,null));
+                            sensors.Add(new WiFiConnectedSensor(networks, WiFiManager.ConnectedWeigth, null));
+                        } catch (WifiException we)
+                        {
+                            logger.Error("Error in getting Network from wlan Interface: ", wifiInterface.InterfaceGuid, " ", wifiInterface.Description, " ", we.Message);
+                        }
                     }
                 }
             }
             catch (WifiToManyHandleException we)
             {
                 logger.Error(we.Message);
-                return null;
             }
             catch (WifiException we)
             {
                 logger.Error(we.Message);
-                return null;
             }
             return sensors;
         }

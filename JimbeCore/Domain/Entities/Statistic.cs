@@ -16,7 +16,7 @@ namespace JimbeCore.Domain.Entities
         
         protected Statistic(){}
 
-        public virtual TimeSpan GetLeast()
+        public virtual TimeSpan GetPeriod()
         {
             if (IsFinished())
                 return  End - Start;

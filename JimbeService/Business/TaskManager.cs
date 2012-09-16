@@ -27,21 +27,18 @@ namespace JimbeService.Business
 
         public void StartTasksExecution()
         {
-            DateTime current= DateTime.Now;
-
-
             foreach (Task task in _tasks)
             {
                 if (task.Type == Task.TaskType.Spot)
-                    task.execute(null);
+                    task.Execute(null);
                 else if (task.Type == Task.TaskType.Periodic)
                 {
-                    var timer = new Timer(task.execute, null, 0, (long)task.Delay.TotalMilliseconds);
+                    var timer = new Timer(task.Execute, null, 0, (long)task.Delay.TotalMilliseconds);
                     _periodic.Add(timer);
                 }
                 else
                 {
-                    var timer = new Timer(task.execute, null, (long)task.Delay.TotalMilliseconds, 0);
+                    var timer = new Timer(task.Execute, null, (long)task.Delay.TotalMilliseconds, 0);
                     _deleyed.Add(timer);
                 }
             }

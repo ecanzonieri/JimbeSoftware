@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ServiceModel;
 using AutoMapper;
 using JimbeService.Business;
 using JimbeService.IoC;
@@ -10,6 +11,11 @@ using Location = JimbeWFC.DataContracts.Location;
 
 namespace JimbeService.WCF
 {
+
+    [ServiceBehavior(
+    ConcurrencyMode = ConcurrencyMode.Single,
+    InstanceContextMode = InstanceContextMode.Single
+  )]
     public class LocationService : ILocationService
     {
         private ServiceManager _serviceManager;

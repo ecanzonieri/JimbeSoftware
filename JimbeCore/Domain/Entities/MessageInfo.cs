@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace JimbeCore.Domain.Entities
 {
-    class MessageInfo : Task
+    public class MessageInfo : Task
     {
 
         public virtual string Message { get; set; }
@@ -15,8 +15,13 @@ namespace JimbeCore.Domain.Entities
         public MessageInfo()
         {
         }
-        
+
         public MessageInfo(string message)
+        {
+            Message = message;
+        }
+        
+        public MessageInfo(string message, TaskType type): base(type)
         {
             Message = message;
         }
@@ -35,9 +40,10 @@ namespace JimbeCore.Domain.Entities
 
         #region Overrides of Task
 
-        public override void execute(object obj)
+        public override void Execute(object obj)
         {
-            MessageBox.Show(Message);
+                MessageBox.Show(Message);
+                Success = true;          
         }
 
         #endregion

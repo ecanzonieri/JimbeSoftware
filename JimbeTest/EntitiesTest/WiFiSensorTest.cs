@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace JimbeTest
+namespace JimbeTest.EntitiesTest
 {
 
 

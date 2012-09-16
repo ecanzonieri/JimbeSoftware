@@ -9,7 +9,7 @@ namespace JimbeCore.Domain.Interfaces
 
         DateTime End { get; set; }
 
-        TimeSpan GetLeast();
+        TimeSpan GetPeriod();
 
         bool IsFinished();
     }

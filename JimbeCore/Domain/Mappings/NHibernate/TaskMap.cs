@@ -12,6 +12,7 @@ namespace JimbeCore.Domain.Mappings.NHibernate
         public TaskMap()
         {
             Id(x => x.Id);
+            Map(x => x.Type);
             References<Location>(x => x.Location).ForeignKey();
         }
     }

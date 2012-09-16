@@ -18,6 +18,7 @@ namespace JimbeCore.Domain.Entities
             TasksList = tasks;
             Description = description;
             Name = name;
+            StatisticsList= new List<Statistic>();
         }
 
         public Location(string name, IList<Sensor> sensors, IList<Task> tasks )
@@ -26,17 +27,21 @@ namespace JimbeCore.Domain.Entities
             TasksList = tasks;
             Name = name;
             Description = "No description available for this location";
+            StatisticsList= new List<Statistic>();
         }
 
         public Location (IList<Sensor> sensors )
         {
             SensorsList = sensors;
+            TasksList= new List<Task>();
+            StatisticsList= new List<Statistic>();
         }
 
         public Location()
         {
             SensorsList = new List<Sensor>();
             TasksList = new List<Task>();
+            StatisticsList= new List<Statistic>();
         }
 
         #region ILocation members
@@ -53,7 +58,7 @@ namespace JimbeCore.Domain.Entities
 
         public virtual IEnumerable<ITask> Tasks
         {
-            get { return Tasks; }
+            get { return TasksList; }
             set { }
         } 
         public virtual string Name { get; set; }

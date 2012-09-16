@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JimbeCore.Repository.Interfaces
 {
-    public interface IRepository<in TKey, T> : IPersistRepository<T>, IReadOnlyRepository<TKey, T> where T : class
+    public interface IRepository<in TKey, T> : IPersistRepository<T>, IReadOnlyRepository<TKey, T>, IDisposable where T : class
     {
     }
 }

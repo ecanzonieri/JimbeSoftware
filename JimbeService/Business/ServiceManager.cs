@@ -56,6 +56,7 @@ namespace JimbeService.Business
 
         public void RunServiceManager()
         {
+            logger.Debug("ServiceManager Started");
             while (!_shouldstop)
             {
                 lock (this)
@@ -63,6 +64,7 @@ namespace JimbeService.Business
                     if (_statisticManager != null) _statisticManager.UpdateStatistic();
                     if (RecognizeLocation())
                     {
+                        logger.Info("RecognizeLocation give me new location");
                         if (_taskManager != null)
                             _taskManager.RequestStop();
                         _statisticManager = new StatisticManager(_repositoryFactory, _current);
@@ -89,7 +91,7 @@ namespace JimbeService.Business
             IRepository<Guid, Location> repository = _repositoryFactory.CreateRepository<Guid,Location>();
 
             var unknown = new Location();
-            unknown.SensorsList = getSensorsInfo(unknown);
+            unknown.SensorsList = GetSensorsInfo(unknown);
 
             IList<Location> locations = repository.All().ToList();
 
@@ -117,8 +119,9 @@ namespace JimbeService.Business
 
         }
 
-        private IList<Sensor> getSensorsInfo(Location location)
+        private IList<Sensor> GetSensorsInfo(Location location)
         {
+            logger.Debug("Give me current sensors informations");
             IList<Sensor> sensors = new List<Sensor>();
             foreach (Sensor sensor in _wifiManager.GetAllWiFiSensorData())
             {
@@ -135,7 +138,7 @@ namespace JimbeService.Business
 
         public Location PrepareLocation(Location location)
         {
-            location.SensorsList = getSensorsInfo(location);
+            location.SensorsList = GetSensorsInfo(location);
             foreach (var task in location.TasksList)
             {
                 task.Location = location;

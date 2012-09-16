@@ -1,10 +1,8 @@
-﻿using JimbeCore.Domain.Entities;
-using JimbeCore.Domain.Interfaces;
+﻿using JimbeCore.Domain.Interfaces;
+using JimbeTest.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 
-namespace JimbeTest
+namespace JimbeTest.EntitiesTest
 {
     
     
@@ -66,11 +64,6 @@ namespace JimbeTest
         #endregion
 
 
-        internal virtual ILocation CreateILocation()
-        {
-            ILocation target = new Location();
-            return target;
-        }
 
         /// <summary>
         ///A test for Description
@@ -78,13 +71,12 @@ namespace JimbeTest
         [TestMethod()]
         public void DescriptionTest()
         {
-            ILocation target = CreateILocation(); // TODO: Initialize to an appropriate value
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.All); // TODO: Initialize to an appropriate value
             string expected = "pippo"; // TODO: Initialize to an appropriate value
             string actual;
             target.Description = expected;
             actual = target.Description;
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
@@ -93,13 +85,12 @@ namespace JimbeTest
         [TestMethod()]
         public void NameTest()
         {
-            ILocation target = CreateILocation(); // TODO: Initialize to an appropriate value
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.All); // TODO: Initialize to an appropriate value
             string expected = "Pippo"; // TODO: Initialize to an appropriate value
             string actual;
             target.Name = expected;
             actual = target.Name;
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
@@ -108,11 +99,43 @@ namespace JimbeTest
         [TestMethod()]
         public void GetLocationAffinityTest()
         {
-            ILocation target = CreateILocation();
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.All);
             double expected = 1.0;
+            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All);
             var actual = target.GetLocationAffinity(target);
-            Assert.AreEqual(expected,actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void GetLocationAffinityTest2()
+        {
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFi);
+            double expected = 0.4;
+            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All);
+            var actual = target.GetLocationAffinity(location);
+            Assert.AreEqual(expected,actual,0.02);
+        }
+
+        [TestMethod()]
+        public void GetLocationAffinityTest3()
+        {
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFiConnected);
+            double expected = 0.58;
+            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All);
+            var actual = target.GetLocationAffinity(location);
+            Assert.AreEqual(expected, actual, 0.02);
+        }
+
+        [TestMethod()]
+        public void GetLocationAffinityTest4()
+        {
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFiConnected);
+            double expected = 0.0;
+            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFi);
+            var actual = target.GetLocationAffinity(location);
+            Assert.AreEqual(expected, actual);
+        }
+
+
     }
 }

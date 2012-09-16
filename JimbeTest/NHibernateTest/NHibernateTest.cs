@@ -1,22 +1,14 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Testing;
 using JimbeCore.Domain.Entities;
-using JimbeCore.Domain.Interfaces;
 using JimbeCore.Repository.NHibernate;
+using JimbeTest.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;
-using NHibernate.Cfg;
-using NHibernate.Tool.hbm2ddl;
-using Ninject;
-using NHibernate.Linq;
 
-namespace JimbeTest.NHibernate
+namespace JimbeTest.NHibernateTest
 {
     [TestClass]
     public class NHibernateTest
@@ -29,7 +21,7 @@ namespace JimbeTest.NHibernate
         public static void MyClassInitialize(TestContext testContext)
         {
             var net = new WiFiNetwork("a", 55);
-            _sessionFactory = CreateSessionFactory();
+            _sessionFactory = NHibernateHelper.CreateSessionFactory();
             networks = new List<WiFiNetwork>();
             networks.Add(new WiFiNetwork("topolino", 11));
             networks.Add(new WiFiNetwork("gino", 44));
@@ -113,8 +105,6 @@ namespace JimbeTest.NHibernate
         {
             using (var session = _sessionFactory.OpenSession())
             {
-
-
                 new PersistenceSpecification<Location>(session)
                     .CheckProperty(c => c.Name, "location1")
                     .CheckList(c => c.StatisticsList, GetStatisticsList())
@@ -153,35 +143,6 @@ namespace JimbeTest.NHibernate
             var list = new List<Task>();
             list.Add(new StartProcess("pippo"));
             return list;
-        }
-
-
-        private static ISessionFactory CreateSessionFactory()
-        {
-            return Fluently.Configure()
-              .Database(
-                SQLiteConfiguration.Standard
-                  .UsingFile(Properties.Settings.Default.DbTestPath)
-              )
-              .Mappings(m =>
-                m.FluentMappings.AddFromAssemblyOf<Location>())
-              .ExposeConfiguration(BuildSchema)
-              .BuildSessionFactory();
-        }
-
-        private static void BuildSchema(Configuration config)
-        {
-            // delete the existing db on each run
-            if (File.Exists(Properties.Settings.Default.DbTestPath))
-            {
-
-                File.Delete(Properties.Settings.Default.DbTestPath);
-
-                // this NHibernate tool takes a configuration (with mapping info in)
-                // and exports a database schema from it
-                new SchemaExport(config)
-                    .Create(false, true);
-            }
         }
     }
 }

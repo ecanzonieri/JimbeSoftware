@@ -25,12 +25,29 @@ namespace JimbeService.Business
 
         private LocationStatistic _current;
 
+        public LocationStatistic Current { get { return _current; } }
+
         public void UpdateStatistic()
         {
             lock (_current.Location)
             {
                 _current.End = DateTime.Now;
-                IRepository<int, Statistic> repository = _repositoryFactory.CreateRepository<int, Statistic>();
+                IRepository<int, LocationStatistic> repository = _repositoryFactory.CreateRepository<int, LocationStatistic>();
+                if (_current.Id.Equals(default(int)))
+                {
+                    repository.Add(_current);
+
+                }
+                else repository.Update(_current);
+            }
+        }
+
+        public void UpdateStatistic(DateTime end)
+        {
+            lock (_current.Location)
+            {
+                _current.End = end;
+                IRepository<int, LocationStatistic> repository = _repositoryFactory.CreateRepository<int, LocationStatistic>();
                 if (_current.Id.Equals(default(int)))
                 {
                     repository.Add(_current);

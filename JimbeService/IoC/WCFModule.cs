@@ -8,7 +8,7 @@ using Ninject.Modules;
 
 namespace JimbeService.IoC
 {
-    class WCFModule : NinjectModule
+    public class WCFModule : NinjectModule
     {
         #region Overrides of NinjectModule
 

@@ -11,7 +11,7 @@ namespace JimbeCore.Domain.Mappings.NHibernate
     {
         LocationStatisticSubMap()
         {
-            References<Location>(x => x.Location).ForeignKey();
+            References<Location>(x => x.Location);
         }
     }
 }

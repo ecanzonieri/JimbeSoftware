@@ -1,8 +1,7 @@
 ﻿using JimbeCore.Domain.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Diagnostics;
 
-namespace Jimbe
+namespace JimbeTest.EntitiesTest
 {
     namespace JimbeTest
     {
@@ -81,7 +80,7 @@ namespace Jimbe
             public void executeTest()
             {
                 StartProcess target = new StartProcess("http:\\\\www.google.it", string.Empty);
-                target.execute(null);
+                target.Execute(null);
                 Assert.IsTrue(target.Success);
             }
         }

@@ -99,7 +99,7 @@ namespace Jimbe {
                                              NULL, 
                                              &pBssList);
 			if (dwResult!=ERROR_SUCCESS)
-				throw gcnew WifiException("Error on get available networks");
+				throw gcnew WifiException("Error on get available networks try to turn on WiFi Interface");
 			
 			networks= gcnew LinkedList<WifiNetwork^>();
 			bool duplicate;

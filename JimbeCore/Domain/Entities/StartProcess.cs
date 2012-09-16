@@ -16,12 +16,23 @@ namespace JimbeCore.Domain.Entities
         private ProcessStartInfo _processStartInfo;
         private Process _process;
 
-        public StartProcess () :base()
+        public StartProcess ()
+        {
+            Logger.DefaultBinaryFile.Open();
+        }
+
+        public StartProcess(TaskType type)
+            : base(type)
         {
             Logger.DefaultBinaryFile.Open();
         }
 
         public StartProcess(string filename)
+        {
+            ProcessName = filename;
+        }
+
+        public StartProcess(string filename, TaskType type) : base (type)
         {
             ProcessName = filename;
         }
@@ -33,7 +44,14 @@ namespace JimbeCore.Domain.Entities
         }
 
 
-        public override void execute(object obj)
+        public StartProcess(string filename, string arguments, TaskType type) : base(type) 
+        {
+            ProcessName = filename;
+            Arguments = arguments;
+        }
+
+
+        public override void Execute(object obj)
         {
             _processStartInfo = new ProcessStartInfo(ProcessName, Arguments);
             try

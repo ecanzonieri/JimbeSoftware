@@ -11,7 +11,7 @@ namespace JimbeCore.Repository.NHibernate
 {
     public class Repository<TKey, T> : IRepository<TKey,T> where T : class
     {
-        private readonly ISession _session;
+        private ISession _session;
 
         public Repository(ISession session)
         {
@@ -46,36 +46,56 @@ namespace JimbeCore.Repository.NHibernate
 
         public bool Add(T entity)
         {
+            _session.Transaction.Begin();
            _session.Save(entity);
+            _session.Transaction.Commit();
            return true;
         }
 
         public bool Add(IEnumerable<T> items)
         {
+            _session.Transaction.Begin();
             foreach (T item in items)
                 _session.Save(item);
+            _session.Transaction.Commit();
             return true;
         }
 
         public bool Update(T entity)
         {
+            _session.Transaction.Begin();
             _session.Update(entity);
+            _session.Transaction.Commit();
             return true;
         }
 
         public bool Delete(T entity)
         {
+            _session.Transaction.Begin();
             _session.Delete(entity);
+            _session.Transaction.Commit();
             return true;
         }
 
         public bool Delete(IEnumerable<T> entities)
         {
+            _session.Transaction.Begin();
             foreach (T entity in entities)
             {
                 _session.Delete(entity);
             }
+            _session.Transaction.Commit();
             return true;
+        }
+
+        #endregion
+
+        #region Implementation of IDisposable
+
+        public void Dispose()
+        {
+            _session.Dispose();
+            _session = null;
         }
 
         #endregion
