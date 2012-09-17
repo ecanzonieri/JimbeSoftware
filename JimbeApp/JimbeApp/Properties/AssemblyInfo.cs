@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("JimbeApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("JimbeApp")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2001")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
