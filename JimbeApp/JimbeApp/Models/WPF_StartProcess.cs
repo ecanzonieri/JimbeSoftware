@@ -7,7 +7,7 @@ using JimbeWFC.DataContracts;
 
 namespace JimbeApp.Models
 {
-    class WPF_StartProcess: NotificationObject
+    public class WPF_StartProcess : NotificationObject
     {
         private StartProcess _startProcess;
 

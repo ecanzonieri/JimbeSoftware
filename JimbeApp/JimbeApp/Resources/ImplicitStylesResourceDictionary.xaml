@@ -6,6 +6,7 @@
                 Value="Bold" />
         <Setter Property="Padding"
                 Value="5 1" />
+
     </Style>
 
 </ResourceDictionary>

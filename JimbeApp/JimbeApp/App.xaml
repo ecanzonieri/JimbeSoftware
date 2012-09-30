@@ -1,14 +1,16 @@
 ﻿<Application x:Class="JimbeApp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:localVM="clr-namespace:JimbeApp.ViewModels"
              StartupUri="Views\MainWindow.xaml">
-    <Application.Resources>
+    <Application.Resources>        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/ImplicitStylesResourceDictionary.xaml" />
                 <ResourceDictionary Source="Resources/IconsResourceDictionary.xaml" />
                 <ResourceDictionary Source="Resources/StylesResourceDictionary.xaml" />
+             <!--   <ResourceDictionary Source="Views/button_style.xaml"/>  -->             
             </ResourceDictionary.MergedDictionaries>
+            <localVM:MainWindowViewModel x:Key="Windows1ViewModel" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

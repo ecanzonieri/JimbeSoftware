@@ -1,0 +1,17 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="JimbeApp.modifica"
+	x:Name="UserControl"
+	HorizontalAlignment="Center" VerticalAlignment="Center">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid>
+			<ListBox Height="110" Margin="57,61,141.5,0" VerticalAlignment="Top" Background="White"/>
+			<Label Content="Elenco Location:" Margin="212.986,31.04,155.986,0" VerticalAlignment="Top" Width="181.027"/>
+		</Grid>
+	</Grid>
+</UserControl>

@@ -8,7 +8,7 @@ using JimbeWFC.DataContracts;
 
 namespace JimbeApp.Models
 {
-    class WPF_Sensor : NotificationObject
+    public class WPF_Sensor : NotificationObject
     {
         private Sensor _Sensor;
 

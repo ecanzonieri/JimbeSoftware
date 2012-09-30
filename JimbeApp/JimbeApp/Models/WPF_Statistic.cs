@@ -7,9 +7,9 @@ using JimbeWFC.DataContracts;
 
 namespace JimbeApp.Models
 {
-    class WPF_Statistic : NotificationObject
+    public class WPF_Statistic : NotificationObject
     {
-        private Statistic _statistic;
+        private Statistic _statistic=null;
 
         public DateTime Start
         {

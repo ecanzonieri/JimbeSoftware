@@ -7,7 +7,7 @@ using JimbeWFC.DataContracts;
 
 namespace JimbeApp.Models
 {
-    class WPF_WifiSensor : NotificationObject
+    public class WPF_WifiSensor : NotificationObject
     {
         private WiFiSensor _sensor;
 

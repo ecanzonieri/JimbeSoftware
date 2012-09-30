@@ -4,15 +4,39 @@ using System.Linq;
 using System.Text;
 using JimbeApp.Helpers;
 using JimbeWFC.DataContracts;
-using JimbeWFC.ServiceContract;
+//using JimbeWFC.ServiceContract;
 
 namespace JimbeApp.Models
 {
-    class WPF_Location : NotificationObject
+  public  class WPF_Location : NotificationObject
     {
         private Location _Location;
 
+        public WPF_Location(Location loc)
+        {
+           if (loc==null)
+           {
+               _Location = new Location();
+               Name = "Nessuna locazione trovata";
+               Description = "";
+               TasksList = null;
+               SensorsList = null;
+               StatisticList = null;
+           }
+           else
+            _Location = loc;
+        }
 
+      public WPF_Location()
+      {
+          _Location=new Location();
+          Name = "Nessuna locazione trovata";
+          Description = "";
+          TasksList = null;
+          SensorsList = null;
+          StatisticList = null;
+
+      }
         # region proprieties
 
         public string Name
@@ -84,10 +108,18 @@ namespace JimbeApp.Models
 
             }
         }
+
+        public int CountTasks
+        {
+            get { return this.CountTasks; }
+            private set { this.CountTasks = TasksList.Count; }
+        }
+
+
         #endregion
 
-        #region methods
 
+        #region methods      
         #endregion
     }
 }

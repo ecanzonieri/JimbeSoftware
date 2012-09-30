@@ -6,7 +6,7 @@ using JimbeApp.Helpers;
 using JimbeWFC.DataContracts;
 namespace JimbeApp.Models
 {
-    class WPF_WifiNetwork : NotificationObject
+    public class WPF_WifiNetwork : NotificationObject
     {
         private WiFiNetwork _network;
 

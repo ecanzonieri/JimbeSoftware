@@ -6,7 +6,7 @@ using JimbeApp.Helpers;
 using JimbeWFC.DataContracts;
 namespace JimbeApp.Models
 {
-    class WPF_WifiConnectedSensor: NotificationObject
+    public class WPF_WifiConnectedSensor : NotificationObject
     {
         private WiFiConnectedSensor _sensor;
         public IList<WiFiNetwork> Connected
