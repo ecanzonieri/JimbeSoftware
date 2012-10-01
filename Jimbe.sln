@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeTest", "JimbeTest\Jimb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeWFC", "JimbeWFC\JimbeWFC.csproj", "{4CE41320-56A1-4BED-9185-2ED0B488B40F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeWCFTest", "JimbeWCFTest\JimbeWCFTest.csproj", "{FC32210F-CC66-4D2C-B479-784A665DBB8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeServiceTestLikeApplication", "JimbeServiceTestLikeApplication\JimbeServiceTestLikeApplication.csproj", "{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -123,18 +123,18 @@ Global
 		{4CE41320-56A1-4BED-9185-2ED0B488B40F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4CE41320-56A1-4BED-9185-2ED0B488B40F}.Release|Win32.ActiveCfg = Release|Any CPU
 		{4CE41320-56A1-4BED-9185-2ED0B488B40F}.Release|x86.ActiveCfg = Release|Any CPU
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Debug|Win32.ActiveCfg = Debug|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Debug|x86.ActiveCfg = Debug|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Debug|x86.Build.0 = Debug|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Release|Any CPU.ActiveCfg = Release|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Release|Mixed Platforms.Build.0 = Release|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Release|Win32.ActiveCfg = Release|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Release|x86.ActiveCfg = Release|x86
-		{FC32210F-CC66-4D2C-B479-784A665DBB8B}.Release|x86.Build.0 = Release|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Debug|Win32.ActiveCfg = Debug|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Debug|x86.ActiveCfg = Debug|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Debug|x86.Build.0 = Debug|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|Any CPU.ActiveCfg = Release|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|Win32.ActiveCfg = Release|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|x86.ActiveCfg = Release|x86
+		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
