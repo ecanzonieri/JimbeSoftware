@@ -22,5 +22,11 @@ namespace JimbeApp
 		{
 			this.InitializeComponent();
 		}
+
+		private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+		{
+            Grid item = (((((((e.OriginalSource as Button).Parent as Grid).Parent as Grid).Parent as UserControl).Parent as TabItem).Parent as TabControl).Parent as StackPanel).Parent as Grid;
+		    //StackPanel a =item. as StackPanel;                        
+		}
 	}
 }

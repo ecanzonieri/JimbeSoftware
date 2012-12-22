@@ -88,10 +88,6 @@
       <SubType>Designer</SubType>
       <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
     </Page>
-    <Page Include="Resources\IconsResourceDictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\ImplicitStylesResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,7 +100,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\button_style.xaml">
+    <Page Include="Resources\button_style.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -182,8 +178,7 @@
     <Resource Include="Images\wifi.png" />
     <Resource Include="Images\wifi_lg.png" />
     <Resource Include="Images\Wireless-Access-Point.png" />
-    <Resource Include="Views\Clean Gray BackGround.jpg" />
-    <Resource Include="Views\defaultBackgroundImage.png" />
+    <Resource Include="Images\defaultBackgroundImage.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\archivio.png" />
@@ -197,6 +192,11 @@
     <Resource Include="Images\strumenti3.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\CleanGrayBackGround.jpg" />
+    <Resource Include="Images\cooltext784509055.png" />
+    <Resource Include="Images\cooltext784532173.png" />
+    <Resource Include="Images\cooltext784550047.png" />
+    <Resource Include="Images\textspace_1349358870_c79c125a.gif" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

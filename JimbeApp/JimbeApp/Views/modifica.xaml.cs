@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JimbeWFC.DataContracts;
+using JimbeApp.ViewModels;
 
 namespace JimbeApp
 {
@@ -22,5 +24,21 @@ namespace JimbeApp
 		{
 			this.InitializeComponent();
 		}
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Button tmp_gd = (e.OriginalSource as Button);
+
+            //sistemare qui!!!
+            if (tmp_gd.DataContext != null)
+            {
+            Location loccc = (Location)tmp_gd.DataContext;           
+                MainWindowViewModel tmp = this.DataContext as MainWindowViewModel;
+
+                tmp.delete_location(loccc);
+            }
+
+        }
 	}
 }

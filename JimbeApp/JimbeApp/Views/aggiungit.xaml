@@ -7,24 +7,20 @@
 	mc:Ignorable="d"
     xmlns:local="clr-namespace:JimbeApp"
 	x:Class="JimbeApp.aggiungit"
-	x:Name="UserControl">
+	x:Name="UserControl"
+	BorderThickness="0" MinWidth="550" MinHeight="400" VerticalAlignment="Center"
+	>
 
     <Grid x:Name="LayoutRoot">
 		<Grid ScrollViewer.VerticalScrollBarVisibility="Disabled">
-			<Label Content="Inserisci il nome della location" VerticalAlignment="Top" Margin="156,44,189.5,0"/>
-			<TextBox TextWrapping="Wrap" Margin="140,73.96,155.5,0" VerticalAlignment="Top"/>
-			<Button Margin="207.5,162.42,213,0" RenderTransformOrigin="0.663,0.331" Height="85" HorizontalAlignment="Center" VerticalAlignment="Center">
-				<Button.Background>
-					<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-						<GradientStop Color="#FFF3F3F3" Offset="0"/>
-						<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-						<GradientStop Color="#FFDDDDDD" Offset="0.506"/>
-						<GradientStop Color="#FFCDCDCD" Offset="1"/>
-					</LinearGradientBrush>
-				</Button.Background>
+			<Label Content="Inserisci il nome della location" VerticalAlignment="Top" Margin="148,44,197.5,0"/>
+			<TextBox TextWrapping="Wrap" Margin="148,73.96,147.5,0" VerticalAlignment="Top" DataContext="{DynamicResource Windows1ViewModel}" Text="{Binding NameLocationStr}" ToolTip="nome della locazione da memorizzare"/>
+            <Label Content="Inserisci una descrizione per la location" VerticalAlignment="Top" Margin="148,150.04,197.5,0"/>
+			<TextBox TextWrapping="Wrap" Margin="148,191,147.5,0" VerticalAlignment="Top" DataContext="{DynamicResource Windows1ViewModel}" Text="{Binding DescriptionLocationStr}" ToolTip="descrizione della locazione da memorizzare"/>
+     		<Button Command="{Binding StoreLocation}" Margin="226,0,225.4,35" Height="85" VerticalAlignment="Bottom" DataContext="{DynamicResource Windows1ViewModel}" d:LayoutOverrides="Width" Style="{DynamicResource BorderlessButton}" Click="Button_Click">		
 				<StackPanel HorizontalAlignment="Center">
 					<Image Height="52" Width="60" Source="../Images/archivio2.png"/>
-					<Label Content="Salva Posizione"/>
+                    <Label Content="Salva Posizione" Foreground="White"/>
 				</StackPanel>
 			</Button>
 		</Grid>

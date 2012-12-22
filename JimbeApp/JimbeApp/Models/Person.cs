@@ -7,14 +7,14 @@ namespace JimbeApp.Models
     public class Person : NotificationObject
     {
         #region Ctor
-        public Person(string name, int age, bool isMarried, double height, DateTime birthDate, Color favColor)
+        public Person(string name, int age, bool isMarried, double height, int birthDate,int favColor)
         {
             Name = name;
             Age = age;
             IsMarried = isMarried;
             Height = height;
-            BirthDate = birthDate;
-            FavoriteColor = new SolidColorBrush(favColor);
+          //  BirthDate = birthDate;
+            //FavoriteColor = new SolidColorBrush(favColor);
         }
         #endregion
 

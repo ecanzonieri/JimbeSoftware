@@ -11,88 +11,11 @@
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ScrollViewer.VerticalScrollBarVisibility="Disabled" d:DesignWidth="729" d:DesignHeight="758.5" >
  
 	<Window.Background>
-		<ImageBrush ImageSource="Clean Gray BackGround.jpg"/>
+		<ImageBrush ImageSource="..\Images\CleanGrayBackGround.jpg"/>
 	</Window.Background>
 
     <Window.Resources>
-        <Style x:Key="BorderlessButton" TargetType="{x:Type Button}">
-            <Setter Property="Padding" Value="1"/>
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Name="border" Background="{TemplateBinding Background}">
-                            <ContentPresenter Name="content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      Margin="{TemplateBinding Padding}"
-                                      RecognizesAccessKey="True"
-                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-
-                      
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="Button.IsMouseOver" Value="True">
-
-                             
-                                <!--questo setter non parte, non capisco perchè, nel code behind c'è un oggetto dello stesso tipo, forse per questo-->
-                                <Setter Property="UIElement.Effect">
-                                    <Setter.Value>
-                                        <DropShadowEffect BlurRadius="35" Color="White" Direction="0"  Opacity="100" RenderingBias="Performance" ShadowDepth="20" />
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter TargetName="content" Property="RenderTransform" >
-                                    <Setter.Value>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
-                                            <SkewTransform AngleX="0" AngleY="0"/>
-                                            <RotateTransform Angle="0"/>
-                                            <TranslateTransform X="-5" Y="-5"/>
-                                        </TransformGroup>
-                                    </Setter.Value>
-                                </Setter>                            
-
-                                <!--<Setter Property="Background">                                   
-                                    <Setter.Value>                                       
-                                        <RadialGradientBrush >
-                                            <RadialGradientBrush.GradientStops>
-                                                <GradientStop Color="Transparent" Offset="0.2"/>                                               
-                                                <GradientStop Color="Orange" Offset="0.5"/>
-                                                <GradientStop Color="Transparent" Offset="0.8"/>
-                                            </RadialGradientBrush.GradientStops>
-                                        </RadialGradientBrush>                                       
-                                    </Setter.Value> 
-                                    
-                                </Setter> -->
-                            </Trigger> 
-
-                           <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="content" Property="RenderTransform" >
-                                    <Setter.Value>
-                                        <TransformGroup>
-                                        <ScaleTransform ScaleX=".90" ScaleY=".90" />
-                                        <SkewTransform AngleX="0" AngleY="0"/>
-                                        <RotateTransform Angle="0"/>
-                                        <TranslateTransform X="5" Y="5"/>
-                                        </TransformGroup>
-                                    </Setter.Value>
-                                </Setter>
-
-
-                            </Trigger> 
-                            <Trigger Property="IsFocused" Value="True">                                
-                            </Trigger>
-
-                           
-
-                            <Trigger Property="IsDefaulted" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
-                            </Trigger>
-
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        
     </Window.Resources>
     
 
@@ -100,8 +23,8 @@
     <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Grid DataContext="{StaticResource Windows1ViewModel}" ScrollViewer.VerticalScrollBarVisibility="Auto">
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>           
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="128"/>           
+            <RowDefinition/>
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
@@ -110,28 +33,30 @@
         </Grid.ColumnDefinitions>
         <!-- Logo of Application-->
 
-            <StackPanel Grid.ColumnSpan="2"/>
+            <StackPanel Grid.ColumnSpan="2" >
+            	<Image Height="128"  Source="/JimbeApp;component/Images/cooltext784550047.png" Margin="0,0,67.203,0" />
+            </StackPanel>
         
-    	<StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical"  Grid.RowSpan="2">
-                <Button  x:Name="getstatus" Click="getstatus_Click" Command ="{Binding GetStatus}" Height="120" Margin="48,50,48,0" Style="{StaticResource BorderlessButton}" >    										    				
+    	<StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical">
+                <Button  x:Name="getstatus" Click="getstatus_Click" Command ="{Binding GetStatus}" Height="120"  Style="{StaticResource BorderlessButton}" >    										    				
                 	<StackPanel >
                 		<Image Name="immaginestatus" Height="100" Width="100" Source="../images/Map.png" />
                 		<TextBlock Text="Localizza" TextAlignment="Center" Height="14.96" Foreground="White"/>					               
                 	</StackPanel>
 			</Button>
-                <Button  x:Name="store" Click="store_Click" Command ="{Binding StoreLocation}" Height="120" Style="{StaticResource BorderlessButton}" Margin="48,0">
+                <Button  x:Name="store" Click="store_Click" Height="120" Style="{StaticResource BorderlessButton}" >
     		<StackPanel>
 				<Image Height="100" Width="100" Source="../images/gmaps.png"/>
     			<TextBlock Text="Memorizza Posizione" TextAlignment="Center" Height="14.96" Foreground="White"/>
 			</StackPanel>
 			</Button>
-                <Button  x:Name="manage" Click="manage_Click" Command ="{Binding ManagePrefered}" Height="120"  Style="{StaticResource BorderlessButton}" Margin="48,0">
+                <Button  x:Name="manage" Click="manage_Click" Command ="{Binding ManagePrefered}" Height="120"  Style="{StaticResource BorderlessButton}">
     			<StackPanel>
-				<Image Height="100" Width="100" Source="../images/archivio.png"/>
+				<Image Height="91.106" Width="100" Source="../images/archivio.png"/>
     			<TextBlock Text="Gestione Posizioni" TextAlignment="Center" Height="14.96" Foreground="White"/>
 				</StackPanel>
 			</Button>
-                <Button  x:Name="stat" Click="stat_Click" Command ="{Binding ShowStats}" Height="120"  Style="{StaticResource BorderlessButton}" Margin="48,0">                                       
+                <Button  x:Name="stat" Click="stat_Click" Command ="{Binding ShowStats}" Height="120"  Style="{StaticResource BorderlessButton}">                                       
                     <StackPanel>
 				<Image Height="100" Width="100" Source="../images/stat.png"/>
     			<TextBlock Text="Visualizza Statistiche" TextAlignment="Center" Height="14.96" Foreground="White"/>
@@ -139,10 +64,11 @@
 			</Button>
                        
     	</StackPanel>
-		<StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinWidth="450" MinHeight="450" MaxWidth="550" MaxHeight="550">
-			<TabControl x:Name="tab_control" SelectedIndex="{Binding index}" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0" Padding="0" Background="{x:Null}" >
+		<StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinWidth="450" MinHeight="450" MaxWidth="550" MaxHeight="550" Margin="0">
+			<TabControl x:Name="tab_control" SelectedIndex="{Binding index}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Height="500" Width="500" BorderThickness="0" Padding="0" Background="{x:Null}" BorderBrush="#FFCE4821" >
 				<TabItem x:Name="Stato" Header="Stato" Visibility="Collapsed" Padding="0" Background="{x:Null}">
-					<local:statot DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
+                        <local:statot DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
+                       
 				</TabItem>
 				<TabItem x:Name="aggiungi" Header="TabItem" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
 					<local:aggiungit DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
