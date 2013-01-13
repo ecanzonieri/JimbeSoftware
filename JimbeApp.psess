@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<VSPerformanceSession Version="1.00">
+  <Options>
+    <Solution>C:\Users\Emanuele\Documents\Visual Studio 2010\Projects\JimbeSoftware\Jimbe.sln</Solution>
+    <CollectionMethod>Sampling</CollectionMethod>
+    <AllocationMethod>None</AllocationMethod>
+    <LaunchRuntimeControl>true</LaunchRuntimeControl>
+    <AddReport>true</AddReport>
+    <ResourceBasedAnalysisSelected>false</ResourceBasedAnalysisSelected>
+    <ThreadBasedAnalysisSelected>false</ThreadBasedAnalysisSelected>
+    <UniqueReport>Timestamp</UniqueReport>
+    <SamplingMethod>Cycles</SamplingMethod>
+    <CycleCount>10000000</CycleCount>
+    <PageFaultCount>10</PageFaultCount>
+    <SysCallCount>10</SysCallCount>
+    <SamplingCounter Name="" ReloadValue="00000000000f4240" DisplayName="" />
+    <RelocateBinaries>false</RelocateBinaries>
+    <CollectOnHpcCluster>false</CollectOnHpcCluster>
+    <HPCSettings>
+      <NumberOfProcesses>0</NumberOfProcesses>
+      <TargetSelection>UnknownDisabled</TargetSelection>
+      <ProfileOnRank>0</ProfileOnRank>
+      <AdvancedProperties>
+        <Project>JimbeApp</Project>
+        <CleanUp>true</CleanUp>
+        <MpiexecCommand>mpiexec.exe</MpiexecCommand>
+        <DeployCRT>true</DeployCRT>
+      </AdvancedProperties>
+    </HPCSettings>
+    <HardwareCounters EnableHWCounters="false" />
+    <EtwSettings />
+    <PdhSettings>
+      <PdhCountersEnabled>false</PdhCountersEnabled>
+      <PdhCountersRate>500</PdhCountersRate>
+      <PdhCounters>
+        <PdhCounter>\Disco fisico(_Total)\Lunghezza media coda del disco</PdhCounter>
+        <PdhCounter>\Memoria\Pagine/sec</PdhCounter>
+        <PdhCounter>\Processore(_Total)\% Tempo processore</PdhCounter>
+      </PdhCounters>
+    </PdhSettings>
+  </Options>
+  <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+  <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+  <PreinstrumentEvent>
+    <InstrEventExclude>false</InstrEventExclude>
+  </PreinstrumentEvent>
+  <PostinstrumentEvent>
+    <InstrEventExclude>false</InstrEventExclude>
+  </PostinstrumentEvent>
+  <Binaries>
+    <ProjBinary>
+      <Path>C:\Users\Emanuele\Documents\Visual Studio 2010\Projects\JimbeSoftware\JimbeApp\JimbeApp\obj\x86\Debug\JimbeApp.exe</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Executable</LaunchMethod>
+      <ExecutablePath>C:\Users\Emanuele\Documents\Visual Studio 2010\Projects\JimbeSoftware\JimbeApp\JimbeApp\bin\Debug\JimbeApp.exe</ExecutablePath>
+      <StartupDirectory>C:\Users\Emanuele\Documents\Visual Studio 2010\Projects\JimbeSoftware\JimbeApp\JimbeApp\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{693E6900-27CC-4D92-82C7-F3B7207ECEB3}|JimbeApp\JimbeApp\JimbeApp.csproj</ProjRef>
+      <ProjPath>C:\Users\Emanuele\Documents\Visual Studio 2010\Projects\JimbeSoftware\JimbeApp\JimbeApp\JimbeApp.csproj</ProjPath>
+      <ProjName>JimbeApp</ProjName>
+    </ProjBinary>
+  </Binaries>
+  <Reports>
+    <Report>
+      <Path>C:\Users\Emanuele\Documents\Visual Studio 2010\Projects\JimbeSoftware\JimbeApp130109.vsp</Path>
+    </Report>
+  </Reports>
+  <Launches>
+    <ProjBinary>
+      <Path>:PB:{693E6900-27CC-4D92-82C7-F3B7207ECEB3}|JimbeApp\JimbeApp\JimbeApp.csproj</Path>
+    </ProjBinary>
+  </Launches>
+  <RuntimeMarks>
+    <MarkName>Contrassegno uno</MarkName>
+    <MarkName>Contrassegno due</MarkName>
+    <MarkName>Contrassegno tre</MarkName>
+    <MarkName>Contrassegno quattro</MarkName>
+    <MarkName>Contrassegno cinque</MarkName>
+    <MarkName>Contrassegno sei</MarkName>
+    <MarkName>Contrassegno sette</MarkName>
+    <MarkName>Contrassegno otto</MarkName>
+    <MarkName>Contrassegno nove</MarkName>
+    <MarkName>Contrassegno dieci</MarkName>
+  </RuntimeMarks>
+</VSPerformanceSession>

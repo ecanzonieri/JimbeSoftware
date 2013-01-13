@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Navigation;
+using JimbeApp.ViewModels;
 
 namespace JimbeApp
 {
@@ -32,13 +33,12 @@ namespace JimbeApp
             _dropShadowEffect.BlurRadius = 20;
             _dropShadowEffect.Opacity = 5;
             _dropShadowEffect.ShadowDepth = 10;  
-      
-           // _effect.Color=new Color();
 
             _uie.Effect = _dropShadowEffect;
         }
       
         private Collection<Button> _buttons;
+        private Button clicked;
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
@@ -50,6 +50,10 @@ namespace JimbeApp
         {
             ToggleButtonColors(sender);
            tab_control.SelectedIndex = 1;
+            clicked = sender as Button;
+           MainWindowViewModel tmp = this.DataContext as MainWindowViewModel;
+           if (tmp != null)
+               tmp.eraseLocationProperty();
         }
 
         private void ToggleButtonColors(object sender)
@@ -68,12 +72,15 @@ namespace JimbeApp
         {
             ToggleButtonColors(sender);
             tab_control.SelectedIndex = 0;
+
+          
         }
 
         private void manage_Click(object sender, RoutedEventArgs e)
         {
             ToggleButtonColors(sender);
             tab_control.SelectedIndex = 2;
+            clicked = sender as Button;
         }
 
         private void stat_Click(object sender, RoutedEventArgs e)
@@ -87,7 +94,32 @@ namespace JimbeApp
             ToggleButtonColors(getstatus);
             tab_control.SelectedIndex = 0;
         }
-
+      
+        public void disableunwantedbuttons()
+        {
+            if (clicked!=null)
+            {
+                foreach (Button button in _buttons)
+                {
+                    button.IsEnabled = false;
+                    if (button != clicked)
+                    {
+                        
+                        //button.Background = new SolidColorBrush(Colors.Gray);
+                        button.Opacity = 0.3;
+                    }
+                }
+            }
+        }
+        public void enablebuttons()
+        {
+            foreach (Button button in _buttons)
+            {               
+                    button.IsEnabled = true;
+                button.Background = null;
+                button.Opacity = 1;
+            }
+        }
 
         
     }

@@ -1,11 +1,10 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="/JimbeApp;component/Resources/IconsResourceDictionary.xaml"/>
+	<ResourceDictionary.MergedDictionaries>		
 		<ResourceDictionary Source="/JimbeApp;component/Resources/StylesResourceDictionary.xaml"/>
 		<ResourceDictionary Source="/JimbeApp;component/Resources/ImplicitStylesResourceDictionary.xaml"/>
-		<ResourceDictionary Source="/JimbeApp;component/Views/button_style.xaml"/>
+		<ResourceDictionary Source="/Resources\button_style.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 	<!-- Posizione per la definizione delle voci del dizionario risorse. -->
 </ResourceDictionary>

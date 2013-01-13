@@ -12,10 +12,10 @@
 
     <Grid x:Name="LayoutRoot" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0" >		
 		<Label Content="Location Attuale:"  VerticalAlignment="Top" Height="25.96" Margin="201,78,200.377,0"/>
-		<Label		VerticalAlignment="Top"  Height="29.96" BorderBrush="black" BorderThickness="2" Margin="134,103.96,134,0" ToolTip="Mostra il nome dell'attuale posizione" DataContext="{DynamicResource Windows1ViewModel}" Content="{Binding Llocation.Name}"/>
+		<Label		VerticalAlignment="Top"  Height="29.96" BorderBrush="black" BorderThickness="2" Margin="134,103.96,134,0" ToolTip="Mostra il nome dell'attuale posizione" DataContext="{DynamicResource Windows1ViewModel}" Content="{Binding Llocation.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 		<Label Content="Descrizione"  Height="29.04" VerticalAlignment="Top" Margin="201,157,174,0"/>
-		<Label VerticalAlignment="Top"  Height="28"  BorderBrush="black" BorderThickness="2" Margin="134,190.04,134,0" DataContext="{DynamicResource Windows1ViewModel}" Content="{Binding Llocation.Description}"/>
+		<Label VerticalAlignment="Top"  Height="28"  BorderBrush="black" BorderThickness="2" Margin="134,190.04,134,0" DataContext="{DynamicResource Windows1ViewModel}" Content="{Binding Llocation.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 		<Label Content="Numero di task" Height="24" Margin="201,0,174,136" VerticalAlignment="Bottom"/>
-		<Label Content="{Binding CountTasks}" Height="32" BorderBrush="black" BorderThickness="2" Margin="134,0,134,88" VerticalAlignment="Bottom" DataContext="{DynamicResource Windows1ViewModel}"/>
+		<Label Content="{Binding CountTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="32" BorderBrush="black" BorderThickness="2" Margin="134,0,134,88" VerticalAlignment="Bottom" DataContext="{DynamicResource Windows1ViewModel}"/>
 	</Grid>
 </UserControl>

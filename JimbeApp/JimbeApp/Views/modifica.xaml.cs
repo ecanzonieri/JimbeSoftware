@@ -20,17 +20,19 @@ namespace JimbeApp
 	/// </summary>
 	public partial class modifica : UserControl
 	{
+        private Window parentWindow;
+        private MainWindow main;
+        private MainWindowViewModel mainviewmodel;
+
 		public modifica()
 		{
 			this.InitializeComponent();
 		}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DeleteLocation(object sender, RoutedEventArgs e)
         {
             
-            Button tmp_gd = (e.OriginalSource as Button);
-
-            //sistemare qui!!!
+            Button tmp_gd = (e.OriginalSource as Button);          
             if (tmp_gd.DataContext != null)
             {
             Location loccc = (Location)tmp_gd.DataContext;           
@@ -38,6 +40,31 @@ namespace JimbeApp
 
                 tmp.delete_location(loccc);
             }
+
+        }
+
+        private void ModifyLocation(object sender, RoutedEventArgs e)
+        {
+            Button tmp_gd = (e.OriginalSource as Button);
+            if (tmp_gd.DataContext != null)
+            {
+                Location loccc = (Location)tmp_gd.DataContext;
+                MainWindowViewModel tmp = this.DataContext as MainWindowViewModel;
+                tmp.ModifyLocation(loccc);
+
+                Window parentWindow = Window.GetWindow(this);
+                MainWindow main = (MainWindow)parentWindow;
+                if (main != null)
+                {
+                    main.tab_control.SelectedIndex = 6;
+                    main.disableunwantedbuttons();
+                }
+
+            }
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
 	}

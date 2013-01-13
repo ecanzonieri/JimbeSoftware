@@ -3,11 +3,19 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
 	mc:Ignorable="d"
 	x:Class="JimbeApp.stat"
-	x:Name="UserControl">
+	xmlns:toolkit="http://schemas.microsoft.com/wpf/2008/toolkit"      	
+	x:Name="UserControl" DataContext="{DynamicResource Windows1ViewModel}">
 
-	<Grid x:Name="LayoutRoot">
-		<Grid  VerticalAlignment="Bottom" />
+    <Grid x:Name="LayoutRoot" Background="{x:Null}">
+        <Grid  VerticalAlignment="Bottom" Background="{x:Null}"/>
+		<charting:Chart x:Name="chart" HorizontalAlignment="Center" Height="350" Width="350"
+		 Title="Permanenza nelle locations" VerticalAlignment="Top" LegendTitle= "Locations" Background="{x:Null}">
+			<charting:PieSeries ItemsSource="{Binding StatisticList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    DependentValuePath="Value"
+                    IndependentValuePath="Key" Title="Locations" IsSelectionEnabled="True"/>
+        </charting:Chart>		
 	</Grid>
 </UserControl>
