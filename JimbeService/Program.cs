@@ -13,12 +13,15 @@ namespace JimbeService
         /// </summary>
         static void Main()
         {
+            
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
 			{ 
 				new Service1() 
 			};
             ServiceBase.Run(ServicesToRun);
+            
+            //(new Service1()).debugOnStart();
         }
     }
 }

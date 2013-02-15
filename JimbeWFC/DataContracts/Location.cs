@@ -4,10 +4,9 @@ using System.Runtime.Serialization;
 namespace JimbeWFC.DataContracts
 {
     [DataContract (Name = "Location")]
-    [KnownType(typeof(LocationStatistic))]
-    [KnownType(typeof(WiFiSensor))]
-    [KnownType(typeof(WiFiConnectedSensor))]
-    [KnownType(typeof(StartProcess))]
+    [KnownType(typeof(List<Statistic>))]
+    [KnownType(typeof(List<Sensor>))]
+    [KnownType(typeof(List<Task>))]
     public class Location
     {
         [DataMember]

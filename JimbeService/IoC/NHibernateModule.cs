@@ -29,7 +29,7 @@ namespace JimbeService.IoC
             Bind<ISessionFactory>().ToMethod(x => CreateSessionFactory()).InSingletonScope();
             Bind<ISession>().ToMethod(x => x.Kernel.Get<ISessionFactory>().OpenSession());
             Bind<IRepository<Guid, Location>>().To<Repository<Guid, Location>>();
-            Bind<IRepository<int, Statistic>>().To<Repository<int, Statistic>>();
+            Bind<IRepository<int, LocationStatistic>>().To<Repository<int, LocationStatistic>>();
             Bind<IRepositoryFactory>().ToFactory();
         }
 
