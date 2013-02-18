@@ -33,15 +33,12 @@ namespace JimbeTest.Helper
         {
             // delete the existing db on each run
             if (File.Exists(Settings.Default.DbTestPath))
-            {
-
                 File.Delete(Settings.Default.DbTestPath);
 
                 // this NHibernate tool takes a configuration (with mapping info in)
                 // and exports a database schema from it
-                new SchemaExport(config)
+            new SchemaExport(config)
                     .Create(false, true);
-            }
         }
 
         internal static IRepositoryFactory CreateRepositoryFactory()

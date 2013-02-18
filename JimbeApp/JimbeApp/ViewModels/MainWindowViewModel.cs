@@ -293,7 +293,7 @@ namespace JimbeApp.ViewModels
             {
                 loc_tmp.TasksList.Add(startProcess);   
             }                                     
-          //  _proxy.InsertLocation(loc_tmp);
+            _proxy.InsertLocation(loc_tmp);
             NameLocationStr = "";
             DescriptionLocationStr = "";
         }
@@ -361,7 +361,7 @@ namespace JimbeApp.ViewModels
         #region functions
        public void delete_location(Location loc)
        {
-           if (loc != null)
+          // if (loc != null)
             //   _proxy.DeleteLocation(loc);
        }
 

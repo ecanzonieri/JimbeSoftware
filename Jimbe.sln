@@ -1,6 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0ECF2C3A-B9C2-46CC-BDED-B881B6948FC0}"
+	ProjectSection(SolutionItems) = preProject
+		Jimbe.vsmdi = Jimbe.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeService", "JimbeService\JimbeService.csproj", "{3AB49BE8-F9E9-418B-A05F-7280D82BBF74}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JimbeWiFi", "JimbeWiFi\JimbeWiFi.vcxproj", "{5D4A229B-51B2-489C-8C26-5983B04C2C0E}"
@@ -9,22 +16,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WiFiApiTest", "WiFiApiTest\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeCore", "JimbeCore\JimbeCore.csproj", "{72AE758A-BBC2-4BF4-A0C2-A5AA07810CE0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0ECF2C3A-B9C2-46CC-BDED-B881B6948FC0}"
-	ProjectSection(SolutionItems) = preProject
-		Jimbe.vsmdi = Jimbe.vsmdi
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeTest", "JimbeTest\JimbeTest.csproj", "{818BCD32-7145-495D-9AC2-6E12128581C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeWFC", "JimbeWFC\JimbeWFC.csproj", "{4CE41320-56A1-4BED-9185-2ED0B488B40F}"
 EndProject
-<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeApp", "JimbeApp\JimbeApp\JimbeApp.csproj", "{693E6900-27CC-4D92-82C7-F3B7207ECEB3}"
-=======
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeServiceTestLikeApplication", "JimbeServiceTestLikeApplication\JimbeServiceTestLikeApplication.csproj", "{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}"
->>>>>>> cfc7c9c40a2400a55a40d2a61316eeef859e57f7
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -113,7 +111,6 @@ Global
 		{4CE41320-56A1-4BED-9185-2ED0B488B40F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4CE41320-56A1-4BED-9185-2ED0B488B40F}.Release|Win32.ActiveCfg = Release|Any CPU
 		{4CE41320-56A1-4BED-9185-2ED0B488B40F}.Release|x86.ActiveCfg = Release|Any CPU
-<<<<<<< HEAD
 		{693E6900-27CC-4D92-82C7-F3B7207ECEB3}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{693E6900-27CC-4D92-82C7-F3B7207ECEB3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{693E6900-27CC-4D92-82C7-F3B7207ECEB3}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -126,7 +123,6 @@ Global
 		{693E6900-27CC-4D92-82C7-F3B7207ECEB3}.Release|Win32.ActiveCfg = Release|x86
 		{693E6900-27CC-4D92-82C7-F3B7207ECEB3}.Release|x86.ActiveCfg = Release|x86
 		{693E6900-27CC-4D92-82C7-F3B7207ECEB3}.Release|x86.Build.0 = Release|x86
-=======
 		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -139,7 +135,6 @@ Global
 		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|Win32.ActiveCfg = Release|x86
 		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|x86.ActiveCfg = Release|x86
 		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|x86.Build.0 = Release|x86
->>>>>>> cfc7c9c40a2400a55a40d2a61316eeef859e57f7
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

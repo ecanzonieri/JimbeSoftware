@@ -24,7 +24,7 @@ namespace WiFiApiTest
                 {
                     wifiApi = new JimbeWiFi();
                 }
-                catch (WifiToManyHandleException e)
+                catch (WifiToManyHandleException)
                 {
                     GC.Collect();
                     GC.WaitForPendingFinalizers();
