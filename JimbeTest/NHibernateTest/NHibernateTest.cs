@@ -57,7 +57,7 @@ namespace JimbeTest.NHibernateTest
             }
         }
 
-        [TestMethod]
+       [TestMethod]
         public void WiFiSensorTest()
         {
             using (var session = _sessionFactory.OpenSession())
@@ -68,23 +68,6 @@ namespace JimbeTest.NHibernateTest
                     .CheckList(c => c.Networks, networks)
                     .CheckReference(c => c.Location, new Location("casa",null,null))
                     .VerifyTheMappings();
-            }
-        }
-
-        [TestMethod]
-        public void RetrieveWiFiSensorGet()
-        {
-            using (var session = _sessionFactory.OpenSession())
-            {
-                Repository<Guid,WiFiSensor> repository = new Repository<Guid, WiFiSensor>(session);
-                var wifisensors = repository.All();
-                var wifisensor = wifisensors.First();
-                if (wifisensor.Weigth!=10.0) Assert.Fail("Weigths disequal");
-
-                IEnumerable<WiFiNetwork> networkcompared = (from net in wifisensor.Networks
-                                                        where networks.Any(w => w.EqualsBusiness(net))
-                                                        select net);
-            if (networkcompared.Count() != networks.Count()) Assert.Fail("networks disequal");
             }
         }
 

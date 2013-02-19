@@ -35,3 +35,9 @@ packages/
 
 # visual studio database projects
 *.dbmdl
+
+# upgrade Visual Studio 2012
+_UpgradeReport_Files/*
+Backup/*
+ipch/*
+UpgradeLog*
