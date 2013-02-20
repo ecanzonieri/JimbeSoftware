@@ -7,18 +7,18 @@
 	xmlns:local="clr-namespace:JimbeApp" xmlns:ViewModels="clr-namespace:JimbeApp.ViewModels" mc:Ignorable="d"
 	x:Class="JimbeApp.AddTask"
 	x:Name="UserControl" DataContext="{DynamicResource Windows1ViewModel}" Height="544" Width="664">
-	<UserControl.Resources>
-		<local:modifica x:Key="modificaDataSource" d:IsDataSource="True"/>
-		
-		  <ObjectDataProvider x:Key="dataFromEnum"
-       MethodName="GetValues" ObjectType="{x:Type System:Enum}">
-          <ObjectDataProvider.MethodParameters>
-               <x:Type TypeName="ViewModels:TaskType"/>
-          </ObjectDataProvider.MethodParameters>
-     </ObjectDataProvider>
-	</UserControl.Resources>
+    <UserControl.Resources>
+        <local:modifica x:Key="modificaDataSource" d:IsDataSource="True"/>
 
-	<Grid x:Name="LayoutRoot" >
+        <ObjectDataProvider x:Key="dataFromEnum"
+       MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="ViewModels:TaskType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" >
         <TextBox Height="32" HorizontalAlignment="Left" Margin="39,36,0,0" x:Name="FileNameTextBox"
                  VerticalAlignment="Top" Width="393" Text="{Binding Filename, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Button Content="Sfoglia" Height="32" HorizontalAlignment="Left" Margin="436,36,0,0"

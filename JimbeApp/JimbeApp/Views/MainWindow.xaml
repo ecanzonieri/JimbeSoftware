@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:JimbeApp" x:Class="JimbeApp.MainWindow"
         mc:Ignorable="d"
         Title="JimbeApp"
-        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ScrollViewer.VerticalScrollBarVisibility="Disabled" d:DesignWidth="1005" d:DesignHeight="807" SizeToContent="WidthAndHeight"> 
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ScrollViewer.VerticalScrollBarVisibility="Disabled" d:DesignWidth="1005" d:DesignHeight="800"> 
 	<Window.Background>
 		<ImageBrush ImageSource="..\Images\CleanGrayBackGround.jpg"/>
 	</Window.Background>
@@ -16,7 +16,7 @@
     <Window.Resources>
         
     </Window.Resources>
-    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" d:IsHidden="True">
     <Grid DataContext="{StaticResource Windows1ViewModel}" ScrollViewer.VerticalScrollBarVisibility="Auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="128"/>           
