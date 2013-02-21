@@ -257,7 +257,7 @@ namespace JimbeApp.ViewModels
         public MainWindowViewModel()
         {
             _proxy = ProxyFactory.GetProxy();
-            LocationsList=new List<Location>();  //tmp   
+            LocationsList=new List<Location>();   
             Llocation =_proxy.GetCurrentLocation();
             if (Llocation!=null && Llocation.TasksList != null)
                 CountTasks = Llocation.TasksList.Count;
@@ -345,8 +345,8 @@ namespace JimbeApp.ViewModels
        }
        public void NewTask_f()
         {
-            //AddTask newTask = new AddTask();
-           //newTask.TabIndex.ShowDialog();
+          //  AddTask newTask = new AddTask();
+        //   newTask.ShowDialog();
         }
 
 
@@ -361,8 +361,8 @@ namespace JimbeApp.ViewModels
         #region functions
        public void delete_location(Location loc)
        {
-          // if (loc != null)
-            //   _proxy.DeleteLocation(loc);
+           if (loc != null)
+               _proxy.DeleteLocation(loc);
        }
 
        public void ModifyTask(StartProcess tmp)
@@ -418,16 +418,16 @@ namespace JimbeApp.ViewModels
            Location newLoc = new Location();
            newLoc.Name = NameLocationStr;
            newLoc.Description = DescriptionLocationStr;
-           newLoc.SensorsList = null;// LocationSensorList;
-           newLoc.StatisticsList = null;// LocationStatisticList;
+           newLoc.SensorsList =  LocationSensorList;
+           newLoc.StatisticsList = LocationStatisticList;
            if (TasksList != null)
            {
                newLoc.TasksList = new List<Task>(TasksList);
            }
            else
                newLoc.TasksList = null;
-       //    _proxy.DeleteLocation(tmpupLocation);
-         //  _proxy.InsertLocation(newLoc);
+           _proxy.DeleteLocation(tmpupLocation);
+           _proxy.InsertLocation(newLoc);
            NameLocationStr = "";
            DescriptionLocationStr = "";
 
@@ -453,32 +453,6 @@ namespace JimbeApp.ViewModels
                 TasksList.Clear();
         }
         #endregion
-
-        #region example
-        //   public ICommand RefreshDateCommand { get { return new DelegateCommand(OnRefreshDate); } }       
-        //public ICommand wifi {get { return  new DelegateCommand( wifi_ex);}}
-        //public ICommand button_f { get { return new DelegateCommand(button_f_ex); } }
-
-        /*        void wifi_ex ()
-        {   
-            asd++;
-            Label b = new Label();
-            b.Width = 404;
-            b.Content = asd.ToString();
-            ContentObjects.Add(b);
-
-            Button bb=new Button();
-            bb.Content = "clear";
-            bb.Command = button_f;
-            ContentObjects.Add(bb);
-
-        }
-                void button_f_ex()
-                {            
-                   ContentObjects.Clear(); 
-                }*/
-        #endregion
-
        
     }
 }
