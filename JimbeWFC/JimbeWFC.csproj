@@ -78,6 +78,7 @@
     <Compile Include="DataContracts\Sensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceContract\ILocationService.cs" />
+    <Compile Include="ServiceContract\ITaskManagerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

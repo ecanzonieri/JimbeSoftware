@@ -53,13 +53,20 @@ namespace JimbeService.WCF
 
         public bool DeleteLocation(Location location)
         {
+          
             var repository = _repositoryFactory.CreateRepository<Guid, CoreEntity.Location>();
             CoreEntity.Location corelocation = _engine.Map<DTO.Location, CoreEntity.Location>(location);
             var todelete = repository.FindBy(x => x.Name.Equals(corelocation.Name));
-            if (ReferenceEquals(todelete,null)) return false;
-            repository.Delete(todelete);
-            _logger.Debug("Delete location "+ corelocation.Name + corelocation.Description);
-            return true;
+            if (ReferenceEquals(todelete, null)) return false;
+            lock (_serviceManager)
+            {
+                if (repository.Delete(todelete))
+                {
+                    _logger.Debug("Delete location " + corelocation.Name + corelocation.Description);
+                    return true;
+                }
+                return false;
+            }
         }
 
         public IEnumerable<DTO.Location> GetLocations()

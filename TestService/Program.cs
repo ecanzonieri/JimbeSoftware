@@ -88,6 +88,12 @@ namespace TestService
                 }
             }
             Console.ReadLine();
+            Console.WriteLine("Delete location");
+            proxy.DeleteLocation(location);
+            Console.ReadLine();
+            current=proxy.GetCurrentLocation();
+            if (current==null) Console.WriteLine("Deleted");
+            else Console.WriteLine("Current: " + current.Name + " " + current.Description);
         }
     }
 }

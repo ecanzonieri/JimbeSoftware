@@ -61,17 +61,17 @@ namespace JimbeService.Business
             {
                 lock (this)
                 {
-                    if (_statisticManager != null) _statisticManager.UpdateStatistic();
                     if (RecognizeLocation())
                     {
                         logger.Info("RecognizeLocation gave me a new location");
                         if (_taskManager != null)
                             _taskManager.RequestStop();
                         _statisticManager = new StatisticManager(_repositoryFactory, _current);
-                        _statisticManager.UpdateStatistic();
                         _taskManager = new TaskManager(_current.Tasks);
                         _taskManager.StartTasksExecution();
                     }
+                    if (_statisticManager != null) _statisticManager.UpdateStatistic();
+
                 }
                 Thread.Sleep(10000);
             }
@@ -99,8 +99,10 @@ namespace JimbeService.Business
 
             if (ReferenceEquals(result,null))
             {
-                   _statisticManager = null;
-                   _current = null;
+                if (_taskManager!=null) _taskManager.RequestStop();
+                _statisticManager = null;
+                _current = null;
+                
 
                 //Debug Information check affinity
                 if (_locationManager.CurrentAffinity > 0.0)
