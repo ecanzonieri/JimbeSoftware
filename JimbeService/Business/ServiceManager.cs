@@ -64,7 +64,7 @@ namespace JimbeService.Business
                     if (_statisticManager != null) _statisticManager.UpdateStatistic();
                     if (RecognizeLocation())
                     {
-                        logger.Info("RecognizeLocation give me new location");
+                        logger.Info("RecognizeLocation gave me a new location");
                         if (_taskManager != null)
                             _taskManager.RequestStop();
                         _statisticManager = new StatisticManager(_repositoryFactory, _current);

@@ -3,8 +3,8 @@ using System.Runtime.Serialization;
 
 namespace JimbeWFC.DataContracts
 {
+    [DataContract(Name = "WiFiSensor")]
     [KnownType(typeof(List<WiFiNetwork>))]
-    [DataContract (Name = "Sensor")]
     public class WiFiSensor : Sensor
     {
         [DataMember]

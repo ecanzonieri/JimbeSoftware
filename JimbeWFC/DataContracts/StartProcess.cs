@@ -2,7 +2,7 @@
 
 namespace JimbeWFC.DataContracts
 {
-    [DataContract (Name= "Task")]
+    [DataContract (Name= "StartProcess")]
     public class StartProcess : Task
     {
         [DataMember]

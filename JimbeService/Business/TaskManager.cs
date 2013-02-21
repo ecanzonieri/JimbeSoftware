@@ -33,12 +33,12 @@ namespace JimbeService.Business
                     task.Execute(null);
                 else if (task.Type == Task.TaskType.Periodic)
                 {
-                    var timer = new Timer(task.Execute, null, 0, (long)task.Delay.TotalMilliseconds);
+                    var timer = new Timer(task.Execute, null, new TimeSpan(-1), task.Delay);
                     _periodic.Add(timer);
                 }
                 else
                 {
-                    var timer = new Timer(task.Execute, null, (long)task.Delay.TotalMilliseconds, 0);
+                    var timer = new Timer(task.Execute, null,task.Delay, new TimeSpan(-1));
                     _deleyed.Add(timer);
                 }
             }

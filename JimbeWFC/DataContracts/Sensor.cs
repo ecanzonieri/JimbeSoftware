@@ -3,11 +3,11 @@
 namespace JimbeWFC.DataContracts
 {
     [DataContract (Name = "Sensor")]
-    public class Sensor
+    [KnownType(typeof(WiFiSensor))]
+    [KnownType(typeof(WiFiConnectedSensor))]
+    public abstract class Sensor
     {
-
         [DataMember]
         public double Weigth { get; set; }
-
     }
 }

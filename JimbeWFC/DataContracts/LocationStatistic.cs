@@ -6,7 +6,7 @@ using System.Web;
 
 namespace JimbeWFC.DataContracts
 {
-    [DataContract (Name="Statistic")]
+    [DataContract (Name="LocationStatistic")]
     public class LocationStatistic : Statistic
     {
     }

@@ -68,8 +68,9 @@
     <Compile Include="Domain\Entities\Statistic.cs" />
     <Compile Include="Domain\Mappings\NHibernate\LocationMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\LocationStatisticSubMap.cs" />
+    <Compile Include="Domain\Mappings\NHibernate\MessageInfoSubMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\SensorMap.cs" />
-    <Compile Include="Domain\Mappings\NHibernate\StartProcessSubClasMap.cs" />
+    <Compile Include="Domain\Mappings\NHibernate\StartProcessSubMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\StatisticMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\TaskMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\WiFiConnectedSensorSubMap.cs">

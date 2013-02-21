@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeApp", "JimbeApp\JimbeA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeServiceTestLikeApplication", "JimbeServiceTestLikeApplication\JimbeServiceTestLikeApplication.csproj", "{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestService", "TestService\TestService.csproj", "{F47E8172-5B62-4583-8EC5-F90345EE2F39}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Jimbe.vsmdi
@@ -135,6 +137,18 @@ Global
 		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|Win32.ActiveCfg = Release|x86
 		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|x86.ActiveCfg = Release|x86
 		{F4C2B13F-71B9-4A16-8221-DBE3E0CE174C}.Release|x86.Build.0 = Release|x86
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Release|Win32.ActiveCfg = Release|Any CPU
+		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

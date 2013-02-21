@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using JimbeTest.Helper;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using AutoMapper;
 using JimbeService.IoC;
@@ -86,10 +88,33 @@ namespace JimbeTest.ServiceTest
                 Description = "pippo",
                 Name = "pippo",
                 StatisticsList = null,
-                TasksList = null
+                TasksList = TaskHelper.GetDtoTasks()
             };
             var corelocation = engine.Map<JimbeWFC.DataContracts.Location, Location>(dtolocation);
             Assert.AreEqual(corelocation.Name, dtolocation.Name);
+        }
+
+        [TestMethod]
+        public void TaskMapTest()
+        {
+            Mapper.Reset();
+            var kernel = new StandardKernel((new AutoMapperModule()));
+            var engine = kernel.Get<IMappingEngine>();
+            JimbeWFC.DataContracts.Task dtotask = new JimbeWFC.DataContracts.StartProcess()
+                {
+                    ProcessName = "pippo",
+                    Arguments = "foo",
+                    Delay = new TimeSpan(0, 0, 1),
+                    Type = JimbeWFC.DataContracts.Task.TaskType.Spot
+                };
+
+            var coretask = engine.Map<JimbeWFC.DataContracts.Task, Task>(dtotask);
+            if (coretask.GetType()==typeof(StartProcess))
+            {
+                var sp=(StartProcess) coretask;
+                var dtosp = (JimbeWFC.DataContracts.StartProcess) dtotask;
+                Assert.AreEqual(dtosp.ProcessName,sp.ProcessName);
+            } else Assert.Fail("Mapping failed");
         }
     }
 }

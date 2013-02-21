@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JimbeCore.Domain.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DTO = JimbeWFC.DataContracts;
 
 namespace JimbeTest.Helper
 {
@@ -25,6 +26,32 @@ namespace JimbeTest.Helper
             tasks.Add(task);
             return tasks;
 
+        }
+
+        public static IList<JimbeWFC.DataContracts.Task> GetDtoTasks()
+        {
+            IList<DTO.Task> tasks = new List<DTO.Task>();
+            tasks.Add(new DTO.StartProcess()
+                {
+                    ProcessName = "pippo",
+                    Arguments = "pippo",
+                    Type = DTO.Task.TaskType.Spot
+                });
+            tasks.Add(new DTO.StartProcess()
+            {
+                ProcessName = "pippo1",
+                Arguments = "pippo1",
+                Delay = new TimeSpan(0,0,1),
+                Type = DTO.Task.TaskType.Delayed
+            });
+            tasks.Add(new DTO.StartProcess()
+            {
+                ProcessName = "pippo2",
+                Arguments = "pippo2",
+                Delay = new TimeSpan(0,0,2),
+                Type = DTO.Task.TaskType.Periodic
+            });
+            return tasks;
         }
     }
 }

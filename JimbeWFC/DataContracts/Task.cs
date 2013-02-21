@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
+
 namespace JimbeWFC.DataContracts
 {
     [DataContract(Name = "Task")]
-    public class Task
+    [KnownType(typeof(StartProcess))]
+    [KnownType(typeof(MessageInfo))]
+    public abstract class Task
     {
         [DataContract(Name= "TaskType")]
         public enum TaskType

@@ -42,13 +42,13 @@ namespace JimbeService
 
             IKernel kernel = new StandardKernel(new AutoMapperModule(), new BusinessModule(), new NHibernateModule(), new WCFModule());
 
-            var _serviceManager = kernel.Get<ServiceManager>();
+            _serviceManager = kernel.Get<ServiceManager>();
 
-            var _serviceThread = new Thread(_serviceManager.RunServiceManager);
+            _serviceThread = new Thread(_serviceManager.RunServiceManager);
 
             _serviceThread.Start();
 
-            var _host = new ServiceHost(kernel.Get<ILocationService>(), new Uri("http://localhost:9090/Jimbe"));
+            _host = new ServiceHost(kernel.Get<ILocationService>(), new Uri("http://localhost:9090/Jimbe"));
             var smb = new ServiceMetadataBehavior();
             smb.HttpGetEnabled = true;
             smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;

@@ -8,16 +8,20 @@ using CoreEntity = JimbeCore.Domain.Entities;
 using DTO = JimbeWFC.DataContracts;
 using JimbeWFC.ServiceContract;
 using Location = JimbeWFC.DataContracts.Location;
+using TracerX;
 
 namespace JimbeService.WCF
 {
 
     [ServiceBehavior(
-    ConcurrencyMode = ConcurrencyMode.Single,
+    ConcurrencyMode = ConcurrencyMode.Multiple,
     InstanceContextMode = InstanceContextMode.Single
   )]
     public class LocationService : ILocationService
     {
+
+        private static Logger _logger = Logger.GetLogger("WCF Location Service");
+
         private ServiceManager _serviceManager;
 
         private IRepositoryFactory _repositoryFactory;
@@ -33,21 +37,29 @@ namespace JimbeService.WCF
 
         #region Implementation of ILocationService
 
-        public void InsertLocation(DTO.Location location)
+        public bool InsertLocation(DTO.Location location)
         {
             var repository=_repositoryFactory.CreateRepository<Guid,CoreEntity.Location>();
             CoreEntity.Location corelocation = _engine.Map<DTO.Location, CoreEntity.Location>(location);
             corelocation = _serviceManager.PrepareLocation(corelocation);
-            repository.Add(corelocation);
+            if (repository.Add(corelocation))
+            {
+                _logger.Debug("Insert new location " + corelocation.Name + corelocation.Description);
+                return true;
+            }
+           _logger.Warn("Not possible to insert location: ");
+           return false;
         }
 
-        public void DeleteLocation(DTO.Location location)
+        public bool DeleteLocation(Location location)
         {
             var repository = _repositoryFactory.CreateRepository<Guid, CoreEntity.Location>();
             CoreEntity.Location corelocation = _engine.Map<DTO.Location, CoreEntity.Location>(location);
             var todelete = repository.FindBy(x => x.Name.Equals(corelocation.Name));
-            if (ReferenceEquals(todelete,null)) return;
+            if (ReferenceEquals(todelete,null)) return false;
             repository.Delete(todelete);
+            _logger.Debug("Delete location "+ corelocation.Name + corelocation.Description);
+            return true;
         }
 
         public IEnumerable<DTO.Location> GetLocations()
@@ -55,14 +67,18 @@ namespace JimbeService.WCF
             var repository = _repositoryFactory.CreateRepository<Guid, CoreEntity.Location>();
             var locationlist = repository.All();
             var dotLocationList = _engine.Map<IEnumerable<CoreEntity.Location>, IEnumerable<DTO.Location>>(locationlist);
+            _logger.Debug("Get location list");
             return dotLocationList;
         }
 
-        public Location GetCurrentLocation()
+        public DTO.Location GetCurrentLocation()
         {
             lock (_serviceManager)
             {
-                return _engine.Map<CoreEntity.Location, DTO.Location>(_serviceManager.Current);    
+                if (_serviceManager.Current!=null)
+                    _logger.Debug("Current location "+ _serviceManager.Current.Name + _serviceManager.Current.Description);
+                DTO.Location current = _engine.Map<CoreEntity.Location, DTO.Location>(_serviceManager.Current);
+                return current;
             }
             
         }

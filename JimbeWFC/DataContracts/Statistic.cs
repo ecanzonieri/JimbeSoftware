@@ -4,7 +4,8 @@ using System.Runtime.Serialization;
 namespace JimbeWFC.DataContracts
 {
     [DataContract(Name = "Statistic")]
-    public class Statistic
+    [KnownType(typeof(LocationStatistic))]
+    public abstract class Statistic
     {
         [DataMember]
         public DateTime Start { get; set; }

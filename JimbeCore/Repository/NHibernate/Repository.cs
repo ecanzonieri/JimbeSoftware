@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using JimbeCore.Repository.Interfaces;
 using FluentNHibernate;
-using NHibernate;
+using NHi = NHibernate;
 using NHibernate.Linq;
 
 namespace JimbeCore.Repository.NHibernate
 {
     public class Repository<TKey, T> : IRepository<TKey,T> where T : class
     {
-        private ISession _session;
+        private NHi.ISession _session;
 
-        public Repository(ISession session)
+        public Repository(NHi.ISession session)
         {
             _session = session;
         }
@@ -46,46 +46,84 @@ namespace JimbeCore.Repository.NHibernate
 
         public bool Add(T entity)
         {
-            _session.Transaction.Begin();
-           _session.Save(entity);
-            _session.Transaction.Commit();
-           return true;
+            try
+            {
+                _session.Transaction.Begin();
+                _session.Save(entity);
+                _session.Transaction.Commit();
+                return true;
+            } catch  (NHi.Exceptions.GenericADOException e) {
+                _session.Transaction.Rollback();
+                return false;
+            }
         }
 
         public bool Add(IEnumerable<T> items)
         {
-            _session.Transaction.Begin();
-            foreach (T item in items)
-                _session.Save(item);
-            _session.Transaction.Commit();
-            return true;
+            try
+            {
+                _session.Transaction.Begin();
+                foreach (T item in items)
+                    _session.Save(item);
+                _session.Transaction.Commit();
+                return true;
+            }
+            catch (NHi.Exceptions.GenericADOException e)
+            {
+                _session.Transaction.Rollback();
+                return false;
+            }
         }
 
         public bool Update(T entity)
         {
-            _session.Transaction.Begin();
-            _session.Update(entity);
-            _session.Transaction.Commit();
-            return true;
+            try
+            {
+                _session.Transaction.Begin();
+                _session.Update(entity);
+                _session.Transaction.Commit();
+                return true;
+            }
+            catch (NHi.Exceptions.GenericADOException e)
+            {
+                _session.Transaction.Rollback();
+                return false;
+            }
         }
 
         public bool Delete(T entity)
         {
-            _session.Transaction.Begin();
-            _session.Delete(entity);
-            _session.Transaction.Commit();
-            return true;
+            try
+            {
+                _session.Transaction.Begin();
+                _session.Delete(entity);
+                _session.Transaction.Commit();
+                return true;
+            }
+            catch (NHi.Exceptions.GenericADOException e)
+            {
+                _session.Transaction.Rollback();
+                return false;
+            }
         }
 
         public bool Delete(IEnumerable<T> entities)
         {
-            _session.Transaction.Begin();
-            foreach (T entity in entities)
+            try
             {
-                _session.Delete(entity);
+                _session.Transaction.Begin();
+                foreach (T entity in entities)
+                {
+                    _session.Delete(entity);
+                }
+                _session.Transaction.Commit();
+                return true;
             }
-            _session.Transaction.Commit();
-            return true;
+            catch (NHi.Exceptions.GenericADOException e)
+            {
+                _session.Transaction.Rollback();
+                return false;
+            }
         }
 
         #endregion

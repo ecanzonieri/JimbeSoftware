@@ -29,18 +29,23 @@ namespace JimbeService.IoC
         private static void MapConfigure(IConfiguration configuration)
         {
             //From CoreEntity to DTO
-            configuration.CreateMap<CoreEntity.Location, DTO.Location>();
+            configuration.CreateMap<CoreEntity.Location, DTO.Location>()
+                .ForMember(dest => dest.SensorsList, opt => opt.MapFrom(src => src.SensorsList))
+                .ForMember(dest => dest.StatisticsList, opt => opt.MapFrom(src => src.StatisticsList))
+                .ForMember(dest => dest.TasksList, opt => opt.MapFrom(src => src.TasksList));
             configuration.CreateMap<CoreEntity.Sensor, DTO.Sensor>()
                 .Include<CoreEntity.WiFiConnectedSensor, DTO.WiFiConnectedSensor>()
                 .Include<CoreEntity.WiFiSensor, DTO.WiFiSensor>();
             configuration.CreateMap<CoreEntity.Task, DTO.Task>()
-                .Include<CoreEntity.StartProcess, DTO.StartProcess>();
+                .Include<CoreEntity.StartProcess, DTO.StartProcess>()
+                .Include<CoreEntity.MessageInfo,DTO.MessageInfo>();
             configuration.CreateMap<CoreEntity.WiFiNetwork, DTO.WiFiNetwork>();
             configuration.CreateMap<CoreEntity.Statistic, DTO.Statistic>()
                 .Include<CoreEntity.LocationStatistic, DTO.LocationStatistic>();
             configuration.CreateMap<CoreEntity.WiFiConnectedSensor, DTO.WiFiConnectedSensor>();
             configuration.CreateMap<CoreEntity.WiFiSensor, DTO.WiFiSensor>();
             configuration.CreateMap<CoreEntity.StartProcess, DTO.StartProcess>();
+            configuration.CreateMap<CoreEntity.MessageInfo, DTO.MessageInfo>();
             configuration.CreateMap<CoreEntity.LocationStatistic, DTO.LocationStatistic>();
 
             //Reverse mapping from DTO to CoreEntity
@@ -58,7 +63,9 @@ namespace JimbeService.IoC
             configuration.CreateMap<DTO.Task, CoreEntity.Task>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Location, opt => opt.Ignore())
-                .Include<DTO.StartProcess, CoreEntity.StartProcess>();
+                .ForMember(dest => dest.Success, opt=> opt.Ignore())
+                .Include<DTO.StartProcess, CoreEntity.StartProcess>()
+                .Include<DTO.MessageInfo,CoreEntity.MessageInfo>();
             configuration.CreateMap<DTO.WiFiNetwork, CoreEntity.WiFiNetwork>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Sensor, opt => opt.Ignore());
@@ -68,6 +75,7 @@ namespace JimbeService.IoC
             configuration.CreateMap<DTO.WiFiConnectedSensor, CoreEntity.WiFiConnectedSensor>();
             configuration.CreateMap<DTO.WiFiSensor, CoreEntity.WiFiSensor>();
             configuration.CreateMap<DTO.StartProcess, CoreEntity.StartProcess>();
+            configuration.CreateMap<DTO.MessageInfo, CoreEntity.MessageInfo>();
             configuration.CreateMap<DTO.LocationStatistic, CoreEntity.LocationStatistic>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Location, opt => opt.Ignore());

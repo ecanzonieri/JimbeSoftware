@@ -7,14 +7,12 @@ using JimbeCore.Domain.Entities;
 
 namespace JimbeCore.Domain.Mappings.NHibernate
 {
-    public class TaskMap : ClassMap<Task>
+    class StartProcessSubMap : SubclassMap<StartProcess>
     {
-        public TaskMap()
+        StartProcessSubMap()
         {
-            Id(x => x.Id);
-            Map(x => x.Type);
-            Map(x => x.Delay);
-            References<Location>(x => x.Location).ForeignKey();
+            Map(x => x.ProcessName);
+            Map(x => x.Arguments);
         }
     }
 }

@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using FluentNHibernate.Mapping;
 using JimbeCore.Domain.Entities;
 
 namespace JimbeCore.Domain.Mappings.NHibernate
 {
-    class StartProcessSubClasMap : SubclassMap<StartProcess>
+    class MessageInfoSubMap : SubclassMap<MessageInfo>
     {
-        StartProcessSubClasMap()
+        MessageInfoSubMap()
         {
-            Map(x => x.ProcessName);
-            Map(x => x.Arguments);
+            Map(x => x.Message);
         }
     }
 }

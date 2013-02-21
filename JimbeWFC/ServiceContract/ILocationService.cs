@@ -11,10 +11,10 @@ namespace JimbeWFC.ServiceContract
     public interface ILocationService
     {
         [OperationContract]
-        void InsertLocation(Location location);
+        bool InsertLocation(Location location);
 
         [OperationContract]
-        void DeleteLocation(Location location);
+        bool DeleteLocation(Location location);
 
         [OperationContract]
         IEnumerable<Location> GetLocations();

@@ -36,6 +36,11 @@ namespace JimbeServiceTestLikeApplication
             _host.Description.Behaviors.Add(smb);
             _host.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;
             _host.Open();
+
+            Console.WriteLine("Host opened");
+            Console.ReadLine();
+            _serviceManager.RequestStop();
+
         }
     }
 }

@@ -42,7 +42,8 @@ namespace JimbeCore.Domain.Entities
 
         public override void Execute(object obj)
         {
-                MessageBox.Show(Message);
+
+                MessageBox.Show(Message,"JimbeService Notification",MessageBoxButtons.OK,MessageBoxIcon.Information,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
                 Success = true;          
         }
 

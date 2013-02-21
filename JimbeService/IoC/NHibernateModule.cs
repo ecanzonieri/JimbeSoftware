@@ -53,9 +53,9 @@ namespace JimbeService.IoC
             if (File.Exists(Properties.Settings.Default.DBPath))
             {
                 File.Delete(Properties.Settings.Default.DBPath);
-                new SchemaExport(config)
-                    .Create(false, true);
             }
+            new SchemaExport(config)
+                    .Create(false, true);
         }
 
     }
