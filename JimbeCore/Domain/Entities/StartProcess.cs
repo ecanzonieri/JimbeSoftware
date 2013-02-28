@@ -2,15 +2,12 @@
 using System.Diagnostics;
 using JimbeCore.Domain.Interfaces;
 using JimbeCore.Domain.Model;
-using TracerX;
 
 namespace JimbeCore.Domain.Entities
 {
     public class StartProcess : Task
     {
-        
-        private static Logger logger = Logger.GetLogger("StartProcess");
-        
+                
         public virtual string ProcessName { get; set; }
         public virtual string Arguments { get; set; }
         private ProcessStartInfo _processStartInfo;
@@ -18,13 +15,11 @@ namespace JimbeCore.Domain.Entities
 
         public StartProcess ()
         {
-            Logger.DefaultBinaryFile.Open();
         }
 
         public StartProcess(TaskType type)
             : base(type)
         {
-            Logger.DefaultBinaryFile.Open();
         }
 
         public StartProcess(string filename)
@@ -68,7 +63,6 @@ namespace JimbeCore.Domain.Entities
             catch (System.Exception ioe)
             {
                 Success = false;
-                logger.Error(ioe.Message);
                 throw;
             }
         }

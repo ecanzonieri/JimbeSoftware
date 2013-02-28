@@ -10,7 +10,7 @@ namespace JimbeCore.Domain.Entities
 
         public virtual int SignalQuality { get; set; }
 
-        public virtual ISensor Sensor { get; set; }
+        public virtual WiFiNetworkSet NetworkSet { get; set; }
 
         public WiFiNetwork()
         {
@@ -19,6 +19,10 @@ namespace JimbeCore.Domain.Entities
         {
             Ssid = ssid;
             SignalQuality = sigqual;
+        }
+        public WiFiNetwork(string ssid, int sigqual, WiFiNetworkSet networkSet) : this(ssid, sigqual)
+        {
+            NetworkSet = networkSet;
         }
 
         #region Overrides of Entity<Guid>

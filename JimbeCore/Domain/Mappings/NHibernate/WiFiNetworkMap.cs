@@ -14,7 +14,7 @@ namespace JimbeCore.Mappings
             Id(x => x.Id).GeneratedBy.GuidComb();
             Map(x => x.Ssid).Not.Nullable();
             Map(x => x.SignalQuality);
-            References<Sensor>(x => x.Sensor);
+            References<WiFiNetworkSet>(x => x.NetworkSet).ForeignKey();
         }
     }
 }

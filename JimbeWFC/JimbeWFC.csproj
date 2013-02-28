@@ -74,6 +74,7 @@
     <Compile Include="DataContracts\Location.cs" />
     <Compile Include="DataContracts\WiFiNetwork.cs" />
     <Compile Include="DataContracts\WiFiConnectedSensor.cs" />
+    <Compile Include="DataContracts\WiFiNetworkSet.cs" />
     <Compile Include="DataContracts\WiFiSensor.cs" />
     <Compile Include="DataContracts\Sensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,6 +14,11 @@ namespace JimbeCore.Domain.Interfaces
         double Weigth { get; set; }
 
         /// <summary>
+        /// History size some sensor can have memory of the past datasets for smarter localization
+        /// </summary>
+        int HistorySize { get; set; }
+
+        /// <summary>
         /// ISensor belongs to Location.
         /// </summary>
         ILocation Location { get; set; }
@@ -22,8 +27,14 @@ namespace JimbeCore.Domain.Interfaces
         /// Method that calculates the proximity between sensors specific information
         /// </summary>
         /// <returns>Value between 0-1 which represents the proximity</returns>
-        /// <exception cref="JimbeCoreException">If sensor type is not compatible getDistance can throws an Exception</exception>
+        /// <exception cref="JimbeCoreException">If sensor type is not compatible GetDistance throws an Exception</exception>
         double GetDistance(ISensor sensor);
 
+        ///<summary>
+        /// Method that update sensor dataset
+        /// </summary>
+        /// <returns>Value between 0-1 which represents the proximity</returns>
+        /// <exception cref="JimbeCoreException">If sensor type is not compatible UpdateSensorDataset throws an Exception</exception>
+        void UpdateSensorDataset(ISensor sensor);
     }
 }

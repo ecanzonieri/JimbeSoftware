@@ -1,4 +1,5 @@
-﻿using JimbeCore.Domain.Interfaces;
+﻿using System;
+using JimbeCore.Domain.Interfaces;
 using JimbeTest.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -71,7 +72,7 @@ namespace JimbeTest.EntitiesTest
         [TestMethod()]
         public void DescriptionTest()
         {
-            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.All); // TODO: Initialize to an appropriate value
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.All,0); // TODO: Initialize to an appropriate value
             string expected = "pippo"; // TODO: Initialize to an appropriate value
             string actual;
             target.Description = expected;
@@ -85,7 +86,7 @@ namespace JimbeTest.EntitiesTest
         [TestMethod()]
         public void NameTest()
         {
-            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.All); // TODO: Initialize to an appropriate value
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.All,0); // TODO: Initialize to an appropriate value
             string expected = "Pippo"; // TODO: Initialize to an appropriate value
             string actual;
             target.Name = expected;
@@ -99,9 +100,9 @@ namespace JimbeTest.EntitiesTest
         [TestMethod()]
         public void GetLocationAffinityTest()
         {
-            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.All);
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.All,0);
             double expected = 1.0;
-            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All);
+            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All,0);
             var actual = target.GetLocationAffinity(target);
             Assert.AreEqual(expected, actual);
         }
@@ -109,9 +110,9 @@ namespace JimbeTest.EntitiesTest
         [TestMethod()]
         public void GetLocationAffinityTest2()
         {
-            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFi);
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFi,0);
             double expected = 0.4;
-            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All);
+            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All,0);
             var actual = target.GetLocationAffinity(location);
             Assert.AreEqual(expected,actual,0.02);
         }
@@ -119,9 +120,9 @@ namespace JimbeTest.EntitiesTest
         [TestMethod()]
         public void GetLocationAffinityTest3()
         {
-            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFiConnected);
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFiConnected,0);
             double expected = 0.58;
-            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All);
+            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All,0);
             var actual = target.GetLocationAffinity(location);
             Assert.AreEqual(expected, actual, 0.02);
         }
@@ -129,13 +130,26 @@ namespace JimbeTest.EntitiesTest
         [TestMethod()]
         public void GetLocationAffinityTest4()
         {
-            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFiConnected);
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFiConnected,0);
             double expected = 0.0;
-            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFi);
+            ILocation location = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFi,0);
             var actual = target.GetLocationAffinity(location);
             Assert.AreEqual(expected, actual);
         }
-
+        ///<summary>
+        /// Test UpdateLocationSensors
+        /// </summary>
+        [TestMethod()]
+        public void UpdateLocationSensorsTest()
+        {
+            ILocation target = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFi,0);
+            ILocation loc2 = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFi, 1);
+            var affinity = target.GetLocationAffinity(loc2);
+            Assert.AreNotEqual(1.0,affinity);
+            target.UpdateLocationSensors(loc2);
+            affinity = target.GetLocationAffinity(loc2);
+            Assert.AreEqual(1.0,affinity);
+        }
 
     }
 }

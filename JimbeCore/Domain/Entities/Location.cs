@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using JimbeCore.Domain.Interfaces;
 using JimbeCore.Domain.Model;
-using TracerX;
 
 namespace JimbeCore.Domain.Entities
 {
     public class Location : Entity<Guid>, ILocation
     {
-
-        private static Logger logger = Logger.GetLogger("Location");
+        private const double Threshold = 0.9;
 
         public Location(string name, string description, IList<Sensor> sensors, IList<Task> tasks)
         {
@@ -89,53 +87,41 @@ namespace JimbeCore.Domain.Entities
             double sumWeight = 0.0;
             if (Sensors != null && Sensors.Any())
                 sumWeight += Sensors.Sum(sensor => sensor.Weigth);
-            else logger.Warn("Sensors list is empty");
             return sumWeight;
         }
 
         public virtual double GetLocationAffinity(ILocation location)
         {
 
-            IEnumerable<ISensor> sensorsource, sensors;
-
-            if (Sensors.Count() > location.Sensors.Count())
-            {
-                sensors = Sensors;
-                sensorsource = location.Sensors;
-            }
-            else
-            {
-                sensors = location.Sensors;
-                sensorsource = Sensors;
-            }
-
             double distance = 0.0;
 
             double maxweigthsum = Math.Max(GetWeigthSum(), location.GetWeigthSum());
 
-            foreach (var sensor in sensors)
+            foreach (var sensor in location.Sensors)
             {
-                bool match = false;
-                double singledistance = 0.0;
-
-                foreach (
-                    var sensor1 in
-                        sensorsource.Where(
-                            sensor1 =>
-                            (sensor1.GetType() == sensor.GetType() && sensor1.GetDistance(sensor) > singledistance)))
-                {
-                    match = true;
-                    singledistance = sensor1.GetDistance(sensor);
-                }
-                if (match)
-                    distance += sensor.Weigth*singledistance;
+                var distances= (from ss in Sensors where ss.GetType() == sensor.GetType() select ss.GetDistance(sensor));
+                if (distances.Any())
+                    distance += sensor.Weigth*distances.Max();
             }
 
-            logger.Info("Sensor distance = ", distance, " Max Weigth = ", maxweigthsum);
             return distance/maxweigthsum;
         }
 
-
+        public virtual void UpdateLocationSensors(ILocation location)
+        {
+            
+            foreach (var othersensor in location.Sensors)
+            {
+                var query = from sensor in Sensors
+                                     where othersensor.GetType() == sensor.GetType()
+                                     select new {Sensor = sensor, Distance = sensor.GetDistance(othersensor)};
+                if (query.Any() && query.Max(x => x.Distance)<Threshold)
+                {
+                    var sensor = (from q in query where q.Distance >= query.Max(x => x.Distance) select q.Sensor).FirstOrDefault();
+                    sensor.UpdateSensorDataset(othersensor);
+                }
+            }
+        }
 
         #endregion
 

@@ -11,7 +11,7 @@ namespace JimbeTest.Helper
         internal static IList<Sensor> GetSensorsInfo()
         {
             IList<Sensor> list = new List<Sensor>();
-            list.Add(WiFiSensorHelper.GetASensor());
+            list.Add(WiFiSensorHelper.GetASensor(0));
             list.Add(WiFiConnectedSensorHelper.GetASensor());
             return list;
         }

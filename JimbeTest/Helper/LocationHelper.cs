@@ -18,20 +18,20 @@ namespace JimbeTest.Helper
             WiFi
         };
 
-        internal static Location GenerateLocation(SensorType sensorType)
+        internal static Location GenerateLocation(SensorType sensorType, int seed)
         {
             IList<Sensor> list = new List<Sensor>();
             switch (sensorType)
             {
                 case SensorType.All:
-                    list.Add(WiFiSensorHelper.GetASensor());
+                    list.Add(WiFiSensorHelper.GetASensor(seed));
                     list.Add(WiFiConnectedSensorHelper.GetASensor());
                     break;
                 case SensorType.WiFiConnected:
                     list.Add(WiFiConnectedSensorHelper.GetASensor());
                     break;
                 case SensorType.WiFi:
-                    list.Add(WiFiSensorHelper.GetASensor());
+                    list.Add(WiFiSensorHelper.GetASensor(seed));
                     break;
             }
             return new Location(list);

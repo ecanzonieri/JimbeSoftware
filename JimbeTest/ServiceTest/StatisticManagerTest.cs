@@ -66,7 +66,7 @@ namespace JimbeTest.ServiceTest
         [TestMethod]
         public void StatisticManagerConstructorTest()
         {
-            var location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All);
+            var location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All,0);
             IRepositoryFactory factory = NHibernateHelper.CreateRepositoryFactory();
             StatisticManager statisticManager = new StatisticManager(factory, location);
             Assert.AreEqual(location,statisticManager.Current.Location);
@@ -75,7 +75,7 @@ namespace JimbeTest.ServiceTest
         [TestMethod]
         public void UpdateStatisticTest()
         {
-            Location location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All);
+            Location location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All,0);
             location.Name = "ServiceManagerTest";
             IRepositoryFactory factory = NHibernateHelper.CreateRepositoryFactory();
             IRepository<Guid, Location> repository = factory.CreateRepository<Guid, Location>();

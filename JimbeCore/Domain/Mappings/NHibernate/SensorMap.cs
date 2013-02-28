@@ -9,6 +9,7 @@ namespace JimbeService.Domain.Mapping
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
             Map(x => x.Weigth);
+            Map(x => x.HistorySize);
             References<Location>(x => x.Location).ForeignKey();
         }
     }

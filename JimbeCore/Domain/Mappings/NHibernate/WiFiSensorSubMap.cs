@@ -11,7 +11,7 @@ namespace JimbeCore.Domain.Mappings.NHibernate
     {
         public WiFiSensorSubMap()
         {
-            HasMany<WiFiNetwork>(x => x.Networks).Cascade.All();
+            HasMany<WiFiNetworkSet>(x => x.Datasets).Cascade.All();
         }
     }
 }

@@ -10,9 +10,13 @@ namespace JimbeCore.Domain.Entities
 
         public virtual double Weigth { get; set; }
 
+        public virtual int HistorySize { get; set; }
+
         public virtual ILocation Location { get; set; }
 
         public abstract double GetDistance(ISensor sensor);
+
+        public abstract void UpdateSensorDataset(ISensor sensor);
 
         protected Sensor()
         {

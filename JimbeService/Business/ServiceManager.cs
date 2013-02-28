@@ -91,7 +91,7 @@ namespace JimbeService.Business
             IRepository<Guid, Location> repository = _repositoryFactory.CreateRepository<Guid,Location>();
 
             var unknown = new Location();
-            unknown.SensorsList = GetSensorsInfo(unknown);
+            unknown = GetSensorsInfo(unknown);
 
             IList<Location> locations = repository.All().ToList();
 
@@ -110,18 +110,22 @@ namespace JimbeService.Business
                                 _locationManager.Current.Name);
                 return false;
             }
+            if (_locationManager.Updated)
+            {
+                repository.Update(result);
+                logger.Debug("New Dataset saved: {0}", result.ToString());
+            }
             if (!result.EqualsBusiness(_current))
             {
                 logger.Info(" Location Name: ",
                                 _locationManager.Current.Name, "Location Affinity : ", _locationManager.CurrentAffinity);
                 _current = result;
                 return true;
-            }
+            }    
             return false;
-
         }
 
-        private IList<Sensor> GetSensorsInfo(Location location)
+        private Location GetSensorsInfo(Location location)
         {
             logger.Debug("Give me current sensors informations");
             IList<Sensor> sensors = new List<Sensor>();
@@ -135,12 +139,13 @@ namespace JimbeService.Business
                 sensor.Location = location;
                 sensors.Add(sensor);   
             }
-            return sensors;
+            location.SensorsList=sensors;
+            return location;
         }
 
         public Location PrepareLocation(Location location)
         {
-            location.SensorsList = GetSensorsInfo(location);
+            location = GetSensorsInfo(location);
             foreach (var task in location.TasksList)
             {
                 task.Location = location;

@@ -8,6 +8,6 @@ namespace JimbeWFC.DataContracts
     public class WiFiSensor : Sensor
     {
         [DataMember]
-        public IList<WiFiNetwork> Networks { get; set; }
+        public IList<WiFiNetworkSet> Datasets { get; set; }
     }
 }

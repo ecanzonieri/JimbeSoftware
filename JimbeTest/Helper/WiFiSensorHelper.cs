@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JimbeCore.Domain.Entities;
+using JimbeCore.Domain.Model;
 
 namespace JimbeTest.Helper
 {
     internal class WiFiSensorHelper
     {
-        internal static Sensor GetASensor()
+        internal static Sensor GetASensor(int seed)
         {
             return new WiFiSensor()
                                     {
                                         Location = null,
-                                        Networks = GetNetList('a'),
+                                        Datasets = GetNetList(seed),
                                         Weigth = 1.4
                                     };
         }
 
-        private static IList<WiFiNetwork> GetNetList(char c)
+        private static List<WiFiNetworkSet> GetNetList(int seed)
         {
+            var list=new List<WiFiNetworkSet>();
             IList<WiFiNetwork> nets = new List<WiFiNetwork>();
-            if (c == 'a')
+            if (seed==0)
             {
                 nets.Add(new WiFiNetwork("a", 100));
                 nets.Add(new WiFiNetwork("b", 80));
@@ -34,7 +36,8 @@ namespace JimbeTest.Helper
                 nets.Add(new WiFiNetwork("w", 60));
                 nets.Add(new WiFiNetwork("v", 40));
             }
-            return nets;
+            list.Add(new WiFiNetworkSet(nets));
+            return list;
         }
     }
 }

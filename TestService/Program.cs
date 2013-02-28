@@ -53,12 +53,12 @@ namespace TestService
                     Type = Task.TaskType.Delayed,
                     Delay = new TimeSpan(0,0,10)
                 });
-            tasks.Add(new MessageInfo()
-                {
-                    Message = "Periodic 5s",
-                    Type = Task.TaskType.Periodic,
-                    Delay = new TimeSpan(0, 0, 5)
-                });
+//            tasks.Add(new MessageInfo()
+//                {
+//                    Message = "Periodic 5s",
+//                    Type = Task.TaskType.Periodic,
+//                    Delay = new TimeSpan(0, 0, 5)
+//                });
 
             var location = new Location()
                 {

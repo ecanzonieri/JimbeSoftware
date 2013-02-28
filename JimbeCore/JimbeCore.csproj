@@ -66,6 +66,7 @@
     <Compile Include="Domain\Entities\LocationStatistic.cs" />
     <Compile Include="Domain\Entities\MessageInfo.cs" />
     <Compile Include="Domain\Entities\Statistic.cs" />
+    <Compile Include="Domain\Entities\WiFiNetworkSet.cs" />
     <Compile Include="Domain\Mappings\NHibernate\LocationMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\LocationStatisticSubMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\MessageInfoSubMap.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Domain\Interfaces\ISensor.cs" />
     <Compile Include="Domain\Interfaces\IStatistic.cs" />
     <Compile Include="Domain\Interfaces\ITask.cs" />
+    <Compile Include="Domain\Mappings\NHibernate\WiFiNetworkSetMap.cs" />
     <Compile Include="Domain\Mappings\NHibernate\WiFiSensorSubMap.cs" />
     <Compile Include="Domain\Model\Entity.cs" />
     <Compile Include="Domain\Model\IBusinessComparable.cs" />

@@ -80,7 +80,7 @@ namespace JimbeCore.Repository.NHibernate
             try
             {
                 _session.Transaction.Begin();
-                _session.Update(entity);
+                _session.SaveOrUpdate(entity);
                 _session.Transaction.Commit();
                 return true;
             }

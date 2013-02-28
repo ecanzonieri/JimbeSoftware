@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Jimbe.JimbeWiFi;
 using JimbeCore.Domain.Entities;
@@ -38,15 +39,27 @@ namespace JimbeService.Business
                     var interfaceslist = wifiApi.WiFiEnumInterfaces();
                     foreach (WifiInterface wifiInterface in interfaceslist)
                     {
+                        var wiFiSensor = new WiFiSensor()
+                            {
+                                Weigth = NotConnectedWeigth,
+                                HistorySize = 10
+                            };
                         logger.Debug("Getting wlan networks list from interface ", wifiInterface.InterfaceGuid, " ", wifiInterface.Description);
                         try
                         {
                             var networkslist = wifiApi.WiFiGetAvailableNetworkList(wifiInterface);
+                            var wiFiNetworkSet = new WiFiNetworkSet()
+                                {
+                                    Sensor = wiFiSensor
+                                };
 
                             IList<WiFiNetwork> networks =
-                                (from net in networkslist select new WiFiNetwork(net.Ssid, net.SignalQuality)).ToList();
+                                (from net in networkslist select new WiFiNetwork(net.Ssid, net.SignalQuality,wiFiNetworkSet)).ToList();
 
-                            sensors.Add(new WiFiSensor(networks, NotConnectedWeigth, null));
+                            wiFiNetworkSet.Networks=networks;
+                            wiFiSensor.Datasets.Add(wiFiNetworkSet);
+                            sensors.Add(wiFiSensor);
+
                         } catch (WifiException we)
                         {
                             logger.Error("Error in getting networks from wlan Interface: ", wifiInterface.InterfaceGuid," ", wifiInterface.Description," ", we.Message);
@@ -75,15 +88,29 @@ namespace JimbeService.Business
                     foreach (WifiInterface wifiInterface in interfaceslist.Where(x => x.IsState==WifiInterface.WlanInterfaceState.connected))
                     {
                         logger.Debug("Getting current connected network ", wifiInterface.InterfaceGuid, " ", wifiInterface.Description);
+                        var wiFiConnectedSensor = new WiFiConnectedSensor()
+                            {
+                                HistorySize = 5,
+                                Weigth = ConnectedWeigth
+                            };
+
                         try
                         {
                             var network = wifiApi.WiFiGetCurrentConnection(wifiInterface);
 
+                            var wiFiNetworkSet = new WiFiNetworkSet()
+                            {
+                                Sensor = wiFiConnectedSensor
+                            };
+
                             IList<WiFiNetwork> networks = new List<WiFiNetwork>();
 
-                            networks.Add(new WiFiNetwork(network.Ssid, network.SignalQuality));
+                            networks.Add(new WiFiNetwork(network.Ssid, network.SignalQuality, wiFiNetworkSet));
 
-                            sensors.Add(new WiFiConnectedSensor(networks, WiFiManager.ConnectedWeigth, null));
+                            wiFiNetworkSet.Networks = networks;
+
+                             wiFiConnectedSensor.Datasets.Add(wiFiNetworkSet);
+                            sensors.Add(wiFiConnectedSensor);
                         } catch (WifiException we)
                         {
                             logger.Error("Error in getting Network from wlan Interface: ", wifiInterface.InterfaceGuid, " ", wifiInterface.Description, " ", we.Message);

@@ -13,17 +13,19 @@ namespace JimbeTest.Helper
         {
             return new WiFiConnectedSensor()
                                              {
-                                                 Connected = GetNetList(),
+                                                 Datasets = GetNetList(),
                                                  Weigth = 2,
                                                  Location = null
                                              };
         }
 
-        private static IList<WiFiNetwork> GetNetList()
+        private static List<WiFiNetworkSet> GetNetList()
         {
             IList<WiFiNetwork> nets = new List<WiFiNetwork>();
             nets.Add(new WiFiNetwork("a",70));
-            return nets;
+            List<WiFiNetworkSet> netlist= new List<WiFiNetworkSet>();
+            netlist.Add(new WiFiNetworkSet(nets));
+            return netlist;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentNHibernate.Testing;
 using JimbeCore.Domain.Entities;
+using JimbeCore.Domain.Model;
 using JimbeCore.Repository.NHibernate;
 using JimbeTest.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,8 +16,9 @@ namespace JimbeTest.NHibernateTest
     {
 
         private static ISessionFactory _sessionFactory;
-        private static List<WiFiNetwork> networks, connlist;
-
+        private static IList<WiFiNetwork> networks, connectednetworks;
+        private static List<WiFiNetworkSet> netlist=new List<WiFiNetworkSet>();
+        private static List<WiFiNetworkSet> connlist = new List<WiFiNetworkSet>();
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext testContext)
         {
@@ -26,8 +28,10 @@ namespace JimbeTest.NHibernateTest
             networks.Add(new WiFiNetwork("topolino", 11));
             networks.Add(new WiFiNetwork("gino", 44));
             networks.Add(net);
-            connlist = new List<WiFiNetwork>();
-            connlist.Add(net);
+            netlist.Add(new WiFiNetworkSet(networks));
+            connectednetworks = new List<WiFiNetwork>();
+            connectednetworks.Add(net);
+            connlist.Add(new WiFiNetworkSet(connectednetworks));
             
         }
 
@@ -39,6 +43,18 @@ namespace JimbeTest.NHibernateTest
                 new PersistenceSpecification<WiFiNetwork>(session)                
                 .CheckProperty(c => c.Ssid, "John")
                 .CheckProperty(c => c.SignalQuality, 30)
+                .CheckReference(c => c.NetworkSet, new WiFiNetworkSet())
+                .VerifyTheMappings();
+            }
+        }
+
+        [TestMethod]
+        public void WiFiNetworkSetTest()
+        {
+            using (var session = _sessionFactory.OpenSession())
+            {
+                new PersistenceSpecification<WiFiNetworkSet>(session)
+                .CheckList(c => c.Networks,networks )
                 .VerifyTheMappings();
             }
         }
@@ -51,7 +67,7 @@ namespace JimbeTest.NHibernateTest
             {
                 new PersistenceSpecification<WiFiConnectedSensor>(session)
                     .CheckProperty(c => c.Weigth, 10.0)
-                    .CheckList(c => c.Connected, connlist)
+                    .CheckList(c => c.Datasets, connlist)
                     .CheckReference(c => c.Location, new Location("casa3",null,null))
                     .VerifyTheMappings();
             }
@@ -65,7 +81,7 @@ namespace JimbeTest.NHibernateTest
 
                 new PersistenceSpecification<WiFiSensor>(session)
                     .CheckProperty(c => c.Weigth, 10.0)
-                    .CheckList(c => c.Networks, networks)
+                    .CheckList(c => c.Datasets, netlist)
                     .CheckReference(c => c.Location, new Location("casa",null,null))
                     .VerifyTheMappings();
             }
@@ -116,7 +132,7 @@ namespace JimbeTest.NHibernateTest
         private static IList<Sensor> GetSensorsList()
         {
             var list = new List<Sensor>();
-            list.Add(new WiFiSensor(networks,2,null));
+            list.Add(new WiFiSensor(netlist,2,null));
             list.Add(new WiFiConnectedSensor(connlist, 10, null));
             return list;
         } 

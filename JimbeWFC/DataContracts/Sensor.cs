@@ -9,5 +9,9 @@ namespace JimbeWFC.DataContracts
     {
         [DataMember]
         public double Weigth { get; set; }
+
+        [DataMember]
+        public int HistorySize { get; set; }
+
     }
 }

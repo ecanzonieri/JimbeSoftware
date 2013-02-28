@@ -67,7 +67,7 @@ namespace JimbeTest.ServiceTest
         [TestMethod]
         public void PrepareLocationTest()
         {
-            Location location = LocationHelper.GenerateLocation(LocationHelper.SensorType.WiFi);
+            Location location = LocationHelper.GenerateLocation(LocationHelper.SensorType.All,0);
             ServiceManager serviceManager= new ServiceManager(NHibernateHelper.CreateRepositoryFactory());
             serviceManager.PrepareLocation(location);
             bool testres = true;
