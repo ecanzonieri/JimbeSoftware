@@ -50,12 +50,13 @@ namespace JimbeService.IoC
 
         private static void BuildSchema(Configuration config)
         {
-            if (File.Exists(Properties.Settings.Default.DBPath))
+            if (!File.Exists(Properties.Settings.Default.DBPath))
             {
-                File.Delete(Properties.Settings.Default.DBPath);
-            }
-            new SchemaExport(config)
+                new SchemaExport(config)
                     .Create(false, true);
+                //File.Delete(Properties.Settings.Default.DBPath);
+            }
+            
         }
 
     }

@@ -60,7 +60,7 @@ namespace JimbeCore.Domain.Entities
                 Success = true;
 
             }
-            catch (System.Exception ioe)
+            catch (System.Exception)
             {
                 Success = false;
                 throw;

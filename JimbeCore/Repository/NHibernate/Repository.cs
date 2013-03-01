@@ -52,7 +52,7 @@ namespace JimbeCore.Repository.NHibernate
                 _session.Save(entity);
                 _session.Transaction.Commit();
                 return true;
-            } catch  (NHi.Exceptions.GenericADOException e) {
+            } catch  (NHi.Exceptions.GenericADOException) {
                 _session.Transaction.Rollback();
                 return false;
             }
@@ -68,7 +68,7 @@ namespace JimbeCore.Repository.NHibernate
                 _session.Transaction.Commit();
                 return true;
             }
-            catch (NHi.Exceptions.GenericADOException e)
+            catch (NHi.Exceptions.GenericADOException)
             {
                 _session.Transaction.Rollback();
                 return false;
@@ -84,7 +84,7 @@ namespace JimbeCore.Repository.NHibernate
                 _session.Transaction.Commit();
                 return true;
             }
-            catch (NHi.Exceptions.GenericADOException e)
+            catch (NHi.Exceptions.GenericADOException)
             {
                 _session.Transaction.Rollback();
                 return false;
@@ -100,7 +100,7 @@ namespace JimbeCore.Repository.NHibernate
                 _session.Transaction.Commit();
                 return true;
             }
-            catch (NHi.Exceptions.GenericADOException e)
+            catch (NHi.Exceptions.GenericADOException)
             {
                 _session.Transaction.Rollback();
                 return false;
@@ -119,7 +119,7 @@ namespace JimbeCore.Repository.NHibernate
                 _session.Transaction.Commit();
                 return true;
             }
-            catch (NHi.Exceptions.GenericADOException e)
+            catch (NHi.Exceptions.GenericADOException)
             {
                 _session.Transaction.Rollback();
                 return false;
