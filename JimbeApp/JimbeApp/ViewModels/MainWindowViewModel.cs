@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ServiceProcess;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -29,6 +30,8 @@ namespace JimbeApp.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         private ILocationService _proxy;
+        private ServiceController jimbeService=null;
+
         #region Properties
 
         private int TaskIndex = -1;
@@ -256,14 +259,50 @@ namespace JimbeApp.ViewModels
         #region Ctor
         public MainWindowViewModel()
         {
-            _proxy = ProxyFactory.GetProxy();
-            LocationsList=new List<Location>();   
-            Llocation =_proxy.GetCurrentLocation();
-            if (Llocation!=null && Llocation.TasksList != null)
-                CountTasks = Llocation.TasksList.Count;
+            //mettere un blocco try catch e modificare i metodi in modo che se proxy è null invalida il menu 
+
+       /*       try
+          {
+                jimbeService = new ServiceController("JimbeService");
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Servizio non presente. Assicurarsi di averlo installato");
+               Application.Current.Shutdown();
+
+            }
+
+            if (jimbeService.Status == ServiceControllerStatus.Running)
+            {
+                //servizio attivo
+                //mi collego al servizio tramite wcf per ottenere la locazione attuale
+
+                try
+                { */
+                    _proxy = ProxyFactory.GetProxy();
+            /*
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Servizio non disponibile. Assicurarsi di averlo avviato");                    
+                    Application.Current.Shutdown();
+
+                }
+            */
+                LocationsList = new List<Location>();
+                    Llocation = _proxy.GetCurrentLocation();
+                if (Llocation != null && Llocation.TasksList != null)
+                    CountTasks = Llocation.TasksList.Count;
+                else
+                    CountTasks = 0;
+                eraseTaskProperty();
+       /*     }
             else
-                CountTasks = 0;
-           eraseTaskProperty();
+            {
+                MessageBox.Show("Servizio non attivo. Assicurarsi di averlo avviato");
+                Application.Current.Shutdown();
+            }*/
         }
         #endregion
 
@@ -452,6 +491,8 @@ namespace JimbeApp.ViewModels
             if (TasksList !=null)
                 TasksList.Clear();
         }
+
+
         #endregion
        
     }

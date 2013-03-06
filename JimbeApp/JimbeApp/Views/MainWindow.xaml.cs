@@ -8,6 +8,7 @@ using System.Windows.Media.Effects;
 using System.Windows.Navigation;
 using JimbeApp.ViewModels;
 
+
 namespace JimbeApp
 {
     /// <summary>
@@ -25,8 +26,11 @@ namespace JimbeApp
         private UIElement _uie2= new UIElement();
         public MainWindow()
         {
-            InitializeComponent();
+         
+                InitializeComponent();
+
             _buttons = new Collection<Button>() { getstatus, store, manage, stat };
+            
             _selectedButtonBrush.Opacity = 0.5;
             _dropShadowEffect.Color = new Color();
             _dropShadowEffect.Color = Colors.Red;

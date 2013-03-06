@@ -7,18 +7,18 @@
 	mc:Ignorable="d"
     xmlns:local="clr-namespace:JimbeApp"  x:Class="JimbeApp.UpdateLocation"
 	x:Name="UpdateLocatio"
-	BorderThickness="0" MinWidth="550" MinHeight="400" VerticalAlignment="Center" Height="Auto" Width="Auto" DataContext="{DynamicResource Windows1ViewModel}" Background="{x:Null}">
+	BorderThickness="0" Width="650" Height="550" VerticalAlignment="Center" DataContext="{DynamicResource Windows1ViewModel}" Background="{x:Null}">
 
     <Grid x:Name="LayoutRoot" Height="520">
 		<Grid ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,8,0,0">
-			<Label Content="Nome della location" VerticalAlignment="Top" Margin="148,27.04,0,0" HorizontalAlignment="Left" Width="132"/>
-			<TextBox TextWrapping="Wrap" Margin="148,53,328,0" VerticalAlignment="Top" Text="{Binding NameLocationStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="nome della locazione da memorizzare"/>
-            <Label Content="Descrizione location" VerticalAlignment="Top" Margin="148,110.04,0,0" HorizontalAlignment="Left" Width="132"/>
-			<TextBox TextWrapping="Wrap" Margin="148,136,328,0" VerticalAlignment="Top"  Text="{Binding DescriptionLocationStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="descrizione della locazione da memorizzare" d:LayoutOverrides="VerticalAlignment"/>
-                    <DataGrid  Name="ProcessGrid" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="True" RowDetailsVisibilityMode="Visible"  IsHitTestVisible="True"  BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,203,0,173" ItemsSource="{Binding TasksList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Width="Auto" d:LayoutOverrides="VerticalAlignment" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0">
+			<Label Content="Nome della location" VerticalAlignment="Top" Margin="50,23,0,0" HorizontalAlignment="Left" Width="206" FontSize="15"/>
+			<TextBox TextWrapping="Wrap" Margin="50,58,294,0" VerticalAlignment="Top" Text="{Binding NameLocationStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="nome della locazione da memorizzare" Height="31"/>
+            <Label Content="Descrizione location" VerticalAlignment="Top" Margin="50,106,0,0" HorizontalAlignment="Left" Width="183" FontSize="15"/>
+			<TextBox TextWrapping="Wrap" Margin="50,141,169,0" VerticalAlignment="Top"  Text="{Binding DescriptionLocationStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="descrizione della locazione da memorizzare" Height="31"/>
+                    <DataGrid  Name="ProcessGrid" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="True" RowDetailsVisibilityMode="Visible"  IsHitTestVisible="True"  BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,203,0,173" ItemsSource="{Binding TasksList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Width="Auto" d:LayoutOverrides="VerticalAlignment" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0" FontSize="15">
                 <DataGrid.Columns>
                 	<DataGridTextColumn Binding="{Binding ProcessName}" Header="File/Programma/URL" DisplayIndex="0" MinWidth="200" MaxWidth="450"/>
-                	<DataGridTextColumn Header="Periodicità" Binding="{Binding Delay}" DisplayIndex="2" MinWidth="50" MaxWidth="75"/>
+                	<DataGridTextColumn Header="Periodicità" Binding="{Binding Delay}" MinWidth="75" MaxWidth="125"/>
                 	<DataGridTextColumn Header="Tipo" Binding="{Binding Type}" MinWidth="50" MaxWidth="100"/>
                     <DataGridTemplateColumn MaxWidth="100" MinWidth="100">
                     <DataGridTemplateColumn.CellTemplate>
@@ -37,10 +37,10 @@
 						</DataGrid.Columns>
                     </DataGrid>   
 					        
-            <Button  x:Name="addtask" Height="36" Margin="80,0,0,120" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="176" Content="Aggiungi Programma/File" Click="NewTask" ToolTip="Permette di aggiungere l'apertura di un programma o di un file alla location"/>
-            <Button Content="Aggiungi Pagina Web" Height="36" HorizontalAlignment="Right" Margin="0,0,92,120" Name="button1" ToolTip="Permette di aggiungere l'apertura di un programma o di un file alla location" VerticalAlignment="Bottom" Width="176" Click="NewUrl" />
-            <Button Margin="248,0,169,8" VerticalAlignment="Bottom" Content="Aggiorna posizione"   Click="UpLocation" Height="48" Width="133" />
-            <Button Height="48" Margin="0,0,20,8" VerticalAlignment="Bottom" Content="Annulla" Click="close_window" Focusable="False" ToolTip="Salva i nuovi cambiamenti del task" HorizontalAlignment="Right" Width="128" IsCancel="True" />
+            <Button  x:Name="addtask" Height="36" Margin="50,0,0,120" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="206" Content="Aggiungi Programma/File" Click="NewTask" ToolTip="Permette di aggiungere l'apertura di un programma o di un file alla location" FontSize="15"/>
+            <Button Content="Aggiungi Pagina Web" Height="36" HorizontalAlignment="Right" Margin="0,0,50,119" Name="button1" ToolTip="Permette di aggiungere l'apertura di un programma o di un file alla location" VerticalAlignment="Bottom" Width="176" Click="NewUrl" FontSize="15" />
+            <Button Margin="223,0,169,8" VerticalAlignment="Bottom" Content="Aggiorna posizione"   Click="UpLocation" Height="48" FontSize="15" />
+            <Button Height="48" Margin="0,0,20,8" VerticalAlignment="Bottom" Content="Annulla" Click="close_window" Focusable="False" ToolTip="Salva i nuovi cambiamenti del task" HorizontalAlignment="Right" Width="128" IsCancel="True" FontSize="15" />
         </Grid>
 	</Grid>
 </UserControl>

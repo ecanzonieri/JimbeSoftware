@@ -7,15 +7,15 @@
 	x:Class="JimbeApp.modifica"
 	x:Name="UserControl"
 	HorizontalAlignment="Center" VerticalAlignment="Center"
-	BorderThickness="0" MinWidth="550" MinHeight="400" DataContext="{DynamicResource Windows1ViewModel}">
+	BorderThickness="0" Width="650" MinHeight="550" DataContext="{DynamicResource Windows1ViewModel}">
 
 	<Grid x:Name="LayoutRoot">
 		<Grid>			
-			<Label Content="Elenco Location:" Margin="212.986,31.04,155.986,0" VerticalAlignment="Top" Width="181.027"/>
-            <DataGrid  Margin="24,72,30,48" DataContext="{DynamicResource Windows1ViewModel}" ItemsSource="{Binding LocationsList}" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="False" RowDetailsVisibilityMode="Visible"  IsHitTestVisible="True" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" Background="{x:Null}">
+			<Label Content="Elenco Location:" Margin="50,50,340,0" VerticalAlignment="Top" FontSize="15"/>
+            <DataGrid  Margin="50,80,30,40" DataContext="{DynamicResource Windows1ViewModel}" ItemsSource="{Binding LocationsList}" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="False" RowDetailsVisibilityMode="Visible"  IsHitTestVisible="True" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" Background="{x:Null}" FontSize="15">
                 <DataGrid.Columns>
             		<DataGridTextColumn Binding="{Binding Name}" Header="Nome" IsReadOnly="True" MinWidth="50" MaxWidth="250" Foreground="Black"/>
-            		<DataGridTextColumn Binding="{Binding Description}" Header="Descrizione" IsReadOnly="True" DisplayIndex="1" MinWidth="50" MaxWidth="450" Foreground="Black"/>
+            		<DataGridTextColumn Binding="{Binding Description}" Header="Descrizione" IsReadOnly="True" DisplayIndex="1" MinWidth="100" MaxWidth="450" Foreground="Black"/>
             		<DataGridTemplateColumn MinWidth="50" MaxWidth="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

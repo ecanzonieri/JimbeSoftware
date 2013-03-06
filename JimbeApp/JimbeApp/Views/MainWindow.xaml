@@ -8,86 +8,95 @@
         xmlns:local="clr-namespace:JimbeApp" x:Class="JimbeApp.MainWindow"
         mc:Ignorable="d"
         Title="JimbeApp"
-        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ScrollViewer.VerticalScrollBarVisibility="Disabled" d:DesignWidth="1005" d:DesignHeight="800"> 
-	<Window.Background>
-		<ImageBrush ImageSource="..\Images\CleanGrayBackGround.jpg"/>
+        WindowStartupLocation="CenterScreen" Height="750" Loaded="Window_Loaded" ScrollViewer.VerticalScrollBarVisibility="Visible" d:DesignWidth="1005" d:DesignHeight="819">
+    <Window.Background>
+		<ImageBrush ImageSource="/JimbeApp;component/Images/background.png"/>
 	</Window.Background>
 
-    <Window.Resources>
-        
-    </Window.Resources>
-    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" d:IsHidden="True">
+ 
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Grid DataContext="{StaticResource Windows1ViewModel}" ScrollViewer.VerticalScrollBarVisibility="Auto">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="128"/>           
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+            <RowDefinition Height="128"/>                    
+            <RowDefinition  MinHeight="450" MaxHeight="900"/>                
+            </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="152"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+            <ColumnDefinition Width="215"/>            
+            <ColumnDefinition MinWidth="450" MaxWidth="900"/>                
+            </Grid.ColumnDefinitions>
         <!-- Logo of Application-->
 
-            <StackPanel Grid.ColumnSpan="2" Margin="0,0,-37,0" >
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" >
             	<Image Height="128"  Source="/JimbeApp;component/Images/cooltext784550047.png" Margin="0,0,67.203,0" />
                 <local:statot DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
             </StackPanel>
-        
-    	<StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" Margin="0,0,0,17">
-                <Button  x:Name="getstatus" Click="getstatus_Click" Command ="{Binding GetStatus}" Height="120"  Style="{StaticResource BorderlessButton}" >    										    				
-                	<StackPanel >
-                		<Image Name="immaginestatus" Height="100" Width="100" Source="../images/Map.png" />
-                		<TextBlock Text="Localizza" TextAlignment="Center" Height="14.96" Foreground="White"/>					               
-                	</StackPanel>
-			</Button>
-                <Button  x:Name="store" Click="store_Click" Height="120" Style="{StaticResource BorderlessButton}" >
-    		<StackPanel>
-				<Image Height="100" Width="100" Source="../images/gmaps.png"/>
-    			<TextBlock Text="Memorizza Posizione" TextAlignment="Center" Height="14.96" Foreground="White"/>
-			</StackPanel>
-			</Button>
-                <Button  x:Name="manage" Click="manage_Click" Command ="{Binding ManagePrefered}" Height="120"  Style="{StaticResource BorderlessButton}">
-    			<StackPanel>
-				<Image Height="91.106" Width="100" Source="../images/archivio.png"/>
-    			<TextBlock Text="Gestione Posizioni" TextAlignment="Center" Height="14.96" Foreground="White"/>
-				</StackPanel>
-			</Button>
-                <Button  x:Name="stat" Click="stat_Click" Command ="{Binding ShowStats}" Height="120"  Style="{StaticResource BorderlessButton}">                                       
-                    <StackPanel>
-				<Image Height="100" Width="100" Source="../images/stat.png"/>
-    			<TextBlock Text="Visualizza Statistiche" TextAlignment="Center" Height="14.96" Foreground="White"/>
-				</StackPanel>
-			</Button>
-                       
-    	</StackPanel>
-		<StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinWidth="450" MinHeight="450"></StackPanel>
-            <TabControl x:Name="tab_control" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0" Padding="0" Background="{x:Null}" BorderBrush="#FFCE4821" Margin="15,17,14,216" Grid.Column="1" Grid.Row="1">
-                <TabItem x:Name="Stato" Header="Stato" Visibility="Collapsed"  Background="{x:Null}">
-                    <local:statot DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
-                </TabItem>
-                <TabItem x:Name="aggiungi" Header="TabItem" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">                
-                        <local:aggiungit DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />                                    
-                </TabItem>
-                <TabItem x:Name="modifica" Header="TabItem" Visibility="Collapsed" Margin="0" Padding="0" Background="{x:Null}">
-                    <local:modifica DataContext="{Binding Source={StaticResource Windows1ViewModel}}"  Margin="0" Padding="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
-                </TabItem>
-                <TabItem Header="statistiche" Visibility="Hidden" Background="{x:Null}">
-                    <local:stat />
-                </TabItem>
-                <TabItem x:Name="aggiungitask" Header="nuovotask" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
-                    <local:AddTask DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
-                </TabItem>
-                <TabItem x:Name="aggiungiurl" Header="nuovourl" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
-                    <local:AddURL DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
-                </TabItem>
-                <TabItem x:Name="modificalocation" Header="modlocation" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
-                    <local:UpdateLocation DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
-                </TabItem>
-                <TabItem x:Name="modificatask" Header="modtask" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
-                    <local:UpdateTask DataContext="{Binding Source={StaticResource Windows1ViewModel}}"  />
-                </TabItem>
-            </TabControl>
+            <Border BorderBrush="Black" Margin="0,0,0,0" CornerRadius="4" BorderThickness="4" Grid.Row="1">
+                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" Background="#80838383">
+                    <Button  x:Name="getstatus" Click="getstatus_Click" Command ="{Binding GetStatus}" Height="120"  Style="{StaticResource BorderlessButton}" Margin="0,10,0,10">
+                        <StackPanel>
+                            <Image Name="immaginestatus" Height="100" Width="100" Source="/JimbeApp;component/Images/Map.png" />
+                            <TextBlock Text="Localizza" TextAlignment="Center" Height="20" Foreground="White" FontSize="15"/>
+                        </StackPanel>
+                    </Button>
+                    <Button  x:Name="store" Click="store_Click" Height="120" Style="{StaticResource BorderlessButton}" Margin="0,10,0,10" >
+                        <StackPanel>
+                            <Image Height="100" Width="100" Source="/JimbeApp;component/Images/gmaps.png"/>
+                            <TextBlock Text="Memorizza Posizione" TextAlignment="Center" Height="20" Foreground="White" FontSize="15"/>
+                        </StackPanel>
+                    </Button>
+                    <Button  x:Name="manage" Click="manage_Click" Command ="{Binding ManagePrefered}" Height="120"  Style="{StaticResource BorderlessButton}" Margin="0,10,0,10">
+                        <StackPanel>
+                            <Image Height="91.106" Width="100" Source="/JimbeApp;component/Images/archivio.png"/>
+                            <TextBlock Text="Gestione Posizioni" TextAlignment="Center" Height="20" Foreground="White" FontSize="15"/>
+                        </StackPanel>
+                    </Button>
+                    <Button  x:Name="stat" Click="stat_Click" Command ="{Binding ShowStats}" Height="120"  Style="{StaticResource BorderlessButton}" Margin="0,10,0,10">
+                        <StackPanel>
+                            <Image Height="100" Width="100" Source="/JimbeApp;component/Images/stat.png"/>
+                            <TextBlock Text="Visualizza Statistiche" TextAlignment="Center" Height="20" Foreground="White" FontSize="15"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="Black" Margin="0,0,0,0" CornerRadius="4" BorderThickness="4" Grid.Row="1">
+                <StackPanel Grid.Column="1" ClipToBounds="True" Grid.Row="1" Orientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinWidth="450" MinHeight="450">
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#F62637A6" Offset="0"/>
+                        <GradientStop Color="#57FFFFFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                    <TabControl  x:Name="tab_control" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0" Padding="0" Background="{x:Null}" >
+                        <TabItem x:Name="Stato" Header="Stato" Visibility="Collapsed"  Background="{x:Null}">
+                            <local:statot DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
+                        </TabItem>
+                        <TabItem x:Name="aggiungi" Header="TabItem" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
+                            <local:aggiungit DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
+                        </TabItem>
+                        <TabItem x:Name="modifica" Header="TabItem" Visibility="Collapsed" Margin="0" Padding="0" Background="{x:Null}">
+                            <local:modifica DataContext="{Binding Source={StaticResource Windows1ViewModel}}"  Margin="0" Padding="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                        </TabItem>
+                        <TabItem Header="statistiche" Visibility="Hidden" Background="{x:Null}">
+                            <local:stat />
+                        </TabItem>
+                        <TabItem x:Name="aggiungitask" Header="nuovotask" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
+                            <local:AddTask DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
+                        </TabItem>
+                        <TabItem x:Name="aggiungiurl" Header="nuovourl" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
+                            <local:AddURL DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
+                        </TabItem>
+                        <TabItem x:Name="modificalocation" Header="modlocation" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
+                            <local:UpdateLocation DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
+                        </TabItem>
+                        <TabItem x:Name="modificatask" Header="modtask" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
+                            <local:UpdateTask DataContext="{Binding Source={StaticResource Windows1ViewModel}}"  />
+                        </TabItem>
+                    </TabControl>
+            </StackPanel>
+            </Border>
+
         </Grid>
         </ScrollViewer>
 </Window>
