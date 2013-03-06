@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JimbeWFC\JimbeWFC.csproj">
-      <Project>{4ce41320-56a1-4bed-9185-2ed0b488b40f}</Project>
-      <Name>JimbeWFC</Name>
+    <ProjectReference Include="..\JimbeWCF\JimbeWCF.csproj">
+      <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
+      <Name>JimbeWCF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

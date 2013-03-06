@@ -4,10 +4,10 @@ using System.ServiceModel;
 using AutoMapper;
 using JimbeService.Business;
 using JimbeService.IoC;
+using JimbeWCF.ServiceContract;
 using CoreEntity = JimbeCore.Domain.Entities;
-using DTO = JimbeWFC.DataContracts;
-using JimbeWFC.ServiceContract;
-using Location = JimbeWFC.DataContracts.Location;
+using DTO = JimbeWCF.DataContracts;
+using Location = JimbeWCF.DataContracts.Location;
 using TracerX;
 
 namespace JimbeService.WCF

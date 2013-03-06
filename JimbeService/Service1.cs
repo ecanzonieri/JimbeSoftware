@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using JimbeService.Business;
 using JimbeService.IoC;
-using JimbeWFC.ServiceContract;
+using JimbeWCF.ServiceContract;
 using Ninject;
 using TracerX;
 using TraceLevel = System.Diagnostics.TraceLevel;
@@ -45,16 +45,9 @@ namespace JimbeService
             _serviceManager = kernel.Get<ServiceManager>();
 
             _serviceThread = new Thread(_serviceManager.RunServiceManager);
-
             _serviceThread.Start();
 
-            _host = new ServiceHost(kernel.Get<ILocationService>(), new Uri("http://localhost:9090/Jimbe"));
-            var smb = new ServiceMetadataBehavior();
-            smb.HttpGetEnabled = true;
-            smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
-
-            _host.Description.Behaviors.Add(smb);
-            _host.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;
+            _host = getServiceHost(kernel,typeof(ILocationService), new Uri("http://localhost:9090/Jimbe"));
             _host.Open();
         }
 
@@ -72,6 +65,20 @@ namespace JimbeService
                 _host.Close();
                 _host = null;
             }
+        }
+
+        private ServiceHost getServiceHost(IKernel kernel, Type serviceType, Uri uri)
+        {
+            var smb = new ServiceMetadataBehavior();
+            smb.HttpGetEnabled = true;
+            smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
+
+            var host = new ServiceHost(kernel.Get(serviceType), uri);
+            host.AddServiceEndpoint(typeof(ILocationService),
+                                     new WSDualHttpBinding(WSDualHttpSecurityMode.Message), "");
+            host.Description.Behaviors.Add(smb);
+            host.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;
+            return host;
         }
     }
 }

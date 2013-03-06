@@ -44,12 +44,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\packages\System.Data.SQLite.1.0.84.0\lib\net45\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>..\..\packages\System.Data.SQLite.1.0.84.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -190,7 +184,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -225,25 +218,15 @@
     <Resource Include="Images\cooltext784532173.png" />
     <Resource Include="Images\cooltext784550047.png" />
     <Resource Include="Images\textspace_1349358870_c79c125a.gif" />
-    <Content Include="x64\SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x86\SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\JimbeCore\JimbeCore.csproj">
       <Project>{72AE758A-BBC2-4BF4-A0C2-A5AA07810CE0}</Project>
       <Name>JimbeCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\JimbeService\JimbeService.csproj">
-      <Project>{3AB49BE8-F9E9-418B-A05F-7280D82BBF74}</Project>
-      <Name>JimbeService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\JimbeWFC\JimbeWFC.csproj">
-      <Project>{4CE41320-56A1-4BED-9185-2ED0B488B40F}</Project>
-      <Name>JimbeWFC</Name>
+    <ProjectReference Include="..\..\JimbeWCF\JimbeWCF.csproj">
+      <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
+      <Name>JimbeWCF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

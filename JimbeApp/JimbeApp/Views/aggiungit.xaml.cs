@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JimbeApp.ViewModels;
-using JimbeWFC.DataContracts;
+using JimbeWCF.DataContracts;
 
 namespace JimbeApp
 {

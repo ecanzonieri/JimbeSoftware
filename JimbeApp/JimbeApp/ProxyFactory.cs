@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
-using JimbeWFC.ServiceContract;
+using JimbeWCF.ServiceContract;
 
 namespace JimbeApp
 {

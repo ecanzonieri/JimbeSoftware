@@ -8,8 +8,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Threading;
 using JimbeApp.Helpers;
-using JimbeWFC.DataContracts;
-using JimbeWFC.ServiceContract;
+using JimbeWCF.DataContracts;
+using JimbeWCF.ServiceContract;
 
 
 
@@ -437,7 +437,7 @@ namespace JimbeApp.ViewModels
         {
             Filename = "";
             Url = "http://";
-            Type = JimbeWFC.DataContracts.Task.TaskType.Spot;
+            Type = JimbeWCF.DataContracts.Task.TaskType.Spot;
             Delay = System.TimeSpan.Zero;
             Hours = Delay.Hours;
             Minutes = Delay.Minutes;

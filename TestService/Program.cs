@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
-using JimbeWFC.DataContracts;
-using JimbeWFC.ServiceContract;
+using JimbeWCF.DataContracts;
+using JimbeWCF.ServiceContract;
 
 namespace TestService
 {
@@ -14,7 +14,10 @@ namespace TestService
         static void Main(string[] args)
         {
 
-            var _channelFactory = new ChannelFactory<ILocationService>(new BasicHttpBinding(), "http://localhost:9090/Jimbe");
+            var wsDualHttpBinding = new WSDualHttpBinding();
+            wsDualHttpBinding.ClientBaseAddress = new Uri("http://localhost:9091/JimbeClient");
+
+            var _channelFactory = new ChannelFactory<ILocationService>(wsDualHttpBinding, "http://localhost:9090/Jimbe");
 
             ILocationService proxy = _channelFactory.CreateChannel();
             

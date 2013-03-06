@@ -25,7 +25,7 @@ namespace JimbeService.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("JimbeService.db")]
+        [global::System.Configuration.DefaultSettingValueAttribute("JimbeService2.0.db")]
         public string DBPath {
             get {
                 return ((string)(this["DBPath"]));

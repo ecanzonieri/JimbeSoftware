@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DBPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">JimbeService.db</Value>
+      <Value Profile="(Default)">JimbeService2.0.db</Value>
     </Setting>
   </Settings>
 </SettingsFile>

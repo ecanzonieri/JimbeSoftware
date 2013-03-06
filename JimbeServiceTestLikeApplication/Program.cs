@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using JimbeService.Business;
 using JimbeService.IoC;
-using JimbeWFC.ServiceContract;
+using JimbeWCF.ServiceContract;
 using Ninject;
 using TracerX;
 
@@ -32,9 +32,11 @@ namespace JimbeServiceTestLikeApplication
             var smb = new ServiceMetadataBehavior();
             smb.HttpGetEnabled = true;
             smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
-           
+
             _host.Description.Behaviors.Add(smb);
             _host.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;
+            _host.AddServiceEndpoint(typeof (ILocationService),
+                                     new WSDualHttpBinding(WSDualHttpSecurityMode.Message), "");
             _host.Open();
 
             Console.WriteLine("Host opened");
@@ -42,5 +44,6 @@ namespace JimbeServiceTestLikeApplication
             _serviceManager.RequestStop();
 
         }
+
     }
 }
