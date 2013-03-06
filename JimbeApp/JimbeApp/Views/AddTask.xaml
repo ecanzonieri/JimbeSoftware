@@ -6,7 +6,7 @@
 	xmlns:System="clr-namespace:System;assembly=mscorlib"
 	xmlns:local="clr-namespace:JimbeApp" xmlns:ViewModels="clr-namespace:JimbeApp.ViewModels" mc:Ignorable="d"
 	x:Class="JimbeApp.AddTask"
-	x:Name="UserControl" DataContext="{DynamicResource Windows1ViewModel}" Height="544" Width="664">
+	x:Name="UserControl" DataContext="{DynamicResource Windows1ViewModel}" Height="550" Width="650">
     <UserControl.Resources>
         <local:modifica x:Key="modificaDataSource" d:IsDataSource="True"/>
 
@@ -19,16 +19,16 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" >
-        <TextBox Height="32" HorizontalAlignment="Left" Margin="39,36,0,0" x:Name="FileNameTextBox"
+        <TextBox Height="32" HorizontalAlignment="Left" Margin="50,82,0,0" x:Name="FileNameTextBox"
                  VerticalAlignment="Top" Width="393" Text="{Binding Filename, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <Button Content="Sfoglia" Height="32" HorizontalAlignment="Left" Margin="436,36,0,0"
-                x:Name="button1" VerticalAlignment="Top" Width="88" Click="Button1_Click" />
-        <Button Height="48" Margin="0,0,152,8" VerticalAlignment="Bottom" Content="Salva Task" Command="{Binding AddTask}" Click="saveTask" HorizontalAlignment="Right" Width="128" />
-        <ComboBox HorizontalAlignment="Left" Height="24" Margin="39,112,0,0" VerticalAlignment="Top" Width="97" ItemsSource="{Binding Mode=OneWay, Source={StaticResource dataFromEnum}}" Text="{Binding Path=Type}" />    
-		<local:timespancontrol Margin="39,202,289,72" BorderThickness="2"/>
-		<Label Content="File/programma" HorizontalAlignment="Left" Height="28" Margin="39,8,0,0" VerticalAlignment="Top" Width="97"/>
-		<Label Content="Periodicità" HorizontalAlignment="Left" Height="24" Margin="40,88,0,0" VerticalAlignment="Top" Width="96"/>
-		<Label Content="Intervallo di tempo" HorizontalAlignment="Left" Height="26" Margin="39,176,0,0" VerticalAlignment="Top" Width="128"/>
-		<Button Height="48" Margin="0,0,20,8" VerticalAlignment="Bottom" Content="Annulla" Click="close_window" Focusable="False" ToolTip="Salva i nuovi cambiamenti del task" HorizontalAlignment="Right" Width="128" IsCancel="True" /> 
+        <Button Content="Sfoglia" Height="32" HorizontalAlignment="Left" Margin="448,82,0,0"
+                x:Name="button1" VerticalAlignment="Top" Width="88" Click="Button1_Click" FontSize="15" />
+        <Button Height="48" Margin="0,0,152,8" VerticalAlignment="Bottom" Content="Salva Task" Command="{Binding AddTask}" Click="saveTask" HorizontalAlignment="Right" Width="128" FontSize="15" />
+        <ComboBox HorizontalAlignment="Left" Height="24" Margin="50,175,0,0" VerticalAlignment="Top" Width="97" ItemsSource="{Binding Mode=OneWay, Source={StaticResource dataFromEnum}}" Text="{Binding Path=Type}" />    
+		<local:timespancontrol Margin="50,264,280,56" BorderThickness="2" BorderBrush="Black"/>
+		<Label Content="File/programma" HorizontalAlignment="Left" Height="32" Margin="50,50,0,0" VerticalAlignment="Top" Width="128" FontSize="15"/>
+		<Label Content="Periodicità" HorizontalAlignment="Left" Height="34" Margin="50,141,0,0" VerticalAlignment="Top" Width="96" FontSize="15" RenderTransformOrigin="0.542,0.794"/>
+		<Label Content="Intervallo di tempo" HorizontalAlignment="Left" Height="34" Margin="50,225,0,0" VerticalAlignment="Top" Width="144" FontSize="15"/>
+		<Button Height="48" Margin="0,0,20,8" VerticalAlignment="Bottom" Content="Annulla" Click="close_window" Focusable="False" ToolTip="Salva i nuovi cambiamenti del task" HorizontalAlignment="Right" Width="128" IsCancel="True" FontSize="15" /> 
 	</Grid>
 </UserControl>

@@ -4,7 +4,7 @@
 	xmlns:local="clr-namespace:JimbeApp" xmlns:System="clr-namespace:System;assembly=mscorlib"
 	xmlns:ViewModels="clr-namespace:JimbeApp.ViewModels" x:Class="JimbeApp.AddURL"
 	x:Name="Window"	
-	Width="640" Height="548" DataContext="{DynamicResource Windows1ViewModel}">
+	Width="650" Height="550" DataContext="{DynamicResource Windows1ViewModel}">
 
     <UserControl.Resources>
         <ObjectDataProvider x:Key="dataFromEnum"
@@ -16,14 +16,14 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" >
-        <TextBox Height="32" HorizontalAlignment="Left" Margin="39,36,0,0" x:Name="FileNameTextBox"
+        <TextBox Height="32" HorizontalAlignment="Left" Margin="50,78,0,0" x:Name="FileNameTextBox"
                  VerticalAlignment="Top" Width="393" Text="{Binding Url, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="White" />        
-        <Button Height="48" Margin="0,0,132,8" VerticalAlignment="Bottom" Content="Salva Task" Command="{Binding AddUrl}" Click="close_window" HorizontalAlignment="Right" Width="120" />
-        <ComboBox HorizontalAlignment="Left" Height="24" Margin="39,112,0,0" VerticalAlignment="Top" Width="97" ItemsSource="{Binding Mode=OneWay, Source={StaticResource dataFromEnum}}" Text="{Binding Path=Type}" />    
-		<local:timespancontrol Margin="39,202,289,72" BorderThickness="2"/>
-		<Label Content="URL" HorizontalAlignment="Left" Height="28" Margin="39,8,0,0" VerticalAlignment="Top" Width="97"/>
-		<Label Content="Periodicità" HorizontalAlignment="Left" Height="24" Margin="40,88,0,0" VerticalAlignment="Top" Width="96"/>
-		<Label Content="Intervallo di tempo" HorizontalAlignment="Left" Height="26" Margin="39,176,0,0" VerticalAlignment="Top" Width="128"/>
-		<Button Height="48" Margin="0,0,8,8" VerticalAlignment="Bottom" Content="Annulla" Click="close_window" Focusable="False" ToolTip="Salva i nuovi cambiamenti del task" HorizontalAlignment="Right" Width="120" IsCancel="True" /> 
+        <Button Height="48" Margin="0,0,132,8" VerticalAlignment="Bottom" Content="Salva Task" Command="{Binding AddUrl}" Click="close_window" HorizontalAlignment="Right" Width="120" FontSize="15" />
+        <ComboBox HorizontalAlignment="Left" Height="24" Margin="50,172,0,0" VerticalAlignment="Top" Width="97" ItemsSource="{Binding Mode=OneWay, Source={StaticResource dataFromEnum}}" Text="{Binding Path=Type}" />    
+		<local:timespancontrol Margin="50,265,280,55" BorderThickness="2" BorderBrush="Black"/>
+		<Label Content="URL" HorizontalAlignment="Left" Height="28" Margin="50,50,0,0" VerticalAlignment="Top" Width="97" FontSize="15"/>
+		<Label Content="Periodicità" HorizontalAlignment="Left" Height="29" Margin="50,143,0,0" VerticalAlignment="Top" Width="96" FontSize="15"/>
+		<Label Content="Intervallo di tempo" HorizontalAlignment="Left" Height="30" Margin="50,235,0,0" VerticalAlignment="Top" Width="144" FontSize="15"/>
+		<Button Height="48" Margin="0,0,8,8" VerticalAlignment="Bottom" Content="Annulla" Click="close_window" Focusable="False" ToolTip="Salva i nuovi cambiamenti del task" HorizontalAlignment="Right" Width="120" IsCancel="True" FontSize="15" /> 
 	</Grid>
 </UserControl>

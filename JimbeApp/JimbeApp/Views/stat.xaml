@@ -7,12 +7,12 @@
 	mc:Ignorable="d"
 	x:Class="JimbeApp.stat"
 	xmlns:toolkit="http://schemas.microsoft.com/wpf/2008/toolkit"      	
-	x:Name="UserControl" DataContext="{DynamicResource Windows1ViewModel}">
+	x:Name="UserControl" Width="650" Height="550" DataContext="{DynamicResource Windows1ViewModel}">
 
     <Grid x:Name="LayoutRoot" Background="{x:Null}">
         <Grid  VerticalAlignment="Bottom" Background="{x:Null}"/>
 		<charting:Chart x:Name="chart" HorizontalAlignment="Center" Height="350" Width="350"
-		 Title="Permanenza nelle locations" VerticalAlignment="Top" LegendTitle= "Locations" Background="{x:Null}">
+		 Title="Permanenza nelle locations" VerticalAlignment="Top" LegendTitle= "Locations" Background="{x:Null}" Margin="50,50,0,0" FontSize="15">
 			<charting:PieSeries ItemsSource="{Binding StatisticList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     DependentValuePath="Value"
                     IndependentValuePath="Key" Title="Locations" IsSelectionEnabled="True"/>
