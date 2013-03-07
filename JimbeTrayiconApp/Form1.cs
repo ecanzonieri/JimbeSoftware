@@ -3,8 +3,8 @@ using System.Drawing;
 using System.ServiceProcess;
 using System.Windows.Forms;
 using JimbeApp;
-using JimbeWFC.DataContracts;
-using JimbeWFC.ServiceContract;
+using JimbeWCF.DataContracts;
+using JimbeWCF.ServiceContract;
 namespace JimbeTrayiconApp
 {
     public partial class Form1 : Form
@@ -37,7 +37,7 @@ namespace JimbeTrayiconApp
                //mi collego al servizio tramite wcf per ottenere la locazione attuale
                try
                {
-                   _proxy = ProxyFactory.GetProxy();
+                   _proxy = ProxyFactory.GetProxy(Properties.Settings.Default.Url_TryApp);
                }
                catch (Exception)
                {

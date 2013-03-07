@@ -27,27 +27,6 @@ namespace JimbeTest.ServiceTest
             
 
             //From CoreEntity to DTO
-<<<<<<< development
-            Mapper.CreateMap<Location, JimbeWFC.DataContracts.Location>()
-                .ForMember(dest => dest.SensorsList, opt => opt.MapFrom(src => src.SensorsList))
-                .ForMember(dest => dest.StatisticsList, opt => opt.MapFrom(src => src.StatisticsList))
-                .ForMember(dest => dest.TasksList, opt => opt.MapFrom(src => src.TasksList));
-            Mapper.CreateMap<Sensor, JimbeWFC.DataContracts.Sensor>()
-                .Include<WiFiConnectedSensor, JimbeWFC.DataContracts.WiFiConnectedSensor>()
-                .Include<WiFiSensor, JimbeWFC.DataContracts.WiFiSensor>();
-            Mapper.CreateMap<Task, JimbeWFC.DataContracts.Task>()
-                .Include<StartProcess, JimbeWFC.DataContracts.StartProcess>()
-                .Include<MessageInfo,JimbeWFC.DataContracts.MessageInfo>();
-            Mapper.CreateMap<WiFiNetwork, JimbeWFC.DataContracts.WiFiNetwork>();
-            Mapper.CreateMap<Statistic, JimbeWFC.DataContracts.Statistic>()
-                .Include<LocationStatistic, JimbeWFC.DataContracts.LocationStatistic>();
-            Mapper.CreateMap<WiFiConnectedSensor, JimbeWFC.DataContracts.WiFiConnectedSensor>();
-            Mapper.CreateMap<WiFiSensor, JimbeWFC.DataContracts.WiFiSensor>();
-            Mapper.CreateMap<WiFiNetworkSet, JimbeWFC.DataContracts.WiFiNetworkSet>();
-            Mapper.CreateMap<StartProcess, JimbeWFC.DataContracts.StartProcess>();
-            Mapper.CreateMap<MessageInfo, JimbeWFC.DataContracts.MessageInfo>();
-            Mapper.CreateMap<LocationStatistic, JimbeWFC.DataContracts.LocationStatistic>();
-=======
             Mapper.CreateMap<Location, JimbeWCF.DataContracts.Location>()
                 .ForMember(dest => dest.SensorsList, opt => opt.MapFrom(src => src.SensorsList))
                 .ForMember(dest => dest.StatisticsList, opt => opt.MapFrom(src => src.StatisticsList))
@@ -67,7 +46,6 @@ namespace JimbeTest.ServiceTest
             Mapper.CreateMap<StartProcess, JimbeWCF.DataContracts.StartProcess>();
             Mapper.CreateMap<MessageInfo, JimbeWCF.DataContracts.MessageInfo>();
             Mapper.CreateMap<LocationStatistic, JimbeWCF.DataContracts.LocationStatistic>();
->>>>>>> local
 
             //Reverse mapping from DTO to CoreEntity
 
@@ -85,29 +63,11 @@ namespace JimbeTest.ServiceTest
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Location, opt => opt.Ignore())
                 .ForMember(dest => dest.Success, opt=> opt.Ignore())
-<<<<<<< development
-                .Include<JimbeWFC.DataContracts.StartProcess, StartProcess>()
-                .Include<JimbeWFC.DataContracts.MessageInfo,MessageInfo>();
-            Mapper.CreateMap<JimbeWFC.DataContracts.WiFiNetwork, WiFiNetwork>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.NetworkSet, opt => opt.Ignore());
-            Mapper.CreateMap<JimbeWFC.DataContracts.Statistic, Statistic>()
-                .Include<JimbeWFC.DataContracts.LocationStatistic, LocationStatistic>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
-            Mapper.CreateMap<JimbeWFC.DataContracts.WiFiConnectedSensor, WiFiConnectedSensor>();
-            Mapper.CreateMap<JimbeWFC.DataContracts.WiFiSensor, WiFiSensor>();
-            Mapper.CreateMap<JimbeWFC.DataContracts.StartProcess, StartProcess>();
-            Mapper.CreateMap<JimbeWFC.DataContracts.MessageInfo, MessageInfo>();
-            Mapper.CreateMap<JimbeWFC.DataContracts.WiFiNetworkSet, WiFiNetworkSet>()
-                  .ForMember(dest => dest.Id, opt => opt.Ignore())
-                  .ForMember(dest => dest.Sensor, opt => opt.Ignore());
-            Mapper.CreateMap<JimbeWFC.DataContracts.LocationStatistic, LocationStatistic>()
-=======
                 .Include<JimbeWCF.DataContracts.StartProcess, StartProcess>()
                 .Include<JimbeWCF.DataContracts.MessageInfo,MessageInfo>();
             Mapper.CreateMap<JimbeWCF.DataContracts.WiFiNetwork, WiFiNetwork>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.Sensor, opt => opt.Ignore());
+                .ForMember(dest => dest.NetworkSet, opt => opt.Ignore());
             Mapper.CreateMap<JimbeWCF.DataContracts.Statistic, Statistic>()
                 .Include<JimbeWCF.DataContracts.LocationStatistic, LocationStatistic>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
@@ -119,8 +79,6 @@ namespace JimbeTest.ServiceTest
                   .ForMember(dest => dest.Id, opt => opt.Ignore())
                   .ForMember(dest => dest.Sensor, opt => opt.Ignore());
             Mapper.CreateMap<JimbeWCF.DataContracts.LocationStatistic, LocationStatistic>()
->>>>>>> local
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Location, opt => opt.Ignore());
         }
 

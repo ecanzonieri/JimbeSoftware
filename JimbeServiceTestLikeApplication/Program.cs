@@ -36,7 +36,7 @@ namespace JimbeServiceTestLikeApplication
             _host.Description.Behaviors.Add(smb);
             _host.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;
             _host.AddServiceEndpoint(typeof (ILocationService),
-                                     new WSDualHttpBinding(WSDualHttpSecurityMode.Message), "");
+                                     new WSDualHttpBinding(), "");
             _host.Open();
 
             Console.WriteLine("Host opened");

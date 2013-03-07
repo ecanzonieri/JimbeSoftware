@@ -75,7 +75,7 @@ namespace JimbeService
 
             var host = new ServiceHost(kernel.Get(serviceType), uri);
             host.AddServiceEndpoint(typeof(ILocationService),
-                                     new WSDualHttpBinding(WSDualHttpSecurityMode.Message), "");
+                                     new WSDualHttpBinding(), "");
             host.Description.Behaviors.Add(smb);
             host.Description.Behaviors.Find<ServiceDebugBehavior>().IncludeExceptionDetailInFaults = true;
             return host;

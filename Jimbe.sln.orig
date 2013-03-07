@@ -24,9 +24,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeServiceTestLikeApplica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestService", "TestService\TestService.csproj", "{F47E8172-5B62-4583-8EC5-F90345EE2F39}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeWCF", "JimbeWCF\JimbeWCF.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
-EndProject
+=======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JimbeTrayiconApp", "JimbeTrayiconApp\JimbeTrayiconApp.csproj", "{E0484A6F-E42C-4AA4-8192-A7AD6DAA3062}"
+>>>>>>> 7455baaf118b998c93c6cbaf737d53adc2cf5106
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -139,6 +141,7 @@ Global
 		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Release|Win32.ActiveCfg = Release|Any CPU
 		{F47E8172-5B62-4583-8EC5-F90345EE2F39}.Release|x86.ActiveCfg = Release|Any CPU
+<<<<<<< HEAD
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -151,6 +154,7 @@ Global
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Win32.ActiveCfg = Release|Any CPU
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|x86.ActiveCfg = Release|Any CPU
+=======
 		{E0484A6F-E42C-4AA4-8192-A7AD6DAA3062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E0484A6F-E42C-4AA4-8192-A7AD6DAA3062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0484A6F-E42C-4AA4-8192-A7AD6DAA3062}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -163,6 +167,7 @@ Global
 		{E0484A6F-E42C-4AA4-8192-A7AD6DAA3062}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E0484A6F-E42C-4AA4-8192-A7AD6DAA3062}.Release|Win32.ActiveCfg = Release|Any CPU
 		{E0484A6F-E42C-4AA4-8192-A7AD6DAA3062}.Release|x86.ActiveCfg = Release|Any CPU
+>>>>>>> 7455baaf118b998c93c6cbaf737d53adc2cf5106
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

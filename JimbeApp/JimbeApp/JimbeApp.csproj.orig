@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JimbeApp</RootNamespace>
     <AssemblyName>JimbeApp</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -219,7 +219,16 @@
     <Resource Include="Images\cooltext784532173.png" />
     <Resource Include="Images\cooltext784550047.png" />
     <Resource Include="Images\textspace_1349358870_c79c125a.gif" />
+<<<<<<< HEAD
+=======
     <Resource Include="Images\background.png" />
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+>>>>>>> 7455baaf118b998c93c6cbaf737d53adc2cf5106
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\JimbeCore\JimbeCore.csproj">

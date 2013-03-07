@@ -280,7 +280,7 @@ namespace JimbeApp.ViewModels
 
                 try
                 { */
-                    _proxy = ProxyFactory.GetProxy();
+                    _proxy = ProxyFactory.GetProxy(Properties.Settings.Default.Url_Client);
             /*
                 }
                 catch (Exception)
