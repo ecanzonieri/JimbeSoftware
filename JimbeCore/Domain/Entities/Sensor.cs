@@ -18,6 +18,8 @@ namespace JimbeCore.Domain.Entities
 
         public abstract void UpdateSensorDataset(ISensor sensor);
 
+        public abstract void RemoveInfo(ISensor sensor);
+
         protected Sensor()
         {
         }

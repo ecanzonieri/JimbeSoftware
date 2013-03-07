@@ -66,8 +66,8 @@ namespace JimbeService.Business
             }
             if (affinity < AffinityBound)
             {
-                logger.Info("Location identified as {0} but affinity is under the bound. Affinity value is {1}",
-                            winner.Name, affinity);
+                logger.Info("Location identified as ", winner.Name, " but affinity is under the bound. Affinity value is ",
+                            affinity);
                 _current = winner;
                 _currentAffinity = affinity;
                 return null;
@@ -75,10 +75,10 @@ namespace JimbeService.Business
             if (affinity < _currentAffinity - Noise)
             {
                 winner.UpdateLocationSensors(location);
-                logger.Info("Location {0} has affinity {1} under the threshold and it has been updated", winner.Name, affinity);
+                logger.Info("Location ", winner.Name, " has affinity ", affinity, " under the threshold and it has been updated");
                 Updated = true;
             }
-            logger.Info("Location identified as {0} with affinity {1}", winner.Name, affinity);
+            logger.Info("Location identified as " , winner.Name, " with affinity ", affinity);
             _current = winner;
             _currentAffinity = affinity;
             return winner;

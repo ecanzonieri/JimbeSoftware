@@ -33,8 +33,15 @@ namespace JimbeCore.Domain.Interfaces
         ///<summary>
         /// Method that update sensor dataset
         /// </summary>
-        /// <returns>Value between 0-1 which represents the proximity</returns>
+        /// <returns></returns>
         /// <exception cref="JimbeCoreException">If sensor type is not compatible UpdateSensorDataset throws an Exception</exception>
         void UpdateSensorDataset(ISensor sensor);
+
+        ///<summary>
+        /// Method that remove sensor dataset
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="JimbeCoreException">If sensor type is not compatible UpdateSensorDataset throws an Exception</exception>
+        void RemoveInfo(ISensor sensor);
     }
 }

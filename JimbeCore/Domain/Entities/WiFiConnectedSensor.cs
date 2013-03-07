@@ -40,13 +40,12 @@ namespace JimbeCore.Domain.Entities
 
             if (!Datasets.Any() || !wificonnsensor.Datasets.Any()) return 0.0;
 
-            WiFiNetwork net1 = (from n in Datasets.First().Networks orderby n.Ssid select n).FirstOrDefault();
-
-            WiFiNetwork net2 = (from n in wificonnsensor.Datasets.First().Networks where n.Ssid == net1.Ssid select n).FirstOrDefault();
-
-            if (ReferenceEquals(net2, null)) return 0.0; 
-
-            return (1.0-Math.Abs(net1.SignalQuality - net2.SignalQuality)/100.0);
+            if (wificonnsensor.Datasets == null || Datasets == null || !wificonnsensor.Datasets.Any() || !Datasets.Any())
+                return 0.0;
+            double bestproximity = 0.0;
+            foreach (var dataset in Datasets)
+                bestproximity = Math.Max(bestproximity, dataset.GetDistance(wificonnsensor.Datasets.First()));
+            return bestproximity;
         }
 
         public override void UpdateSensorDataset(ISensor sensor)
@@ -69,6 +68,30 @@ namespace JimbeCore.Domain.Entities
                 datasets.Sensor = this;
                 Datasets.Insert(Datasets.Count, datasets);
             }
+        }
+
+        public override void RemoveInfo(ISensor sensor)
+        {
+            if (!(sensor is WiFiConnectedSensor))
+            {
+                if (sensor != null)
+                {
+                    throw new SensorDifferentException("Not able to calculate distance between differents Sensor");
+                }
+                throw new NullReferenceException();
+            }
+
+            var wiFiconnsensor = (WiFiConnectedSensor)sensor;
+            double bestproximity = 0.0;
+            double tmpproximity;
+            WiFiNetworkSet networkSet = null;
+            foreach (var dataset in Datasets)
+                if ((tmpproximity = dataset.GetDistance(wiFiconnsensor.Datasets.First())) > bestproximity)
+                {
+                    bestproximity = tmpproximity;
+                    networkSet = dataset;
+                }
+            Datasets.Remove(networkSet);
         }
 
         #endregion

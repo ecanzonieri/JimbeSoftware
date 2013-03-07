@@ -39,16 +39,19 @@ namespace JimbeService.WCF
 
         public bool InsertLocation(DTO.Location location)
         {
-            var repository=_repositoryFactory.CreateRepository<Guid,CoreEntity.Location>();
-            CoreEntity.Location corelocation = _engine.Map<DTO.Location, CoreEntity.Location>(location);
-            corelocation = _serviceManager.PrepareLocation(corelocation);
-            if (repository.Add(corelocation))
+            lock (_serviceManager)
             {
-                _logger.Debug("Insert new location " + corelocation.Name + corelocation.Description);
-                return true;
+                var repository = _repositoryFactory.CreateRepository<Guid, CoreEntity.Location>();
+                CoreEntity.Location corelocation = _engine.Map<DTO.Location, CoreEntity.Location>(location);
+                corelocation = _serviceManager.PrepareLocation(corelocation);
+                if (repository.Add(corelocation))
+                {
+                    _logger.Debug("Insert new location " + corelocation.Name + corelocation.Description);
+                    return true;
+                }
+                _logger.Warn("Not possible to insert location: ");
+                return false;
             }
-           _logger.Warn("Not possible to insert location: ");
-           return false;
         }
 
         public bool DeleteLocation(Location location)

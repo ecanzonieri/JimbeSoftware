@@ -30,6 +30,21 @@ namespace JimbeCore.Domain.Entities
             Sensor = sensor;
         }
 
+        public virtual double GetDistance(WiFiNetworkSet wiFiNetworkSet)
+        {
+            var query = from mynet in Networks
+                        join net in wiFiNetworkSet.Networks
+                            on mynet.Ssid equals net.Ssid
+                        select new {Quality = net.SignalQuality, MyQuality = mynet.SignalQuality};
+            if (query.Any())
+            {
+                var proximity = query.Sum(@group => Math.Pow((@group.MyQuality - @group.Quality)/100.0, 2));
+                int mincount = Math.Min(Networks.Count(), wiFiNetworkSet.Networks.Count());
+                return (1.0 - Math.Sqrt(proximity)/mincount)*query.Count()/mincount;
+            }
+            return 0.0;
+        }
+
         public override bool EqualsBusiness(IBusinessComparable comparable)
         {
             var other = comparable as WiFiNetworkSet;

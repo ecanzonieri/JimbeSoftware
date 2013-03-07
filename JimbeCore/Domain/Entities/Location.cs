@@ -136,5 +136,21 @@ namespace JimbeCore.Domain.Entities
         }
 
         #endregion
+
+        public virtual void RemoveSensorsInfo(ILocation location)
+        {
+            foreach (var othersensor in location.Sensors)
+            {
+                var query = from sensor in Sensors
+                            where othersensor.GetType() == sensor.GetType()
+                            select new {Sensor = sensor, Distance = sensor.GetDistance(othersensor)};
+                if (query.Any() && query.Max(x => x.Distance) >= Threshold)
+                {
+                    var sensor =
+                        (from q in query where q.Distance >= query.Max(x => x.Distance) select q.Sensor).FirstOrDefault();
+                    if (sensor!=null) sensor.RemoveInfo(othersensor);
+                }
+            }
+        }
     }
 }

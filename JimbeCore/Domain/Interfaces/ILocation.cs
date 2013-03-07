@@ -28,9 +28,15 @@ namespace JimbeCore.Domain.Interfaces
         double GetLocationAffinity(ILocation location);
 
         /// <summary>
-        /// UpdateLocationSensors is used to update the sensor dataset that identifies the location. In this way different dataset can be used to have a smarter identification.
+        /// UpdateLocationSensors is used to update some informations of the sensors that identify the location. In this way different dataset can be used to have a smarter identification.
         /// </summary>
-        /// <param name="location"> Is the location that contains the new dataset that has to be added to the previous </param>
+        /// <param name="location"> Is the location that contains the new dataset that has to be added </param>
         void UpdateLocationSensors(ILocation location);
+
+        /// <summary>
+        /// RemoveSensorsInfo is used to remove some informations of the sensors that identify the location.
+        /// </summary>
+        /// <param name="location"> Is the location that contains the new dataset that has to be removed </param>
+        void RemoveSensorsInfo(ILocation location);
     }
 }

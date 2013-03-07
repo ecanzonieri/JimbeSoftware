@@ -113,7 +113,7 @@ namespace JimbeService.Business
             if (_locationManager.Updated)
             {
                 repository.Update(result);
-                logger.Debug("New Dataset saved: {0}", result.ToString());
+                logger.Debug("New Dataset saved: ", result.ToString());
             }
             if (!result.EqualsBusiness(_current))
             {
@@ -145,7 +145,18 @@ namespace JimbeService.Business
 
         public Location PrepareLocation(Location location)
         {
+            IRepository<Guid, Location> repository = _repositoryFactory.CreateRepository<Guid, Location>();
             location = GetSensorsInfo(location);
+            IList<Location> locations = repository.All().ToList();
+            var result = _locationManager.RecognizeLocation(location, locations);
+          
+            if (result != null && !result.EqualsBusiness(location))
+            {
+                result.RemoveSensorsInfo(location);
+                repository.Update(result);
+                logger.Debug("Removed dataset from location ", result.Name);
+            }
+            
             foreach (var task in location.TasksList)
             {
                 task.Location = location;

@@ -19,9 +19,6 @@ namespace TestService
             ILocationService proxy = _channelFactory.CreateChannel();
             
             IList<Task> tasks= new List<Task>();
-           
-            Console.WriteLine("Try to read current location");
-            Console.ReadLine();
 
             var locations = proxy.GetLocations();
 
@@ -30,23 +27,14 @@ namespace TestService
             else
                 foreach (var location1 in locations)
                 {
-                    Console.WriteLine("Location " + location1.Name +" "+ location1.Description);
-                    foreach (var statistic in location1.StatisticsList)
-                    {
-                        Console.WriteLine("\tStatistic: " + statistic.Start+ " "+ statistic.End);
-                    }
-                    Console.WriteLine("-------------------");
-                    foreach (var task in location1.TasksList)
-                    {
-                        Console.WriteLine("\tTask: "+task.GetType()+ " "+task.Type);
-                    }
+                    printLocation(location1);
                 }
 
-            tasks.Add(new StartProcess()
-                {
-                    ProcessName = "http://www.google.it",
-                    Type = Task.TaskType.Spot
-                });
+//            tasks.Add(new StartProcess()
+//                {
+//                    ProcessName = "http://www.google.it",
+//                    Type = Task.TaskType.Spot
+//                });
             tasks.Add(new MessageInfo()
                 {
                     Message = "Delayed 10s",
@@ -62,8 +50,8 @@ namespace TestService
 
             var location = new Location()
                 {
-                    Description = "AAA",
-                    Name = "AAA",
+                    Description = "location1",
+                    Name = "location1",
                     TasksList = tasks
                 };
 
@@ -75,25 +63,35 @@ namespace TestService
             Console.WriteLine("Read location");
             Console.ReadLine();
             var current = proxy.GetCurrentLocation();
-            if (current!=null) {
-                Console.WriteLine("Current: "+current.Name+" "+current.Description);
-                foreach (var statistic in current.StatisticsList)
-                {
-                    Console.WriteLine("\tStatistic: " + statistic.Start+ " "+ statistic.End);
-                }
-                Console.WriteLine("-------------------");
-                foreach (var task in current.TasksList)
-                {
-                    Console.WriteLine("\tTask: "+task.GetType()+ " "+task.Type);
-                }
+            if (current!=null)
+            {
+                printLocation(current);
             }
             Console.ReadLine();
-            Console.WriteLine("Delete location");
-            proxy.DeleteLocation(location);
+            Console.WriteLine("Inserted second location");
+            location = new Location()
+                {
+                    Name = "location2",
+                    Description = "location2"
+                };
+            proxy.InsertLocation(location);
             Console.ReadLine();
             current=proxy.GetCurrentLocation();
-            if (current==null) Console.WriteLine("Deleted");
-            else Console.WriteLine("Current: " + current.Name + " " + current.Description);
+            
+        }
+
+        private static void printLocation(Location location)
+        {
+            Console.WriteLine("Current: " + location.Name + " " + location.Description);
+            foreach (var statistic in location.StatisticsList)
+            {
+                Console.WriteLine("\tStatistic: " + statistic.Start + " " + statistic.End);
+            }
+            Console.WriteLine("-------------------");
+            foreach (var task in location.TasksList)
+            {
+                Console.WriteLine("\tTask: " + task.GetType() + " " + task.Type);
+            }
         }
     }
 }
