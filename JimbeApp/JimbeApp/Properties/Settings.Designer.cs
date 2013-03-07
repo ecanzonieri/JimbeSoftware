@@ -34,5 +34,17 @@ namespace JimbeApp.Properties {
                 this["Url_service"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:9091/JimbeClient")]
+        public string Url_Client {
+            get {
+                return ((string)(this["Url_Client"]));
+            }
+            set {
+                this["Url_Client"] = value;
+            }
+        }
     }
 }

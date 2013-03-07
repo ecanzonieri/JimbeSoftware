@@ -3,7 +3,7 @@ using AutoMapper.Mappers;
 using Ninject.Modules;
 using Ninject;
 using CoreEntity = JimbeCore.Domain.Entities;
-using DTO = JimbeWFC.DataContracts;
+using DTO = JimbeWCF.DataContracts;
 
 namespace JimbeService.IoC
 {

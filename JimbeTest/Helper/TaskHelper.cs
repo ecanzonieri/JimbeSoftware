@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JimbeCore.Domain.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DTO = JimbeWFC.DataContracts;
+using DTO = JimbeWCF.DataContracts;
 
 namespace JimbeTest.Helper
 {
@@ -28,7 +28,7 @@ namespace JimbeTest.Helper
 
         }
 
-        public static IList<JimbeWFC.DataContracts.Task> GetDtoTasks()
+        public static IList<JimbeWCF.DataContracts.Task> GetDtoTasks()
         {
             IList<DTO.Task> tasks = new List<DTO.Task>();
             tasks.Add(new DTO.StartProcess()

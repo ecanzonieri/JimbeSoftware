@@ -5,5 +5,8 @@
     <Setting Name="Url_service" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://localhost:9090/Jimbe</Value>
     </Setting>
+    <Setting Name="Url_Client" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:9091/JimbeClient</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JimbeServiceTestLikeApplication</RootNamespace>
     <AssemblyName>JimbeServiceTestLikeApplication</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -70,9 +70,9 @@
       <Project>{3AB49BE8-F9E9-418B-A05F-7280D82BBF74}</Project>
       <Name>JimbeService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JimbeWFC\JimbeWFC.csproj">
-      <Project>{4CE41320-56A1-4BED-9185-2ED0B488B40F}</Project>
-      <Name>JimbeWFC</Name>
+    <ProjectReference Include="..\JimbeWCF\JimbeWCF.csproj">
+      <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
+      <Name>JimbeWCF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

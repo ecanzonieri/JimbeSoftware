@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JimbeService.WCF;
-using JimbeWFC.ServiceContract;
+using JimbeWCF.ServiceContract;
 using Ninject.Modules;
 
 namespace JimbeService.IoC
