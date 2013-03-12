@@ -118,13 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="locationFound" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\locationFound.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="flag_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flag-blue.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\serviceOff.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="flag_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flag-green.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="serviceOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\serviceOn.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="flag_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flag-red.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flag_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flag-yellow.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -84,7 +84,13 @@
     <Content Include="icons\locationFound.ico" />
     <Content Include="icons\serviceOff.ico" />
     <Content Include="icons\serviceOn.ico" />
+    <None Include="Resources\flag-blue.ico" />
+    <None Include="Resources\flag-green.ico" />
+    <None Include="Resources\flag-red.ico" />
+    <None Include="Resources\flag-yellow.ico" />
     <Content Include="Resources\locationFound.ico" />
+    <None Include="Resources\race_flag.png" />
+    <None Include="Resources\operazione.ico" />
     <Content Include="Resources\serviceOff.ico" />
     <Content Include="Resources\serviceOn.ico" />
   </ItemGroup>
