@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -34,7 +35,7 @@ namespace JimbeApp
             parentWindow = Window.GetWindow(this);
             main = (MainWindow)parentWindow;
             if (main != null)
-                main.tab_control.SelectedIndex = 0;          
+                main.getstatus.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));// tab_control.SelectedIndex = 0;          
 		}
 
 		private void addtask_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -58,7 +59,7 @@ namespace JimbeApp
                     main.tab_control.SelectedIndex = 7;
                     main.disableunwantedbuttons();
                 }
-                UpdateTask tmp1 = (UpdateTask)((TabItem)main.tab_control.Items[7]).Content;
+                UpdateTask tmp1 = (UpdateTask)((TabItem)main.tab_control.Items[8]).Content;
                 tmp1.prec = 1;
                 
             }
@@ -82,10 +83,10 @@ namespace JimbeApp
             MainWindow main = (MainWindow) parentWindow;
             if (main != null)
             {
-                main.tab_control.SelectedIndex = 4;
+                main.tab_control.SelectedIndex = 5;
                 main.disableunwantedbuttons();
             }
-            AddTask tmp = (AddTask)((TabItem)main.tab_control.Items[4]).Content;
+            AddTask tmp = (AddTask)((TabItem)main.tab_control.Items[5]).Content;
             tmp.prec = 1;          
         }
 
@@ -95,10 +96,10 @@ namespace JimbeApp
             MainWindow main = (MainWindow)parentWindow;
             if (main != null)
             {
-                main.tab_control.SelectedIndex = 5;
+                main.tab_control.SelectedIndex = 6;
                 main.disableunwantedbuttons();
             }
-            AddURL tmp = (AddURL)((TabItem)main.tab_control.Items[5]).Content;
+            AddURL tmp = (AddURL)((TabItem)main.tab_control.Items[6]).Content;
             tmp.prec = 1;
         }
 

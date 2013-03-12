@@ -4,18 +4,29 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:JimbeApp_ViewModels="clr-namespace:JimbeApp.ViewModels" 
-    xmlns:JimbeApp="clr-namespace:JimbeApp" mc:Ignorable="d"
-    
+    xmlns:JimbeApp="clr-namespace:JimbeApp" mc:Ignorable="d"    
 	x:Class="JimbeApp.statot"
-	x:Name="UserControl" BorderThickness="0" Width="650" MinHeight="550" VerticalAlignment="Center">
+	x:Name="UserControl" BorderThickness="0" Width="650" MinHeight="550" VerticalAlignment="Center"
+	DataContext="{DynamicResource Windows1ViewModel}"
+	>
  
 
     <Grid x:Name="LayoutRoot" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0" >		
-		<Label Content="Location Attuale:"  VerticalAlignment="Top" Height="26" Margin="50,50,200,0" FontSize="15"/>
+		<Label Content="Location Attuale:"  VerticalAlignment="Top" Height="26" Margin="50,50,0,0" FontSize="15" HorizontalAlignment="Left" Width="134"/>
 		<Label		VerticalAlignment="Top"  Height="30" BorderBrush="black" BorderThickness="2" Margin="50,76,218,0" ToolTip="Mostra il nome dell'attuale posizione" DataContext="{DynamicResource Windows1ViewModel}" Content="{Binding Llocation.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="15"/>
-		<Label Content="Descrizione"  Height="29" VerticalAlignment="Top" Margin="50,141,325,0" FontSize="15"/>
-		<Label VerticalAlignment="Top"  Height="28"  BorderBrush="black" BorderThickness="2" Margin="50,170,218,0" DataContext="{DynamicResource Windows1ViewModel}" Content="{Binding Llocation.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="15"/>
-		<Label Content="Numero di task" Height="29" Margin="50,0,325,286" VerticalAlignment="Bottom" FontSize="15"/>
-		<Label Content="{Binding CountTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="32" BorderBrush="black" BorderThickness="2" Margin="50,0,218,254" VerticalAlignment="Bottom" DataContext="{DynamicResource Windows1ViewModel}" FontSize="15"/>
+		<Label Content="Descrizione"  Height="29" VerticalAlignment="Top" Margin="50,141,466,0" FontSize="15"/>
+		<Label VerticalAlignment="Top"  Height="54"  BorderBrush="black" BorderThickness="2" Margin="50,170,218,0" DataContext="{DynamicResource Windows1ViewModel}" Content="{Binding Llocation.Description}" FontSize="15"/>
+		<Label Content="Task memorizzati in questa location" Height="29" Margin="50,0,338,286" VerticalAlignment="Bottom" FontSize="15"/>
+		<Label Height="33" BorderBrush="black" BorderThickness="2" Margin="50,0,538,253" VerticalAlignment="Bottom" FontSize="15" Content="{Binding CountTasks}"/> 
+		 <!--<ListBox  Name="list" ItemsSource="{Binding Llocation.TasksList}" Margin="50,0,98,133" SelectionMode="Extended" Height="120" VerticalAlignment="Bottom" Background="{x:Null}" ToolTip="mostre i dispositivi wireless utilizzabili per la localizzazione" BorderBrush="{x:Null}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">                        
+                        <ContentPresenter Margin="1"/>
+                        
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>-->
 	</Grid>
 </UserControl>

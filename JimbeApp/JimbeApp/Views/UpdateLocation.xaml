@@ -12,10 +12,10 @@
     <Grid x:Name="LayoutRoot" Height="520">
 		<Grid ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,8,0,0">
 			<Label Content="Nome della location" VerticalAlignment="Top" Margin="50,23,0,0" HorizontalAlignment="Left" Width="206" FontSize="15"/>
-			<TextBox TextWrapping="Wrap" Margin="50,58,294,0" VerticalAlignment="Top" Text="{Binding NameLocationStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="nome della locazione da memorizzare" Height="31"/>
+			<TextBox TextWrapping="Wrap" Margin="50,52.95,294,0" VerticalAlignment="Top" Text="{Binding NameLocationStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="nome della locazione da memorizzare" Height="31"/>
             <Label Content="Descrizione location" VerticalAlignment="Top" Margin="50,106,0,0" HorizontalAlignment="Left" Width="183" FontSize="15"/>
-			<TextBox TextWrapping="Wrap" Margin="50,141,169,0" VerticalAlignment="Top"  Text="{Binding DescriptionLocationStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="descrizione della locazione da memorizzare" Height="31"/>
-                    <DataGrid  Name="ProcessGrid" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="True" RowDetailsVisibilityMode="Visible"  IsHitTestVisible="True"  BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,203,0,173" ItemsSource="{Binding TasksList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Width="Auto" d:LayoutOverrides="VerticalAlignment" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0" FontSize="15">
+			<TextBox TextWrapping="Wrap" Margin="50,135.95,294,0" VerticalAlignment="Top"  Text="{Binding DescriptionLocationStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="descrizione della locazione da memorizzare" Height="58"/>
+                    <DataGrid  Name="ProcessGrid" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="True" RowDetailsVisibilityMode="Visible"  IsHitTestVisible="True"  BorderBrush="{x:Null}" Background="{x:Null}" Margin="8,203,8,173" ItemsSource="{Binding TasksList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" d:LayoutOverrides="VerticalAlignment" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0" FontSize="14.667">
                 <DataGrid.Columns>
                 	<DataGridTextColumn Binding="{Binding ProcessName}" Header="File/Programma/URL" DisplayIndex="0" MinWidth="200" MaxWidth="450"/>
                 	<DataGridTextColumn Header="Periodicità" Binding="{Binding Delay}" MinWidth="75" MaxWidth="125"/>

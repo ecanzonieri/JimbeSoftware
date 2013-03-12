@@ -1,0 +1,41 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="JimbeApp.settings"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480" DataContext="{DynamicResource Windows1ViewModel}" Width="650" Height="550">
+
+	<Grid x:Name="LayoutRoot">
+		<CheckBox Content="Utilizza la rete a cui sei connesso per aumentare la precisione di localizzazione" HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top" FontSize="16.333" Width="590" Height="32" IsChecked="{Binding Checkedconnected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+<Label Content="Sensibilità del localizzatore" HorizontalAlignment="Left" Height="32" Margin="50,108,0,0" VerticalAlignment="Top" Width="230" FontSize="17.333"/>
+		<Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Width="174" Margin="50,140,0,0" Height="132" VerticalAlignment="Top">
+        <Grid>
+                <Slider x:Name="slidersens"   Width="29" HorizontalAlignment="Right" AutoToolTipPlacement="TopLeft" Maximum="3" Minimum="1" Orientation="Vertical" SmallChange="1" ToolTip="scegli la sensibilità di localizazione" ValueChanged="Slider_ValueChanged" Height="114" VerticalAlignment="Top" Margin="0,8,135,0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" d:LayoutOverrides="GridBox" Value="{Binding Sensibilità, FallbackValue=2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />               
+        	<Label x:Name="labelsens" HorizontalAlignment="Left" Width="110" FontSize="17.333" Margin="54,48,0,47" Content="Media"/>
+        </Grid>
+        </Border>
+		
+		
+		
+       <!--<ItemsControl ItemsSource="{Binding Interfaces}" Height="76" VerticalAlignment="Bottom" Margin="50,0,90,150" >
+    <ItemsControl.ItemTemplate>
+        <DataTemplate>
+            <CheckBox Content="{Binding Value}" IsChecked="{Binding IsChecked}" />
+        </DataTemplate>
+    </ItemsControl.ItemTemplate>
+</ItemsControl>-->
+		<Label Content="Dispositivi wireless utilizzabili per la localizzazione" Height="32" Margin="50,0,178,230" VerticalAlignment="Bottom" FontSize="17.333"/>
+		<ListView Height="80" VerticalAlignment="Bottom" Margin="50,0,178,146" ItemsSource="{Binding Interfaces}" Background="{x:Null}" >
+			<ListBox.ItemTemplate>
+     			<DataTemplate>
+         			<CheckBox IsChecked="true" Content="{Binding Mode=OneWay}" />
+     			</DataTemplate>
+   			</ListBox.ItemTemplate>
+		</ListView>
+		<Button Content="Applica" Height="50" Margin="320,0,178,8" VerticalAlignment="Bottom" FontSize="20" Click="Salva"/>
+		<Button Content="Annulla" Height="50" Margin="0,0,8,8" VerticalAlignment="Bottom" FontSize="20" HorizontalAlignment="Right" Width="152" Click="Annulla"/>
+	</Grid>
+</UserControl>

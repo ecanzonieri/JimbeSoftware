@@ -34,9 +34,9 @@ namespace JimbeApp
             Window parentWindow = Window.GetWindow(this);
             MainWindow main = (MainWindow)parentWindow;
             if (main != null)
-                main.tab_control.SelectedIndex = 4;
-            AddTask tmp = (AddTask)((TabItem)main.tab_control.Items[4]).Content;
-            tmp.prec = 6;
+                main.tab_control.SelectedIndex = 5;
+            AddTask tmp = (AddTask)((TabItem)main.tab_control.Items[5]).Content;
+            tmp.prec = 7;
         }
 
         private void NewUrl(object sender, RoutedEventArgs e)
@@ -44,9 +44,9 @@ namespace JimbeApp
             Window parentWindow = Window.GetWindow(this);
             MainWindow main = (MainWindow)parentWindow;
             if (main != null)
-                main.tab_control.SelectedIndex = 5;
-            AddURL tmp = (AddURL)((TabItem)main.tab_control.Items[5]).Content;
-            tmp.prec = 6;
+                main.tab_control.SelectedIndex = 6;
+            AddURL tmp = (AddURL)((TabItem)main.tab_control.Items[6]).Content;
+            tmp.prec = 7;
         }   
 
         private void ModifyTask(object sender, RoutedEventArgs e)
@@ -60,9 +60,9 @@ namespace JimbeApp
                 Window parentWindow = Window.GetWindow(this);
                 MainWindow main = (MainWindow)parentWindow;
                 if (main != null)
-                    main.tab_control.SelectedIndex = 7;
-                UpdateTask tmp1 = (UpdateTask)((TabItem)main.tab_control.Items[7]).Content;
-                tmp1.prec = 6;
+                    main.tab_control.SelectedIndex = 8;
+                UpdateTask tmp1 = (UpdateTask)((TabItem)main.tab_control.Items[8]).Content;
+                tmp1.prec = 7;
                 
                 
 

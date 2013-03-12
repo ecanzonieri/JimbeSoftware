@@ -24,7 +24,7 @@
         <Button Content="Sfoglia" Height="32" HorizontalAlignment="Left" Margin="443,82,0,0"
                 x:Name="button1" VerticalAlignment="Top" Width="88" Click="Button1_Click" FontSize="15" />
         <ComboBox HorizontalAlignment="Left" Height="32" Margin="50,154,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding Mode=OneWay, Source={StaticResource dataFromEnum}}" Text="{Binding Path=Type}" />
-        <local:timespancontrol Margin="50,259,252,61"/>
+        <local:timespancontrol Margin="50,259,280,61"/>
         <Button Height="48" Margin="0,0,160,8" VerticalAlignment="Bottom" Content="Aggiorna Task" Click="Update_Task" Focusable="False" ToolTip="Salva i nuovi cambiamenti del task" HorizontalAlignment="Right" Width="128" FontSize="15" />
         <Label Content="File/Programma" HorizontalAlignment="Left" Height="32" Margin="50,50,0,0" VerticalAlignment="Top" Width="161" FontSize="15"/>
         <Label Content="Periodicità" HorizontalAlignment="Left" Height="31" Margin="50,123,0,0" VerticalAlignment="Top" Width="129" FontSize="15"/>

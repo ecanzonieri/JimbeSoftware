@@ -11,8 +11,8 @@
 
 	<Grid x:Name="LayoutRoot">
 		<Grid>			
-			<Label Content="Elenco Location:" Margin="50,50,340,0" VerticalAlignment="Top" FontSize="15"/>
-            <DataGrid  Margin="50,80,30,40" DataContext="{DynamicResource Windows1ViewModel}" ItemsSource="{Binding LocationsList}" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="False" RowDetailsVisibilityMode="Visible"  IsHitTestVisible="True" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" Background="{x:Null}" FontSize="15">
+			<Label Content="Elenco Locations" Margin="244,8,250,0" VerticalAlignment="Top" FontSize="17.333" d:LayoutOverrides="HorizontalAlignment"/>
+            <DataGrid  Margin="50,80,30,40" DataContext="{DynamicResource Windows1ViewModel}" ItemsSource="{Binding LocationsList}" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="False"  IsHitTestVisible="True" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" Background="{x:Null}" FontSize="14.667" BorderBrush="{x:Null}" RowDetailsVisibilityMode="Visible" ToolTip="visualizza l'elenco delle locazioni salvate">
                 <DataGrid.Columns>
             		<DataGridTextColumn Binding="{Binding Name}" Header="Nome" IsReadOnly="True" MinWidth="50" MaxWidth="250" Foreground="Black"/>
             		<DataGridTextColumn Binding="{Binding Description}" Header="Descrizione" IsReadOnly="True" DisplayIndex="1" MinWidth="100" MaxWidth="450" Foreground="Black"/>

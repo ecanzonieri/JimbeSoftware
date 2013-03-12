@@ -11,11 +11,11 @@
 
     <Grid x:Name="LayoutRoot">
 		<Grid ScrollViewer.VerticalScrollBarVisibility="Disabled" >
-			<Label Content="Nome della location" VerticalAlignment="Top" Margin="50,50,320,0" FontSize="15" RenderTransformOrigin="-0.142,0.575"/>
+			<Label Content="Nome della location" VerticalAlignment="Top" Margin="50,50,0,0" FontSize="15" RenderTransformOrigin="-0.142,0.575" HorizontalAlignment="Left" Width="174"/>
 			<TextBox TextWrapping="Wrap" Margin="50,80,200,0" VerticalAlignment="Top" DataContext="{DynamicResource Windows1ViewModel}" Text="{Binding NameLocationStr, Mode=TwoWay, UpdateSourceTrigger=Default}" ToolTip="nome della locazione da memorizzare" Height="29"/>
-            <Label Content="Descrizione location" VerticalAlignment="Top" Margin="50,126,182,0" FontSize="15"/>
-			<TextBox TextWrapping="Wrap" Margin="50,156,50,0" VerticalAlignment="Top" DataContext="{DynamicResource Windows1ViewModel}" Text="{Binding DescriptionLocationStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="descrizione della locazione da memorizzare" Height="28"/>
-                    <DataGrid  Name="ProcessGrid" DataContext="{DynamicResource Windows1ViewModel}" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="False" IsSynchronizedWithCurrentItem="True" RowDetailsVisibilityMode="Visible"  IsHitTestVisible="False"  BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,215,0,161" ItemsSource="{Binding TasksList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" Height="Auto" HorizontalScrollBarVisibility="Auto" FontSize="15" ToolTip="Elenco dei Tasks" GridLinesVisibility="None" HeadersVisibility="Column">
+            <Label Content="Descrizione location" VerticalAlignment="Top" Margin="50,126,0,0" FontSize="15" HorizontalAlignment="Left" Width="174"/>
+			<TextBox TextWrapping="Wrap" Margin="50,156,200,0" VerticalAlignment="Top" DataContext="{DynamicResource Windows1ViewModel}" Text="{Binding DescriptionLocationStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="descrizione della locazione da memorizzare" Height="55"/>
+                    <DataGrid  Name="ProcessGrid" DataContext="{DynamicResource Windows1ViewModel}" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="False" IsSynchronizedWithCurrentItem="True" RowDetailsVisibilityMode="Visible"  IsHitTestVisible="False"  BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,228,0,148" ItemsSource="{Binding TasksList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" Height="Auto" HorizontalScrollBarVisibility="Auto" FontSize="14.667" ToolTip="Elenco dei Tasks" GridLinesVisibility="None" HeadersVisibility="Column">
                 <DataGrid.Columns>
                 	<DataGridTextColumn Binding="{Binding ProcessName}" Header="File/Programma/URL" DisplayIndex="0" MinWidth="200" MaxWidth="450"/>
                 	<DataGridTextColumn Header="Periodicità" Binding="{Binding Delay}" DisplayIndex="1" MinWidth="150" MaxWidth="175"/>

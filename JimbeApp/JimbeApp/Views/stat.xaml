@@ -11,11 +11,12 @@
 
     <Grid x:Name="LayoutRoot" Background="{x:Null}">
         <Grid  VerticalAlignment="Bottom" Background="{x:Null}"/>
-		<charting:Chart x:Name="chart" HorizontalAlignment="Center" Height="350" Width="350"
-		 Title="Permanenza nelle locations" VerticalAlignment="Top" LegendTitle= "Locations" Background="{x:Null}" Margin="50,50,0,0" FontSize="15">
+		<charting:Chart x:Name="chart" HorizontalAlignment="Center" Height="448" Width="626"
+		 Title="Permanenza nelle locations" VerticalAlignment="Top" Background="{x:Null}" FontSize="15" Margin="0,94,0,0" LegendTitle="Locations">
 			<charting:PieSeries ItemsSource="{Binding StatisticList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     DependentValuePath="Value"
-                    IndependentValuePath="Key" Title="Locations" IsSelectionEnabled="True"/>
-        </charting:Chart>		
-	</Grid>
+                    IndependentValuePath="Key" Title="Locations" IsSelectionEnabled="True" Margin="0"/>
+        </charting:Chart>
+		<Button Name="Switch" Content="Visualizza Istogramma" Height="40" Width="147" HorizontalAlignment="Right" Margin="0,50,50,0" VerticalAlignment="Top" Click="Switch_Click"/>
+    </Grid>
 </UserControl>

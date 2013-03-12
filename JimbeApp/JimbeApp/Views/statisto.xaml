@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="JimbeApp.Views.statisto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             mc:Ignorable="d" 
+             Width="650" Height="550" DataContext="{DynamicResource Windows1ViewModel}">
+        <Grid x:Name="LayoutRoot" Background="{x:Null}">
+            <Grid  VerticalAlignment="Bottom" Background="{x:Null}"/>
+            <charting:Chart x:Name="chart" HorizontalAlignment="Center" Height="448" Width="647"
+		 Title="Permanenza nelle locations" VerticalAlignment="Top" Background="{x:Null}" FontSize="15" Margin="0,100,0,0">
+                <charting:BarSeries ItemsSource="{Binding StatisticList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    DependentValuePath="Value"
+                    IndependentValuePath="Key" IsSelectionEnabled="True"  Margin="0" Padding="0" ToolTip="Istogramma delle locations" AnimationSequence="Simultaneous">                	
+                </charting:BarSeries>
+            </charting:Chart>
+            <Button Name="Switch" Content="Visualizza Diagramma a Torta" Height="40" Width="192" HorizontalAlignment="Right" Margin="0,50,50,0" VerticalAlignment="Top" Click="Switch_Click"/>
+        </Grid>
+</UserControl>

@@ -11,7 +11,7 @@ using System.Windows.Threading;
 using JimbeApp.Helpers;
 using JimbeWCF.DataContracts;
 using JimbeWCF.ServiceContract;
-
+using Jimbe.JimbeWiFi;
 
 
 
@@ -25,12 +25,21 @@ namespace JimbeApp.ViewModels
         Periodic,
         Delayed
     }
+	
+	public enum Sens
+	{
+	    Alta =3,
+        Media=2,
+        Bassa=1,    
+	}
 
 
     public class MainWindowViewModel : BaseViewModel
     {
+        private DispatcherTimer dispatcherTimer;
         private ILocationService _proxy;
         private ServiceController jimbeService=null;
+
 
         #region Properties
 
@@ -192,8 +201,8 @@ namespace JimbeApp.ViewModels
         }
         public IList<Sensor> LocationSensorList;
         public IList<Statistic> LocationStatisticList; 
-        private List<Location> _locationsList;
-        public List<Location> LocationsList
+        private ObservableCollection<Location> _locationsList;
+        public ObservableCollection<Location> LocationsList
         {
             get 
             {              
@@ -243,10 +252,60 @@ namespace JimbeApp.ViewModels
 
         #endregion
 
-          #endregion
+        #region settingData
+
+        private bool _checkedconnectedsaved;
+        private bool _checkedconnected;
+
+        public bool Checkedconnected
+        {
+            get { return _checkedconnected; }
+            set
+            {
+                if (this._checkedconnected != value)
+                {
+                    this._checkedconnected = value;
+                    RaisePropertyChanged(() => Checkedconnected);
+                }
+            }
+        }
+
+        private int _sensibilitàSaved;
+        private int _sensibilità;
+        public int Sensibilità
+        {
+             get { return _sensibilità; }
+            set
+            {
+                if (this._sensibilità != value)
+                {
+                    this._sensibilità = value;
+                    RaisePropertyChanged(() => Sensibilità);
+                }
+            }
+        }
+
+        private List<String> _interfacesSaved;
+        private List<String> _interfaces;
+        public List<String> Interfaces
+        {
+            get { return _interfaces; }
+            set
+            {
+                if (this._interfaces != value)
+                {
+                    this._interfaces = value;
+                    RaisePropertyChanged(() => Interfaces);
+                }
+            }
+        }
+
+        #endregion
+
+        #endregion
 
         #region Commands
-          public ICommand GetStatus { get { return new DelegateCommand(GetStatus_f); } }
+        public ICommand GetStatus { get { return new DelegateCommand(GetStatus_f); } }
         public ICommand StoreLocation { get { return new DelegateCommand(StoreLocation_f); } }
         public ICommand ManagePrefered { get { return new DelegateCommand(ManagePrefered_f); } }
         public ICommand ShowStats{get {return new DelegateCommand(ShowStats_f);}}        
@@ -254,6 +313,7 @@ namespace JimbeApp.ViewModels
         public ICommand NewTask { get { return new DelegateCommand(NewTask_f); } }
         public ICommand AddUrl { get { return new DelegateCommand(AddUrl_f); } }
         public ICommand NewUrl { get { return new DelegateCommand(NewUrl_f); } }
+		public ICommand Setting { get { return new DelegateCommand(Setting_f); } }
         #endregion
 
         #region Ctor
@@ -290,14 +350,24 @@ namespace JimbeApp.ViewModels
 
                 }
             */
-                LocationsList = new List<Location>();
+                LocationsList = new ObservableCollection<Location>();            
                     Llocation = _proxy.GetCurrentLocation();
                 if (Llocation != null && Llocation.TasksList != null)
                     CountTasks = Llocation.TasksList.Count;
                 else
                     CountTasks = 0;
                 eraseTaskProperty();
-       /*     }
+            _sensibilitàSaved=Sensibilità=2;
+            _checkedconnectedsaved = Checkedconnected = true;
+
+            //codice per timer
+            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Start();
+
+
+            /*     }
             else
             {
                 MessageBox.Show("Servizio non attivo. Assicurarsi di averlo avviato");
@@ -338,11 +408,11 @@ namespace JimbeApp.ViewModels
         }
         void ManagePrefered_f()
         {
-             LocationsList = new List<Location>(_proxy.GetLocations());                      
+             LocationsList = new ObservableCollection<Location>(_proxy.GetLocations());           
         }
-        void ShowStats_f()
+      public  void ShowStats_f()
         {
-            LocationsList =new List<Location>(_proxy.GetLocations());            
+            LocationsList =new ObservableCollection<Location>(_proxy.GetLocations());            
             StatisticList=new ObservableCollection<KeyValuePair<string, double>>();            
             foreach (Location location in LocationsList)
             {
@@ -382,6 +452,22 @@ namespace JimbeApp.ViewModels
            TasksList.Add(Task);
            eraseTaskProperty();
        }
+	
+		public void Setting_f()
+		{
+		    JimbeWiFi tmp=new JimbeWiFi();
+
+		    Interfaces = new List<String>();//tmp.WiFiEnumInterfaces());
+
+		    foreach (var wifi in tmp.WiFiEnumInterfaces())
+		    {
+                Interfaces.Add(wifi.InterfaceGuid.ToString());    
+		    }
+            
+            Sensibilità = _sensibilitàSaved;
+		    Checkedconnected = _checkedconnectedsaved;
+		}
+	
        public void NewTask_f()
         {
           //  AddTask newTask = new AddTask();
@@ -401,7 +487,18 @@ namespace JimbeApp.ViewModels
        public void delete_location(Location loc)
        {
            if (loc != null)
-               _proxy.DeleteLocation(loc);
+              
+           LocationsList.Remove(loc);
+               foreach (var tmploc in LocationsList)
+               {
+                   if (tmploc.Name.Equals(loc.Name))
+                   {
+                       _proxy.DeleteLocation(tmploc);
+                       LocationsList.Remove(tmploc);
+                       break;
+                   }
+               }
+
        }
 
        public void ModifyTask(StartProcess tmp)
@@ -423,7 +520,7 @@ namespace JimbeApp.ViewModels
            Task.Arguments = null;
            TasksList.RemoveAt(TaskIndex);
            TasksList.Insert(TaskIndex, Task);
-           RaisePropertyChanged(() => TasksList);
+//           RaisePropertyChanged(() => TasksList);
            eraseTaskProperty();
        }
        public void DeleteTask(StartProcess tmp)
@@ -492,6 +589,28 @@ namespace JimbeApp.ViewModels
                 TasksList.Clear();
         }
 
+        public void saveSettings()
+        {
+            _sensibilitàSaved = Sensibilità;
+            _checkedconnectedsaved = Checkedconnected;
+        }
+
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                _proxy = ProxyFactory.GetProxy(Properties.Settings.Default.Url_Client);
+                GetStatus_f();
+                ShowStats_f();            
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Servizio non disponibile, l'applicazione verrà chiusa");
+                Application.Current.Shutdown();
+            }
+            
+        }
 
         #endregion
        

@@ -2,13 +2,11 @@
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:localVM="clr-namespace:JimbeApp.ViewModels"
-        xmlns:localConverters="clr-namespace:JimbeApp.Converters"
-        xmlns:local="clr-namespace:JimbeApp" x:Class="JimbeApp.MainWindow"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"		
+        xmlns:local="clr-namespace:JimbeApp" xmlns:views="clr-namespace:JimbeApp.Views" x:Class="JimbeApp.MainWindow"
         mc:Ignorable="d"
         Title="JimbeApp"
-        WindowStartupLocation="CenterScreen" Height="750" Loaded="Window_Loaded" ScrollViewer.VerticalScrollBarVisibility="Visible" d:DesignWidth="1005" d:DesignHeight="819">
+        WindowStartupLocation="CenterScreen" Height="750" Loaded="Window_Loaded" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="1008">
     <Window.Background>
 		<ImageBrush ImageSource="/JimbeApp;component/Images/background.png"/>
 	</Window.Background>
@@ -27,40 +25,45 @@
             </Grid.ColumnDefinitions>
         <!-- Logo of Application-->
 
-            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" >
-            	<Image Height="128"  Source="/JimbeApp;component/Images/cooltext784550047.png" Margin="0,0,67.203,0" />
-                <local:statot DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,20,0" >
+            	<Image Height="128"  Source="/JimbeApp;component/Images/cooltext784550047.png" Margin="0,0,67.203,0" />                
             </StackPanel>
-            <Border BorderBrush="Black" Margin="0,0,0,0" CornerRadius="4" BorderThickness="4" Grid.Row="1">
+            <Border BorderBrush="Black" Margin="0,0,0,20" CornerRadius="4" BorderThickness="4" Grid.Row="1">
                 <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" Background="#80838383">
-                    <Button  x:Name="getstatus" Click="getstatus_Click" Command ="{Binding GetStatus}" Height="120"  Style="{StaticResource BorderlessButton}" Margin="0,10,0,10">
+                    <Button  x:Name="getstatus" Click="getstatus_Click" Command ="{Binding GetStatus}" Height="110"  Style="{StaticResource BorderlessButton}" Margin="0,5">
                         <StackPanel>
-                            <Image Name="immaginestatus" Height="100" Width="100" Source="/JimbeApp;component/Images/Map.png" />
+                            <Image Name="immaginestatus" Height="90" Width="100" Source="/JimbeApp;component/Images/Map.png" />
                             <TextBlock Text="Localizza" TextAlignment="Center" Height="20" Foreground="White" FontSize="15"/>
                         </StackPanel>
                     </Button>
-                    <Button  x:Name="store" Click="store_Click" Height="120" Style="{StaticResource BorderlessButton}" Margin="0,10,0,10" >
+                    <Button  x:Name="store" Click="store_Click" Height="110" Style="{StaticResource BorderlessButton}" Margin="0,5" >
                         <StackPanel>
-                            <Image Height="100" Width="100" Source="/JimbeApp;component/Images/gmaps.png"/>
+                            <Image Height="90" Width="100" Source="/JimbeApp;component/Images/gmaps.png"/>
                             <TextBlock Text="Memorizza Posizione" TextAlignment="Center" Height="20" Foreground="White" FontSize="15"/>
                         </StackPanel>
                     </Button>
-                    <Button  x:Name="manage" Click="manage_Click" Command ="{Binding ManagePrefered}" Height="120"  Style="{StaticResource BorderlessButton}" Margin="0,10,0,10">
+                    <Button  x:Name="manage" Click="manage_Click" Command ="{Binding ManagePrefered}" Height="110"  Style="{StaticResource BorderlessButton}" Margin="0,5">
                         <StackPanel>
-                            <Image Height="91.106" Width="100" Source="/JimbeApp;component/Images/archivio.png"/>
+                            <Image Height="90" Width="100" Source="/JimbeApp;component/Images/archivio.png"/>
                             <TextBlock Text="Gestione Posizioni" TextAlignment="Center" Height="20" Foreground="White" FontSize="15"/>
                         </StackPanel>
                     </Button>
-                    <Button  x:Name="stat" Click="stat_Click" Command ="{Binding ShowStats}" Height="120"  Style="{StaticResource BorderlessButton}" Margin="0,10,0,10">
+                    <Button  x:Name="stat" Click="stat_Click" Command ="{Binding ShowStats}" Height="110"  Style="{StaticResource BorderlessButton}" Margin="0,5">
                         <StackPanel>
-                            <Image Height="100" Width="100" Source="/JimbeApp;component/Images/stat.png"/>
+                            <Image Height="90" Width="100" Source="/JimbeApp;component/Images/stat.png"/>
                             <TextBlock Text="Visualizza Statistiche" TextAlignment="Center" Height="20" Foreground="White" FontSize="15"/>
+                        </StackPanel>
+                    </Button>
+  					<Button  x:Name="setting" Click="setting_Click" Command ="{Binding Setting}" Height="110"  Style="{StaticResource BorderlessButton}" Margin="0,5">
+                        <StackPanel>
+                            <Image Height="90" Width="100" Source="/JimbeApp;component/Images/settings4.png"/>
+                            <TextBlock Text="Impostazioni" TextAlignment="Center" Height="20" Foreground="White" FontSize="15"/>
                         </StackPanel>
                     </Button>
 
                 </StackPanel>
             </Border>
-            <Border Grid.Column="1" BorderBrush="Black" Margin="0,0,0,0" CornerRadius="4" BorderThickness="4" Grid.Row="1">
+            <Border Grid.Column="1" BorderBrush="Black" Margin="0,0,20,20" CornerRadius="4" BorderThickness="4" Grid.Row="1">
                 <StackPanel Grid.Column="1" ClipToBounds="True" Grid.Row="1" Orientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinWidth="450" MinHeight="450">
                 <StackPanel.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -79,9 +82,12 @@
                             <local:modifica DataContext="{Binding Source={StaticResource Windows1ViewModel}}"  Margin="0" Padding="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
                         </TabItem>
                         <TabItem Header="statistiche" Visibility="Hidden" Background="{x:Null}">
-                            <local:stat />
+                            <local:stat DataContext="{Binding Source={StaticResource Windows1ViewModel}}"/>
                         </TabItem>
-                        <TabItem x:Name="aggiungitask" Header="nuovotask" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
+						<TabItem Header="setting" Visibility="Hidden" Background="{x:Null}">
+                            <local:settings DataContext="{Binding Source={StaticResource Windows1ViewModel}}"/>
+                        </TabItem>
+                        <TabItem x:Name="aggiungitask" Header="nuovotask" Visibility="Collapsed" Padding="0" Margin="6,0,-6,0" Background="{x:Null}">
                             <local:AddTask DataContext="{Binding Source={StaticResource Windows1ViewModel}}" />
                         </TabItem>
                         <TabItem x:Name="aggiungiurl" Header="nuovourl" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
@@ -92,6 +98,9 @@
                         </TabItem>
                         <TabItem x:Name="modificatask" Header="modtask" Visibility="Collapsed" Padding="0" Margin="0" Background="{x:Null}">
                             <local:UpdateTask DataContext="{Binding Source={StaticResource Windows1ViewModel}}"  />
+                        </TabItem>
+                        <TabItem Header="statistiche" Visibility="Hidden" Background="{x:Null}">
+                            <views:statisto DataContext="{Binding Source={StaticResource Windows1ViewModel}}"/>
                         </TabItem>
                     </TabControl>
             </StackPanel>

@@ -31,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -41,6 +42,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>City-Map.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -76,8 +83,14 @@
     <Compile Include="Views\modifica.xaml.cs">
       <DependentUpon>modifica.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\settings.xaml.cs">
+      <DependentUpon>settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\stat.xaml.cs">
       <DependentUpon>stat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\statisto.xaml.cs">
+      <DependentUpon>statisto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\statot.xaml.cs">
       <DependentUpon>statot.xaml</DependentUpon>
@@ -142,9 +155,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\stat.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\statisto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\statot.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -197,6 +218,7 @@
     <Resource Include="Images\medium_512.png" />
     <Resource Include="Images\pencil.png" />
     <Resource Include="Images\preferiti.gif" />
+    <Resource Include="Images\settings.png" />
     <Resource Include="Images\wifi.png" />
     <Resource Include="Images\wifi_lg.png" />
     <Resource Include="Images\Wireless-Access-Point.png" />
@@ -230,12 +252,26 @@
       <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
       <Name>JimbeWCF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\JimbeWiFi\JimbeWiFi.vcxproj">
+      <Project>{5d4a229b-51b2-489c-8c26-5983b04c2c0e}</Project>
+      <Name>JimbeWiFi</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settings2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settings3.png" />
+    <Resource Include="Images\settings4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="City-Map.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

@@ -29,7 +29,7 @@ namespace JimbeApp
          
                 InitializeComponent();
 
-            _buttons = new Collection<Button>() { getstatus, store, manage, stat };
+            _buttons = new Collection<Button>() { getstatus, store, manage, stat,setting };
             
             _selectedButtonBrush.Opacity = 0.5;
             _dropShadowEffect.Color = new Color();
@@ -50,17 +50,7 @@ namespace JimbeApp
             e.Handled = true;
         }
 
-        private void store_Click(object sender, RoutedEventArgs e)
-        {
-            ToggleButtonColors(sender);
-           tab_control.SelectedIndex = 1;
-            clicked = sender as Button;
-           MainWindowViewModel tmp = this.DataContext as MainWindowViewModel;
-           if (tmp != null)
-               tmp.eraseLocationProperty();
-        }
-
-        private void ToggleButtonColors(object sender)
+		 private void ToggleButtonColors(object sender)
         {
             foreach (var b in _buttons.Where(x => x != sender))
             {
@@ -72,14 +62,22 @@ namespace JimbeApp
 
         }
 
-        private void getstatus_Click(object sender, RoutedEventArgs e)
+		 private void getstatus_Click(object sender, RoutedEventArgs e)
         {
             ToggleButtonColors(sender);
-            tab_control.SelectedIndex = 0;
-
-          
+            tab_control.SelectedIndex = 0;          
         }
 
+        private void store_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButtonColors(sender);
+           tab_control.SelectedIndex = 1;
+            clicked = sender as Button;
+           MainWindowViewModel tmp = this.DataContext as MainWindowViewModel;
+           if (tmp != null)
+               tmp.eraseLocationProperty();
+        }
+       
         private void manage_Click(object sender, RoutedEventArgs e)
         {
             ToggleButtonColors(sender);
@@ -93,6 +91,13 @@ namespace JimbeApp
             tab_control.SelectedIndex = 3;
         }
 
+		private void setting_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButtonColors(sender);
+            tab_control.SelectedIndex = 4;
+		    clicked = sender as Button;
+        }
+		
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ToggleButtonColors(getstatus);
@@ -108,9 +113,7 @@ namespace JimbeApp
                     button.IsEnabled = false;
                     if (button != clicked)
                     {
-                        
-                        //button.Background = new SolidColorBrush(Colors.Gray);
-                        button.Opacity = 0.3;
+                         button.Opacity = 0.3;
                     }
                 }
             }
@@ -120,7 +123,7 @@ namespace JimbeApp
             foreach (Button button in _buttons)
             {               
                     button.IsEnabled = true;
-                button.Background = null;
+               // button.Background = null;
                 button.Opacity = 1;
             }
         }

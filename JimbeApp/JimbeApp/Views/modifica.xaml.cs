@@ -56,7 +56,7 @@ namespace JimbeApp
                 MainWindow main = (MainWindow)parentWindow;
                 if (main != null)
                 {
-                    main.tab_control.SelectedIndex = 6;
+                    main.tab_control.SelectedIndex = 7;
                     main.disableunwantedbuttons();
                 }
 
