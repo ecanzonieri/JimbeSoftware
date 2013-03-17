@@ -80,12 +80,23 @@ namespace TestService
             proxy.InsertLocation(location);
             Console.ReadLine();
             current=proxy.GetCurrentLocation();
-            
+            printLocation(current);
+            Console.WriteLine("Press enter to delete location");
+            Console.ReadLine();
+            proxy.DeleteLocation(current);
+
+            locations = proxy.GetLocations();
+            if (locations == null) Console.WriteLine("No Locations");
+            else
+                foreach (var location1 in locations)
+                {
+                    printLocation(location1);
+                }
         }
 
         private static void printLocation(Location location)
         {
-            Console.WriteLine("Current: " + location.Name + " " + location.Description);
+            Console.WriteLine("Location: " + location.Name + " " + location.Description);
             foreach (var statistic in location.StatisticsList)
             {
                 Console.WriteLine("\tStatistic: " + statistic.Start + " " + statistic.End);
