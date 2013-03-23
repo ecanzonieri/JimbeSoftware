@@ -50,6 +50,7 @@ namespace JimbeService.IoC
 
         private static void BuildSchema(Configuration config)
         {
+            File.Delete(Properties.Settings.Default.DBPath);
             if (!File.Exists(Properties.Settings.Default.DBPath))
             {
                 new SchemaExport(config)

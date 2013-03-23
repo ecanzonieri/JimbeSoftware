@@ -93,6 +93,8 @@
     <Compile Include="Domain\Model\IBusinessComparable.cs" />
     <Compile Include="Domain\Model\IEntity.cs" />
     <Compile Include="Exceptions\JimbeCoreException.cs" />
+    <Compile Include="Exceptions\LocationCollisionException.cs" />
+    <Compile Include="Exceptions\SensorDatasetException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Entities\WiFiSensor.cs" />
     <Compile Include="Repository\Interfaces\IReadOnlyRepository.cs" />

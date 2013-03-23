@@ -8,7 +8,7 @@ namespace JimbeWCF.ServiceContract
     public interface ILocationService
     {
         [OperationContract]
-        bool InsertLocation(Location location);
+        InsertResult InsertLocation(Location location);
 
         [OperationContract]
         bool DeleteLocation(Location location);

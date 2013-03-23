@@ -41,7 +41,8 @@ namespace JimbeCore.Domain.Interfaces
         /// Method that remove sensor dataset
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="JimbeCoreException">If sensor type is not compatible UpdateSensorDataset throws an Exception</exception>
+        /// <exception cref="SensorDifferentException">If sensor type is not compatible UpdateSensorDataset throws an Exception</exception>
+        /// <exception cref="SensorDatasetException">At least one dataset should be present</exception>
         void RemoveInfo(ISensor sensor);
     }
 }

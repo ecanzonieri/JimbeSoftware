@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContracts\Location.cs" />
+    <Compile Include="DataContracts\InsertResult.cs" />
     <Compile Include="DataContracts\LocationStatistic.cs" />
     <Compile Include="DataContracts\MessageInfo.cs" />
     <Compile Include="DataContracts\Sensor.cs" />
@@ -58,7 +59,6 @@
     <Compile Include="DataContracts\WiFiSensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceContract\ILocationService.cs" />
-    <Compile Include="ServiceContract\ITaskManagerService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\WCF\Microsoft.VisualStudio.ServiceModel.targets" />

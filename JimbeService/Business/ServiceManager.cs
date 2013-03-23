@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using Jimbe.JimbeWiFi;
 using JimbeCore.Domain.Entities;
+using JimbeCore.Exceptions;
 using JimbeCore.Repository.Interfaces;
 using JimbeService.IoC;
 using TracerX;
@@ -110,8 +111,9 @@ namespace JimbeService.Business
                                 _locationManager.Current.Name);
                 return false;
             }
-            if (_locationManager.Updated)
+            if (_locationManager.ToUpdate)
             {
+                result.UpdateLocationSensors(unknown);
                 repository.Update(result);
                 logger.Debug("New Dataset saved: ", result.ToString());
             }

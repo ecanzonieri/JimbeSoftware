@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using AutoMapper;
+using JimbeCore.Exceptions;
 using JimbeService.Business;
 using JimbeService.IoC;
 using JimbeWCF.ServiceContract;
@@ -37,20 +38,31 @@ namespace JimbeService.WCF
 
         #region Implementation of ILocationService
 
-        public bool InsertLocation(DTO.Location location)
+        public DTO.InsertResult InsertLocation(DTO.Location location)
         {
             lock (_serviceManager)
             {
                 var repository = _repositoryFactory.CreateRepository<Guid, CoreEntity.Location>();
                 CoreEntity.Location corelocation = _engine.Map<DTO.Location, CoreEntity.Location>(location);
-                corelocation = _serviceManager.PrepareLocation(corelocation);
+                try
+                {
+                    corelocation = _serviceManager.PrepareLocation(corelocation);
+                }
+                catch (LocationCollisionException lce)
+                {
+                    return new DTO.InsertResult()
+                        {
+                            Conflict = _engine.Map<CoreEntity.Location, DTO.Location>(lce.Conflict),
+                            Result = false
+                        };
+                }
                 if (repository.Add(corelocation))
                 {
                     _logger.Debug("Insert new location " + corelocation.Name + corelocation.Description);
-                    return true;
+                    return new DTO.InsertResult() {Result = true};
                 }
                 _logger.Warn("Not possible to insert location: ");
-                return false;
+                return new DTO.InsertResult() { Result = false }; 
             }
         }
 

@@ -85,6 +85,7 @@ namespace JimbeCore.Domain.Entities
             double bestproximity = 0.0;
             double tmpproximity;
             WiFiNetworkSet networkSet = null;
+            if (Datasets.Count == 1) throw new SensorDatasetException("Sensor " + Id.ToString() + "has one only Dataset. It does not make sense to remove it.");
             foreach (var dataset in Datasets)
                 if ((tmpproximity = dataset.GetDistance(wiFiconnsensor.Datasets.First())) > bestproximity)
                 {
@@ -92,6 +93,7 @@ namespace JimbeCore.Domain.Entities
                     networkSet = dataset;
                 }
             Datasets.Remove(networkSet);
+            networkSet.Sensor = null;
         }
 
         #endregion

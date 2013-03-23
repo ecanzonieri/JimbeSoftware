@@ -18,7 +18,7 @@ namespace JimbeService.Business
 
         private double _currentAffinity;
 
-        public bool Updated { get; private set; }
+        public bool ToUpdate { get; private set; }
 
         public Location Current
         {
@@ -36,7 +36,7 @@ namespace JimbeService.Business
         {
             double affinity = 0.0;
             Location winner = null;
-            Updated = false;
+            ToUpdate = false;
 
             if (location == null)
             {
@@ -74,9 +74,8 @@ namespace JimbeService.Business
             }
             if (affinity < _currentAffinity - Noise)
             {
-                winner.UpdateLocationSensors(location);
-                logger.Info("Location ", winner.Name, " has affinity ", affinity, " under the threshold and it has been updated");
-                Updated = true;
+                logger.Info("Location ", winner.Name, " has affinity ", affinity, " under the threshold and it has to be updated");
+                ToUpdate = true;
             }
             logger.Info("Location identified as " , winner.Name, " with affinity ", affinity);
             _current = winner;

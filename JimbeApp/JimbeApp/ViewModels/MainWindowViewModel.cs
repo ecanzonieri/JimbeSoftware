@@ -401,8 +401,15 @@ namespace JimbeApp.ViewModels
             foreach (var startProcess in TasksList)
             {
                 loc_tmp.TasksList.Add(startProcess);   
-            }                                     
-            _proxy.InsertLocation(loc_tmp);
+            }
+
+            var result = _proxy.InsertLocation(loc_tmp);
+            if (!result.Result && result.Conflict != null)
+            {
+                _proxy.DeleteLocation(result.Conflict);
+                _proxy.InsertLocation(loc_tmp);
+            }
+
             NameLocationStr = "";
             DescriptionLocationStr = "";
         }

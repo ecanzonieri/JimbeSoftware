@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JimbeCore.Domain.Interfaces;
 using JimbeCore.Domain.Model;
+using JimbeCore.Exceptions;
 
 namespace JimbeCore.Domain.Entities
 {
@@ -148,7 +149,26 @@ namespace JimbeCore.Domain.Entities
                 {
                     var sensor =
                         (from q in query where q.Distance >= query.Max(x => x.Distance) select q.Sensor).FirstOrDefault();
-                    if (sensor!=null) sensor.RemoveInfo(othersensor);
+                    try
+                    {
+                        if (sensor != null) sensor.RemoveInfo(othersensor);
+                    }
+                    catch (SensorDatasetException sde)
+                    {
+                        if (Sensors.Count() > 1)
+                        {
+                            SensorsList.Remove((Sensor) sensor);
+                            sensor.Location = null;
+                        }
+                        else
+                        {
+                            throw new LocationCollisionException(
+                                "Location " + Name + " " + Description + "cannot have zero sensors", sde)
+                                {
+                                    Conflict = this
+                                };
+                        }
+                    }
                 }
             }
         }
