@@ -488,7 +488,6 @@ namespace JimbeApp.ViewModels
        {
            if (loc != null)
               
-           LocationsList.Remove(loc);
                foreach (var tmploc in LocationsList)
                {
                    if (tmploc.Name.Equals(loc.Name))
