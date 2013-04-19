@@ -17,6 +17,9 @@ namespace JimbeWCF.ServiceContract
         IEnumerable<Location> GetLocations();
 
         [OperationContract]
+        InsertResult UpdateLocation(Location oldlocation, Location newlocation);
+
+        [OperationContract]
         Location GetCurrentLocation();
     }
 }

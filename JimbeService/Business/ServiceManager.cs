@@ -120,7 +120,7 @@ namespace JimbeService.Business
             if (!result.EqualsBusiness(_current))
             {
                 logger.Info(" Location Name: ",
-                                _locationManager.Current.Name, "Location Affinity : ", _locationManager.CurrentAffinity);
+                _locationManager.Current.Name, "Location Affinity : ", _locationManager.CurrentAffinity);
                 _current = result;
                 return true;
             }    

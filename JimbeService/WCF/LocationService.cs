@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.Linq;
 using AutoMapper;
 using JimbeCore.Exceptions;
 using JimbeService.Business;
@@ -65,6 +66,33 @@ namespace JimbeService.WCF
                 return new DTO.InsertResult() { Result = false }; 
             }
         }
+
+        public DTO.InsertResult UpdateLocation(DTO.Location oldlocation, DTO.Location newlocation)
+        {
+            lock (_serviceManager)
+            {
+                var repository = _repositoryFactory.CreateRepository<Guid, CoreEntity.Location>();
+                var oldcorelocation = repository.All().FirstOrDefault(x => x.Name==oldlocation.Name);
+
+                CoreEntity.Location newcorelocation = _engine.Map<DTO.Location, CoreEntity.Location>(newlocation);
+
+                if (oldcorelocation.Name != newcorelocation.Name) 
+                    oldcorelocation.Name = newcorelocation.Name;
+                if (oldcorelocation.Description != newcorelocation.Description) 
+                    oldcorelocation.Description = newcorelocation.Description;
+                oldcorelocation.TasksList = newcorelocation.TasksList;
+                foreach (CoreEntity.Task task in oldcorelocation.TasksList) task.Location = oldcorelocation;
+
+                if (repository.Update(oldcorelocation))
+                {
+                    _logger.Debug("Updated location " + oldcorelocation.Name + " " + oldcorelocation.Description + " in " + newcorelocation.Name + " " + oldcorelocation.Description);
+                    return new DTO.InsertResult() { Result = true };
+                }
+                _logger.Warn("Not possible to update location: ");
+                return new DTO.InsertResult() { Result = false };
+            }
+        }
+
 
         public bool DeleteLocation(Location location)
         {

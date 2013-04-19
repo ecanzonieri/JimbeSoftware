@@ -568,8 +568,7 @@ namespace JimbeApp.ViewModels
            }
            else
                newLoc.TasksList = null;
-           _proxy.DeleteLocation(tmpupLocation);
-           _proxy.InsertLocation(newLoc);
+           _proxy.UpdateLocation(tmpupLocation, newLoc);
            NameLocationStr = "";
            DescriptionLocationStr = "";
 
